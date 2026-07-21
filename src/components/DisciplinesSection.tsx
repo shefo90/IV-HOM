@@ -37,33 +37,41 @@ export default function DisciplinesSection() {
           {disciplines.map((d, index) => (
             <div
               key={d.id}
-              className="border-r border-b border-brand-border-light p-8 flex flex-col justify-between min-h-[220px] bg-brand-light hover:bg-brand-card-light/40 transition-colors duration-300 group"
+              className="border-r border-b border-brand-border-light p-8 flex flex-col justify-between min-h-[220px] bg-brand-light transition-all duration-500 group relative overflow-hidden"
             >
-              <div>
-                <span className="block font-mono text-[10px] tracking-widest text-brand-accent font-semibold mb-6">
+              {/* Rising dark background from bottom */}
+              <div className="absolute inset-0 bg-brand-dark translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
+              
+              {/* Content with relative positioning to stay above background */}
+              <div className="relative z-10">
+                <span className="block font-mono text-[10px] tracking-widest text-brand-accent font-semibold mb-6 transition-colors duration-500">
                   {d.number}
                 </span>
-                <h3 className="font-serif text-xl text-brand-dark group-hover:text-brand-accent transition-colors duration-300 tracking-tight">
+                <h3 className="font-serif text-xl text-brand-dark group-hover:text-brand-light transition-colors duration-500 tracking-tight">
                   {d.title}
                 </h3>
               </div>
-              <p className="font-sans text-xs text-gray-500 leading-relaxed mt-4">
+              <p className="font-sans text-xs text-gray-500 group-hover:text-gray-400 leading-relaxed mt-4 transition-colors duration-500 relative z-10">
                 {d.description}
               </p>
             </div>
           ))}
 
           {/* 8th Card: The IV Signature (Dark Box) */}
-          <div className="border-r border-b border-brand-border-light p-8 flex flex-col justify-between min-h-[220px] bg-brand-dark text-brand-light">
-            <div>
-              <span className="block font-mono text-[9px] tracking-widest text-brand-accent font-semibold uppercase mb-6">
+          <div className="border-r border-b border-brand-border-light p-8 flex flex-col justify-between min-h-[220px] bg-brand-dark text-brand-light group relative overflow-hidden">
+            {/* Rising accent background from bottom */}
+            <div className="absolute inset-0 bg-brand-accent translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
+            
+            {/* Content with relative positioning */}
+            <div className="relative z-10">
+              <span className="block font-mono text-[9px] tracking-widest text-brand-accent group-hover:text-brand-dark font-semibold uppercase mb-6 transition-colors duration-500">
                 The IV Signature
               </span>
-              <h3 className="font-serif text-2xl text-brand-accent font-light italic leading-tight tracking-tight">
+              <h3 className="font-serif text-2xl text-brand-accent group-hover:text-brand-dark font-light italic leading-tight tracking-tight transition-colors duration-500">
                 Every project. <br />Every time.
               </h3>
             </div>
-            <p className="font-sans text-[11px] text-gray-400 leading-relaxed mt-6">
+            <p className="font-sans text-[11px] text-gray-400 group-hover:text-brand-dark leading-relaxed mt-6 transition-colors duration-500 relative z-10">
               The signature is invisible — because it is everywhere.
             </p>
           </div>
