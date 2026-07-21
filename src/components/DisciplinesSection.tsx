@@ -15,7 +15,7 @@ export default function DisciplinesSection() {
             <div className="flex items-center gap-3">
               <span className="h-[1.5px] w-8 bg-brand-accent" />
               <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
-                03 • THE SEVEN DISCIPLINES
+                02 • THE SEVEN DISCIPLINES
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-dark tracking-tight">

@@ -55,7 +55,7 @@ export default function ChoreographySection() {
               />
               <span className="font-mono text-[10px] tracking-[0.28em] text-brand-accent font-bold uppercase flex items-center gap-2">
                 <Sparkles size={12} className="animate-pulse" />
-                05 • PRODUCTION CHOREOGRAPHY
+                04 • PRODUCTION CHOREOGRAPHY
               </span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl md:text-[62px] leading-[0.95] text-brand-dark tracking-tight">
