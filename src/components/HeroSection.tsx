@@ -5,6 +5,7 @@
 
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
+import heroImage from "../assets/images/luxury_kitchen_1784643668452.jpg";
 
 interface HeroSectionProps {
   onOpenProposal: () => void;
@@ -78,7 +79,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         {/* Background Image of Luxury Kitchen */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/src/assets/images/luxury_kitchen_1784643668452.jpg"
+            src={heroImage}
             alt="Signature IV Kitchen Interior"
             className="w-full h-full object-cover grayscale-[15%] brightness-[80%] hover:grayscale-0 transition-all duration-1000 object-center"
             referrerPolicy="no-referrer"

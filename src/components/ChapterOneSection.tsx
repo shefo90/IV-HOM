@@ -4,6 +4,7 @@
  */
 
 import { motion } from "motion/react";
+import workshopImage from "../assets/images/digital_factory_1784643682666.jpg";
 
 export default function ChapterOneSection() {
   return (
@@ -79,7 +80,7 @@ export default function ChapterOneSection() {
 
             <div className="overflow-hidden aspect-[3/4] relative">
               <img
-                src="/src/assets/images/digital_factory_1784643682666.jpg"
+                src={workshopImage}
                 alt="IV Digital Manufacturing Workshop"
                 className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 object-center scale-100 group-hover:scale-105"
                 referrerPolicy="no-referrer"
