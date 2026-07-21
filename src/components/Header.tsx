@@ -42,8 +42,8 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
 
   const navItems = [
     { label: "ABOUT", href: "#about" },
-    { label: "PRODUCTS", href: "#products" },
     { label: "PROCESS", href: "#process" },
+    { label: "PRODUCTS", href: "#products" },
     { label: "PROJECTS", href: "#projects" },
     { label: "CONTACT", href: "#contact" },
   ];
