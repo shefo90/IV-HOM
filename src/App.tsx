@@ -15,7 +15,6 @@ import ChapterOneSection from "./components/ChapterOneSection";
 import DisciplinesSection from "./components/DisciplinesSection";
 import WhatWeBuildSection from "./components/WhatWeBuildSection";
 import ChoreographySection from "./components/ChoreographySection";
-import TechSection from "./components/TechSection";
 import SelectedWorkSection from "./components/SelectedWorkSection";
 import LetBuildSection from "./components/LetBuildSection";
 import ProposalModal from "./components/ProposalModal";
@@ -75,9 +74,6 @@ export default function App() {
 
       {/* Process stage timeline sequence */}
       <ChoreographySection />
-
-      {/* Machines and Equipment spec sheet */}
-      <TechSection />
 
       {/* Grid of actual completed reference houses/residences */}
       <SelectedWorkSection onSelectProject={(title) => openProposal(`Reference study: ${title}`)} />
