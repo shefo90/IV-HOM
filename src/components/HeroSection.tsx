@@ -6,6 +6,7 @@
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import heroImage from "../assets/images/luxury_kitchen_1784643668452.jpg";
+import { materials } from "../data";
 
 interface HeroSectionProps {
   onOpenProposal: () => void;
@@ -27,7 +28,8 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen bg-brand-dark pt-24 flex flex-col md:flex-row overflow-hidden border-b border-brand-border-dark">
+    <section id="hero" className="relative bg-brand-dark pt-24 flex flex-col overflow-hidden border-b border-brand-border-dark">
+      <div className="min-h-screen flex flex-col md:flex-row">
       {/* LEFT PANEL (50% desktop, dark background with big IV text and manifesto) */}
       <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-between border-r border-brand-border-dark relative">
         {/* Background Grid Pattern (blueprinted line) */}
@@ -136,6 +138,97 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
           SCROLL TO ENTER
         </button>
       </div>
+      </div>
+
+      {/* Enhanced Scrolling Marquee of Materials */}
+      <div className="w-full border-t-2 border-b-2 border-brand-accent/30 bg-gradient-to-r from-brand-dark via-brand-card-dark/60 to-brand-dark py-10 overflow-hidden relative group">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(212,107,67,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(212,107,67,0.03)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none opacity-50" />
+        
+        {/* Gradient overlays for edge fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none" />
+        
+        {/* Glowing accent line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-60 animate-pulse" />
+        
+        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite] group-hover:animate-[marquee_50s_linear_infinite] transition-all">
+          {/* First loop */}
+          <div className="flex gap-20 items-center shrink-0 pr-20">
+            {materials.map((m, idx) => (
+              <div 
+                key={idx} 
+                className="flex items-center gap-6 group/item hover:scale-110 transition-transform duration-300"
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                {/* Enhanced number badge */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-brand-accent/20 blur-xl rounded-full" />
+                  <span className="relative font-mono text-[11px] tracking-widest text-brand-accent font-bold uppercase bg-brand-accent/10 px-3 py-1.5 border border-brand-accent/40 rounded-sm">
+                    M • 0{idx + 1}
+                  </span>
+                </div>
+                
+                {/* Decorative divider */}
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rotate-45 bg-brand-accent/40 group-hover/item:bg-brand-accent transition-colors" />
+                  <div className="h-[1px] w-8 bg-gradient-to-r from-brand-accent/60 to-transparent" />
+                </div>
+                
+                {/* Material name with enhanced styling */}
+                <span className="font-serif text-3xl italic text-brand-light font-light tracking-wide group-hover/item:text-brand-accent transition-colors duration-300 drop-shadow-[0_0_20px_rgba(212,107,67,0.3)]">
+                  {m}
+                </span>
+                
+                {/* Trailing decorative element */}
+                <div className="flex items-center gap-2">
+                  <div className="h-[1px] w-8 bg-gradient-to-l from-brand-accent/60 to-transparent" />
+                  <div className="w-1 h-1 rounded-full bg-brand-accent/60 animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Duplicate loop for seamless scroll */}
+          <div className="flex gap-20 items-center shrink-0 pr-20" aria-hidden="true">
+            {materials.map((m, idx) => (
+              <div 
+                key={`dup-${idx}`} 
+                className="flex items-center gap-6 group/item hover:scale-110 transition-transform duration-300"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-brand-accent/20 blur-xl rounded-full" />
+                  <span className="relative font-mono text-[11px] tracking-widest text-brand-accent font-bold uppercase bg-brand-accent/10 px-3 py-1.5 border border-brand-accent/40 rounded-sm">
+                    M • 0{idx + 1}
+                  </span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rotate-45 bg-brand-accent/40 group-hover/item:bg-brand-accent transition-colors" />
+                  <div className="h-[1px] w-8 bg-gradient-to-r from-brand-accent/60 to-transparent" />
+                </div>
+                
+                <span className="font-serif text-3xl italic text-brand-light font-light tracking-wide group-hover/item:text-brand-accent transition-colors duration-300 drop-shadow-[0_0_20px_rgba(212,107,67,0.3)]">
+                  {m}
+                </span>
+                
+                <div className="flex items-center gap-2">
+                  <div className="h-[1px] w-8 bg-gradient-to-l from-brand-accent/60 to-transparent" />
+                  <div className="w-1 h-1 rounded-full bg-brand-accent/60 animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Add marquee keyframe injection style to react scope */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }

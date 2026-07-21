@@ -86,46 +86,6 @@ export default function TechSection() {
           </div>
         </div>
       </div>
-
-      {/* Scrolling Marquee of Materials at bottom */}
-      <div className="w-full border-t border-b border-brand-border-dark bg-brand-card-dark/40 py-8 mt-16 overflow-hidden relative">
-        <div className="flex whitespace-nowrap animate-[marquee_25s_linear_infinite] hover:pause">
-          {/* First loop */}
-          <div className="flex gap-16 items-center shrink-0 pr-16">
-            {materials.map((m, idx) => (
-              <div key={idx} className="flex items-center gap-6">
-                <span className="font-mono text-[10px] tracking-widest text-brand-accent font-semibold">
-                  M • 0{idx + 1}
-                </span>
-                <span className="font-serif text-2xl italic text-brand-light font-light">
-                  {m}
-                </span>
-              </div>
-            ))}
-          </div>
-          {/* Duplicate loop for seamless scroll */}
-          <div className="flex gap-16 items-center shrink-0 pr-16" aria-hidden="true">
-            {materials.map((m, idx) => (
-              <div key={`dup-${idx}`} className="flex items-center gap-6">
-                <span className="font-mono text-[10px] tracking-widest text-brand-accent font-semibold">
-                  M • 0{idx + 1}
-                </span>
-                <span className="font-serif text-2xl italic text-brand-light font-light">
-                  {m}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Add marquee keyframe injection style to react scope */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 }
