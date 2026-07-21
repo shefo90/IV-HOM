@@ -153,7 +153,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         {/* Glowing accent line */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-60 animate-pulse" />
         
-        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite] group-hover:animate-[marquee_50s_linear_infinite] transition-all">
+        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite]">
           {/* First loop */}
           <div className="flex gap-20 items-center shrink-0 pr-20">
             {materials.map((m, idx) => (
