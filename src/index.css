@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-dark: #0B0A0A;
+  --color-brand-card-dark: #121110;
+  --color-brand-light: #F4F0E6;
+  --color-brand-card-light: #EBE7DC;
+  --color-brand-accent: #D46B43;
+  --color-brand-accent-hover: #E37E56;
+  --color-brand-accent-muted: rgba(212, 107, 67, 0.15);
+  --color-brand-border-dark: rgba(255, 255, 255, 0.08);
+  --color-brand-border-light: rgba(0, 0, 0, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-dark);
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Custom thin scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0A0A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D46B43;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E37E56;
+  }
+}
+
+/* Hide default input outlines for cleaner design */
+input:focus, textarea:focus {
+  outline: none;
+}

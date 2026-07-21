@@ -1,0 +1,6 @@
+{
+  "name": "IV - Fixed Furniture Manufactory",
+  "description": "High-end exact replication of the digital-first fourth-generation fixed furniture manufactory web experience, featuring luxury kitchens, dressing rooms, and vanities with precise, elegant typography and custom animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
