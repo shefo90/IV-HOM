@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import ChapterOneSection from "./components/ChapterOneSection";
-import TeamSection from "./components/TeamSection";
 import DisciplinesSection from "./components/DisciplinesSection";
 import WhatWeBuildSection from "./components/WhatWeBuildSection";
 import ChoreographySection from "./components/ChoreographySection";
@@ -67,9 +66,6 @@ export default function App() {
 
       {/* Chapter One Narrative Section */}
       <ChapterOneSection />
-
-      {/* The Team / Capacity Section */}
-      <TeamSection />
 
       {/* Disciplines Grid */}
       <DisciplinesSection />
