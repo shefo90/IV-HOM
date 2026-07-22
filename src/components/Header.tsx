@@ -41,6 +41,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
   }, []);
 
   const navItems = [
+    { label: "HOME", href: "/", isExternal: false },
     { label: "ABOUT", href: "/pages/IV-about-standalone.html", isExternal: true },
     { label: "PROCESS", href: "/pages/IV-process-standalone.html", isExternal: true },
     { label: "PRODUCTS", href: "/pages/IV-products-standalone.html", isExternal: true },
