@@ -35,30 +35,6 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         {/* Background Grid Pattern (blueprinted line) */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(212,107,67,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(212,107,67,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-        {/* Top Spacer */}
-        <div className="h-2 md:h-4" />
-
-        {/* Giant Initials "IV" */}
-        <div className="my-auto py-6 sm:py-8 md:py-24 relative">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="font-serif text-[100px] sm:text-[140px] md:text-[230px] lg:text-[280px] leading-none text-brand-light font-extralight tracking-tighter select-none"
-          >
-            IV
-          </motion.h1>
-
-          {/* Subtitle labels separating line */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[8px] sm:text-[9px] tracking-[0.2em] text-gray-500 font-mono mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-brand-border-dark w-full max-w-md">
-            <span>HS WOOD INDUSTRIES</span>
-            <span className="text-brand-accent/60">—</span>
-            <span>CAIRO • EG</span>
-            <span className="text-brand-accent/60">—</span>
-            <span>EST. IV • MMXXVI</span>
-          </div>
-        </div>
-
         {/* Left Bottom Title Block */}
         <div className="space-y-4 sm:space-y-6 max-w-lg mt-auto">
           <div className="flex items-center gap-3">
