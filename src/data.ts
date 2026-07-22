@@ -6,6 +6,12 @@
 import luxuryKitchenImage from "./assets/images/luxury_kitchen_1784643668452.jpg";
 import luxuryWardrobeImage from "./assets/images/luxury_wardrobe_1784643696854.jpg";
 import luxuryVanityImage from "./assets/images/luxury_vanity_1784643711057.jpg";
+import digitalFactoryImage from "./assets/images/digital_factory_1784643682666.jpg";
+import cncRouterImage from "./assets/images/2030_CNC_Router_with_High-Precision_Spindle_and_Va.webp";
+import kitchenCabinetImage from "./assets/images/1-2411200UP80-L.jpg";
+import fullKitchenCNCImage from "./assets/images/full-kitchen-cabinet-production-cnc-usq.webp";
+import factoryImage from "./assets/images/images.jpg";
+import cncMachineImage from "./assets/images/unnamed-36.png";
 
 export interface Discipline {
   id: string;
@@ -46,6 +52,7 @@ export interface ReferenceProject {
   title: string;
   description: string;
   image: string;
+  images?: string[]; // Array of images for gallery
 }
 
 export const disciplines: Discipline[] = [
@@ -233,7 +240,8 @@ export const referenceProjects: ReferenceProject[] = [
     scope: "Phased delivery across 6 months • consistent quality throughout",
     title: "Zed East Residences",
     description: "Standardized luxury kitchen systems manufactured and delivered in strict production choreography.",
-    image: luxuryKitchenImage
+    image: luxuryKitchenImage,
+    images: [luxuryKitchenImage, kitchenCabinetImage, fullKitchenCNCImage] // Kitchen project gallery
   },
   {
     id: "ref-2",
@@ -242,7 +250,8 @@ export const referenceProjects: ReferenceProject[] = [
     scope: "Villa kitchens • handed over June 2025",
     title: "Marassi North Coast",
     description: "High-end bespoke walnut cabinetry and walk-in dressing rooms built to rigorous seaside environmental specifications.",
-    image: luxuryWardrobeImage
+    image: luxuryWardrobeImage,
+    images: [luxuryWardrobeImage, digitalFactoryImage, factoryImage] // Wardrobe/Dressing room gallery
   },
   {
     id: "ref-3",
@@ -251,6 +260,7 @@ export const referenceProjects: ReferenceProject[] = [
     scope: "Full interior fit-out • architect-specified detailing",
     title: "Palm Hills Katameya",
     description: "Integrated signature vanity and bathroom cabinetry featuring brass accents and custom fluted panelling.",
-    image: luxuryVanityImage
+    image: luxuryVanityImage,
+    images: [luxuryVanityImage, cncRouterImage, cncMachineImage] // Vanity project gallery
   }
 ];
