@@ -41,14 +41,19 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
   }, []);
 
   const navItems = [
-    { label: "ABOUT", href: "#about" },
-    { label: "PROCESS", href: "#process" },
-    { label: "PRODUCTS", href: "#products" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "ABOUT", href: "/pages/IV-about-standalone.html", isExternal: true },
+    { label: "PROCESS", href: "/pages/IV-process-standalone.html", isExternal: true },
+    { label: "PRODUCTS", href: "/pages/IV-products-standalone.html", isExternal: true },
+    { label: "FACTORY", href: "/pages/IV-factory-standalone.html", isExternal: true },
+    { label: "PROJECTS", href: "/pages/IV-projects-standalone.html", isExternal: true },
+    { label: "CONTACT", href: "/pages/IV-contact-standalone.html", isExternal: true },
   ];
 
-  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string, isExternal: boolean) => {
+    if (isExternal) {
+      // Let the browser handle the navigation to the external page
+      return;
+    }
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
@@ -80,7 +85,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item.href, item.isExternal)}
                 className={`font-sans text-[11px] tracking-[0.2em] font-medium transition-colors relative py-1 ${
                   isActive ? "text-brand-accent" : "text-gray-400 hover:text-brand-light"
                 }`}
@@ -137,7 +142,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item.href, item.isExternal)}
                 className="font-sans text-xs tracking-[0.15em] text-gray-400 hover:text-brand-accent py-1"
               >
                 {item.label}
