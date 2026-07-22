@@ -143,30 +143,46 @@
   .light .btn::before{background:var(--gold-soft);}
   .light .btn:hover{color:var(--cream);}
 
-  /* ============ NAV ============ */
+    /* ============ NAV ============ */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;
-    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-    padding:24px 56px;transition:all .4s var(--ease);
-    border-bottom:1px solid transparent;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:18px 56px;
+    background:rgba(11,10,9,0.92);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px) saturate(180%);
+    -webkit-backdrop-filter:blur(18px) saturate(180%);
+    transition:all .35s var(--ease);
   }
-  nav.scrolled{background:rgba(11,9,6,0.85);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);padding:14px 56px;border-color:var(--line-dark);}
-  .logo{
-    font-family:var(--serif);font-size:30px;color:var(--text-light);
-    letter-spacing:.02em;font-weight:400;display:flex;align-items:baseline;gap:8px;
-  }
-  .logo em{font-size:11px;font-family:var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-style:normal;}
+  nav.scrolled{background:rgba(11,10,9,0.95);padding:14px 56px;border-color:rgba(255,255,255,0.12);}
+  .logo{display:flex;align-items:center;gap:16px;font-family:var(--serif);font-size:14px;font-weight:400;color:var(--text-light);text-decoration:none;}
+  .logo-mark{position:relative;width:44px;height:44px;border:1px solid rgba(212,168,86,0.55);border-radius:9999px;display:flex;align-items:center;justify-content:center;transition:transform .4s var(--ease);}
+  .logo:hover .logo-mark{transform:rotate(180deg);}
+  .logo-mark span{font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--text-light);}
+  .logo-mark::after{content:'';position:absolute;inset:-2px;border:1px dashed rgba(212,168,86,0.2);border-radius:9999px;animation:spin 40s linear infinite;}
+  .logo-copy{display:flex;flex-direction:column;line-height:1.1;}
+  .logo-copy .logo-tag{font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .logo-copy .logo-sub{font-family:var(--sans);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light-mute);margin-top:3px;}
   .navlinks{display:flex;justify-content:center;gap:44px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light-mute);}
-  .navlinks a{position:relative;padding:6px 0;transition:color .3s ease;}
-  .navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease);}
+  .navlinks a{position:relative;padding:6px 0;transition:color .3s ease;color:inherit;}
+  .navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease);}
   .navlinks a:hover{color:var(--text-light);}
-  .navlinks a:hover::after{width:100%;}
+  .navlinks a:hover::after,.navlinks a.active::after{width:100%;}
+  .navlinks a.active{color:var(--text-light);}
   .nav-right{display:flex;justify-content:flex-end;align-items:center;gap:22px;}
   .nav-time{font-family:var(--mono);font-size:11px;color:var(--text-light-dim);letter-spacing:.08em;}
   .nav-time b{color:var(--gold);font-weight:400;}
-  @media(max-width:900px){.navlinks,.nav-time{display:none;}nav{grid-template-columns:1fr auto;}}
-
-  /* ============ HERO ============ */
+  .nav-cta-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--gold);color:var(--text-light);padding:12px 22px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;transition:background .3s ease,color .3s ease;}
+  .nav-cta-btn:hover{background:var(--gold);color:var(--ink);}
+  .hamburger{display:none;width:38px;height:38px;border:1px solid var(--line-dark-2);border-radius:50%;background:transparent;cursor:pointer;position:relative;flex-shrink:0;align-items:center;justify-content:center;}
+  .hamburger span{display:block;position:absolute;left:11px;width:16px;height:1px;background:var(--text-light);transition:transform .35s var(--ease),opacity .35s var(--ease),top .35s var(--ease);}
+  .hamburger span:first-child{top:16px;}
+  .hamburger span:last-child{top:22px;}
+  .hamburger.open span:first-child{top:19px;transform:rotate(45deg);}
+  .hamburger.open span:last-child{top:19px;transform:rotate(-45deg);}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media(max-width:900px){.navlinks,.nav-time,.nav-cta-btn{display:none;}nav{padding:14px 20px;}.hamburger{display:flex;}}
+  /* ============ HERO ============ 
   .hero{
     min-height:100vh;position:relative;overflow:hidden;
     display:grid;grid-template-columns:1.4fr 1fr;gap:0;
@@ -803,18 +819,24 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="IV-home-standalone.html" class="logo">IV<em>Est. 1962</em></a>
+  <a href="IV-home-standalone.html" class="logo">
+    <span class="logo-mark"><span>IV</span></span>
+    <span class="logo-copy">
+      <span class="logo-tag">4TH GENERATION</span>
+      <span class="logo-sub">CRAFT • COGNITIVE</span>
+    </span>
+  </a>
   <div class="navlinks">
     <a href="IV-about-standalone.html" data-cursor="link" class="active">About</a>
-    <a href="IV-factory-standalone.html" data-cursor="link" class="">Factory</a>
-    <a href="IV-products-standalone.html" data-cursor="link" class="">Products</a>
     <a href="IV-process-standalone.html" data-cursor="link" class="">Process</a>
+    <a href="IV-products-standalone.html" data-cursor="link" class="">Products</a>
+    <a href="IV-factory-standalone.html" data-cursor="link" class="">Factory</a>
     <a href="IV-projects-standalone.html" data-cursor="link" class="">Projects</a>
     <a href="IV-contact-standalone.html" data-cursor="link" class="">Contact</a>
   </div>
   <div class="nav-right">
     <div class="nav-time"><span id="cairoTime">--:--</span> · <b>CAI</b></div>
-    <a href="IV-contact-standalone.html" class="btn nav-cta-btn" style="padding:12px 22px;font-size:11px;" data-magnetic>Get Proposal <i class="ti ti-arrow-up-right"></i></a>
+    <a href="IV-contact-standalone.html" class="btn nav-cta-btn" style="padding:12px 22px;font-size:11px;" data-magnetic>GET PROPOSAL <i class="ti ti-arrow-up-right"></i></a>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -823,11 +845,11 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-links">
+    <div class="mobile-menu-links">
     <a href="IV-about-standalone.html">About</a>
-    <a href="IV-factory-standalone.html">Factory</a>
-    <a href="IV-products-standalone.html">Products</a>
     <a href="IV-process-standalone.html">Process</a>
+    <a href="IV-products-standalone.html">Products</a>
+    <a href="IV-factory-standalone.html">Factory</a>
     <a href="IV-projects-standalone.html">Projects</a>
     <a href="IV-contact-standalone.html">Contact</a>
   </div>
