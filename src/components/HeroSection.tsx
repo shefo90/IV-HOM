@@ -30,26 +30,40 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
   return (
     <section id="hero" className="relative bg-brand-dark pt-16 md:pt-24 flex flex-col overflow-hidden border-b border-brand-border-dark">
       <div className="min-h-[100svh] md:min-h-screen flex flex-col md:flex-row">
-      {/* LEFT PANEL (50% desktop, dark background with big IV text and manifesto) */}
-      <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-16 flex flex-col justify-between border-r border-brand-border-dark relative">
+      {/* LEFT PANEL (50% desktop, dark background with manifesto) */}
+      <div className="w-full md:w-1/2 p-4 sm:p-6 md:p-16 flex flex-col justify-center border-r border-brand-border-dark relative">
         {/* Background Grid Pattern (blueprinted line) */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(212,107,67,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(212,107,67,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-        {/* Left Bottom Title Block */}
-        <div className="space-y-4 sm:space-y-6 max-w-lg mt-auto">
+        {/* Left Title Block - Now Centered */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="space-y-4 sm:space-y-6 max-w-lg relative"
+        >
           <div className="flex items-center gap-3">
             <span className="h-[1px] w-6 sm:w-8 bg-brand-accent" />
             <span className="font-mono text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] text-brand-accent font-semibold uppercase">
               THE FIXED FURNITURE MANUFACTORY
             </span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-brand-light leading-[1.1] tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-brand-light leading-[1.1] tracking-tight">
             Fourth–generation craft.{" "}
             <span className="italic text-brand-accent font-normal">
               Powered by Industry 4.0.
             </span>
           </h2>
-        </div>
+          
+          {/* Company info labels */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[8px] sm:text-[9px] tracking-[0.2em] text-gray-500 font-mono pt-4 border-t border-brand-border-dark">
+            <span>HS WOOD INDUSTRIES</span>
+            <span className="text-brand-accent/60">—</span>
+            <span>CAIRO • EG</span>
+            <span className="text-brand-accent/60">—</span>
+            <span>EST. IV • MMXXVI</span>
+          </div>
+        </motion.div>
       </div>
 
       {/* RIGHT PANEL (50% desktop, split-screen with kitchen image and floating description) */}
