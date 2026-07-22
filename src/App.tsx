@@ -66,8 +66,7 @@ export default function App() {
       {/* Chapter One Narrative Section */}
       <ChapterOneSection />
 
-      {/* Disciplines Grid */}
-      <DisciplinesSection />
+
 
       {/* Categories we build (Kitchens, Closet/Wardrobes, Vanities) */}
       <WhatWeBuildSection onSelectCategory={(cat) => openProposal(cat)} />
