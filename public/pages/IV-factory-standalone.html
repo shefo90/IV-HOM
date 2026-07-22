@@ -9,31 +9,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
 <style>
-  :root{
-    --ink:#0b0906;
-    --ink-2:#131009;
-    --ink-3:#1a170e;
-    --cream:#f5efe3;
-    --cream-2:#ebe3d0;
-    --cream-3:#dfd4bb;
-    --gold:#d4a856;
-    --gold-2:#e8c17a;
-    --gold-soft:#a9803f;
-    --gold-deep:#7d5a26;
-    --text-dark:#1a160e;
-    --text-dark-mute:#6a6558;
-    --text-light:#f5efe3;
-    --text-light-mute:rgba(245,239,227,0.58);
-    --text-light-dim:rgba(245,239,227,0.32);
-    --line-dark:rgba(245,239,227,0.10);
-    --line-dark-2:rgba(245,239,227,0.22);
-    --line-light:rgba(26,22,14,0.11);
-    --serif:'Fraunces', serif;
-    --sans:'Inter', sans-serif;
-    --mono:'JetBrains Mono', monospace;
-    --ease:cubic-bezier(.16,1,.3,1);
-    --ease-2:cubic-bezier(.7,0,.3,1);
-  }
+:root{
+  /* Fonts */
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+
+  /* Colors */
+  --ink: #0B0A0A;
+  --ink-2: #121110;
+  --ink-3: #121110;
+
+  --cream: #F4F0E6;
+  --cream-2: #EBE7DC;
+  --cream-3: #EBE7DC;
+
+  --gold: #D46B43;
+  --gold-2: #E37E56;
+  --gold-soft: #D46B43;
+  --gold-deep: #A84F2F;
+
+  --text-dark: #0B0A0A;
+  --text-dark-mute: rgba(11,10,10,.65);
+
+  --text-light: #ffffff;
+  --text-light-mute: rgba(255,255,255,.68);
+  --text-light-dim: rgba(255,255,255,.45);
+
+  --line-dark: rgba(255,255,255,.08);
+  --line-dark-2: rgba(255,255,255,.15);
+  --line-light: rgba(0,0,0,.08);
+
+  --ease: cubic-bezier(.16,1,.3,1);
+  --ease-2: cubic-bezier(.7,0,.3,1);
+}
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
