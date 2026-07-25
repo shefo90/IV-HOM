@@ -51,37 +51,11 @@
     color:var(--text-light);
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    cursor:none;
   }
   @media(hover:none){body{cursor:auto;}}
   img{display:block;max-width:100%;}
   a{color:inherit;text-decoration:none;}
   ::selection{background:var(--gold);color:var(--ink);}
-
-  /* ============ CUSTOM CURSOR ============ */
-  .cursor-dot,.cursor-ring{
-    position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
-    mix-blend-mode:difference;
-    transform:translate(-50%,-50%);
-    transition:opacity .3s ease;
-  }
-  .cursor-dot{
-    width:6px;height:6px;border-radius:50%;background:var(--gold-2);
-  }
-  .cursor-ring{
-    width:38px;height:38px;border:1px solid rgba(245,239,227,.6);border-radius:50%;
-    transition:width .35s var(--ease), height .35s var(--ease), background .35s ease, border-color .35s ease;
-  }
-  .cursor-ring.hover{width:72px;height:72px;background:rgba(212,168,86,.15);border-color:var(--gold);}
-  .cursor-ring.hover-drag{width:88px;height:88px;background:var(--gold);border-color:var(--gold);}
-  .cursor-label{
-    position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
-    transform:translate(-50%,calc(-50% - 55px));
-    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--gold-2);opacity:0;transition:opacity .3s ease;
-  }
-  .cursor-label.on{opacity:1;}
-  @media(hover:none){.cursor-dot,.cursor-ring,.cursor-label{display:none;}}
 
   /* ============ NOISE + GRAIN ============ */
   body::before{
@@ -809,11 +783,6 @@
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-label" id="cursorLabel">View</div>
-
 <!-- Scroll progress -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -822,8 +791,8 @@
   <a href="/" class="logo">
     <span class="logo-mark"><span>IV</span></span>
     <span class="logo-copy">
-      <span class="logo-tag">4TH GENERATION</span>
-      <span class="logo-sub">CRAFT • COGNITIVE</span>
+      <span class="logo-tag">Fixed furniture</span>
+      <span class="logo-sub"></span>
     </span>
   </a>
   <div class="navlinks">
@@ -1027,35 +996,6 @@
     const h = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (window.scrollY / h * 100) + '%';
   }, {passive:true});
-
-  // ============ CUSTOM CURSOR ============
-  const ring = document.getElementById('cursorRing');
-  const dot = document.getElementById('cursorDot');
-  const label = document.getElementById('cursorLabel');
-  let mx=window.innerWidth/2, my=window.innerHeight/2, rx=mx, ry=my;
-  window.addEventListener('mousemove', e=>{
-    mx=e.clientX; my=e.clientY;
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-    label.style.transform = `translate(${mx}px, ${my}px) translate(-50%,calc(-50% - 55px))`;
-  });
-  function tick(){
-    rx += (mx-rx)*0.16;
-    ry += (my-ry)*0.16;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tick);
-  }
-  tick();
-  document.querySelectorAll('[data-cursor]').forEach(el=>{
-    const kind = el.dataset.cursor;
-    el.addEventListener('mouseenter', ()=>{
-      if(kind==='drag'){ ring.classList.add('hover-drag'); label.textContent='View'; label.classList.add('on'); }
-      else { ring.classList.add('hover'); }
-    });
-    el.addEventListener('mouseleave', ()=>{
-      ring.classList.remove('hover','hover-drag');
-      label.classList.remove('on');
-    });
-  });
 
   // ============ MAGNETIC BUTTONS ============
   document.querySelectorAll('[data-magnetic]').forEach(btn=>{
