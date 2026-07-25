@@ -17,6 +17,7 @@ import WhatWeBuildSection from "./components/WhatWeBuildSection";
 import ChoreographySection from "./components/ChoreographySection";
 import SelectedWorkSection from "./components/SelectedWorkSection";
 import LetBuildSection from "./components/LetBuildSection";
+import ContactFormSection from "./components/ContactFormSection";
 import ProposalModal from "./components/ProposalModal";
 
 export default function App() {
@@ -76,6 +77,10 @@ export default function App() {
 
       {/* Grid of actual completed reference houses/residences */}
       <SelectedWorkSection onSelectProject={(title) => openProposal(`Reference study: ${title}`)} />
+
+      {/* Contact Form Section */}
+      <ContactFormSection />
+
 
       {/* Large visual call to build and detailed map sitemap footer */}
       <LetBuildSection onOpenProposal={() => openProposal()} onOpenTour={openTour} />

@@ -122,8 +122,8 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
             </ul>
           </div>
 
-          {/* Contact Info Column */}
-          <div className="md:col-span-3 space-y-4">
+          {/* Contact Info Column - Now beside Navigate */}
+          <div className="md:col-span-2 space-y-4">
             <h4 className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
               CONTACT
             </h4>
@@ -135,7 +135,7 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
           </div>
 
           {/* HS Wood Column */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="md:col-span-3 space-y-4">
             <h4 className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
               HS WOOD INDUSTRIES
             </h4>
