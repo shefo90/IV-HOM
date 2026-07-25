@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import { choreographyStages } from "../data";
 import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, ArrowRight, Sparkles, Zap } from "lucide-react";
+import { CheckCircle2, Sparkles, Zap } from "lucide-react";
 
 export default function ChoreographySection() {
   const [activeStage, setActiveStage] = useState(3); // Default to Stage 04 (index 3)
@@ -231,225 +231,27 @@ export default function ChoreographySection() {
             </div>
           </div>
 
-          {/* Ultra-Premium Desktop content box */}
-          <div className="hidden lg:block relative">
+          {/* Desktop stage description — appears below timeline on hover/click */}
+          <div className="hidden lg:block relative min-h-[80px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStage}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.95 }}
-                transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-                className="relative overflow-hidden rounded-2xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex items-start gap-8 pt-6"
               >
-                {/* Animated gradient border effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-brand-accent via-[#e8865d] to-brand-accent opacity-100 blur-sm animate-gradient bg-[length:200%_auto]" />
-                
-                {/* Main content card */}
-                <div className="relative bg-white m-[2px] p-12 rounded-2xl shadow-2xl">
-                  {/* Animated corner decorations */}
-                  <motion.div 
-                    className="absolute top-0 left-0 w-20 h-20"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <div className="absolute top-0 left-0 w-6 h-[3px] bg-gradient-to-r from-brand-accent to-transparent" />
-                    <div className="absolute top-0 left-0 w-[3px] h-6 bg-gradient-to-b from-brand-accent to-transparent" />
-                    <motion.div 
-                      className="absolute top-1 left-1 w-3 h-3 border-2 border-brand-accent/30 rounded-full"
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="absolute top-0 right-0 w-20 h-20"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <div className="absolute top-0 right-0 w-6 h-[3px] bg-gradient-to-l from-brand-accent to-transparent" />
-                    <div className="absolute top-0 right-0 w-[3px] h-6 bg-gradient-to-b from-brand-accent to-transparent" />
-                    <Sparkles className="absolute top-2 right-2 text-brand-accent/40" size={14} />
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="absolute bottom-0 left-0 w-20 h-20"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                  >
-                    <div className="absolute bottom-0 left-0 w-6 h-[3px] bg-gradient-to-r from-brand-accent to-transparent" />
-                    <div className="absolute bottom-0 left-0 w-[3px] h-6 bg-gradient-to-t from-brand-accent to-transparent" />
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="absolute bottom-0 right-0 w-20 h-20"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <div className="absolute bottom-0 right-0 w-6 h-[3px] bg-gradient-to-l from-brand-accent to-transparent" />
-                    <div className="absolute bottom-0 right-0 w-[3px] h-6 bg-gradient-to-t from-brand-accent to-transparent" />
-                    <Zap className="absolute bottom-2 right-2 text-brand-accent/40" size={14} />
-                  </motion.div>
-                  
-                  {/* Floating indicator arrow with glow */}
-                  <motion.div 
-                    className="absolute -top-4 left-[calc(5%_+_14.28%*var(--active-index))] -translate-x-1/2 transition-all duration-500 drop-shadow-2xl" 
-                    style={{ "--active-index": activeStage } as CSSProperties}
-                    animate={{ y: [-2, 2, -2] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-brand-accent blur-md opacity-60" />
-                      <div className="relative w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[14px] border-t-brand-accent" />
-                    </div>
-                  </motion.div>
-                  
-                  <div className="grid grid-cols-3 gap-12 items-center">
-                    {/* Left: Ultra-premium stage number */}
-                    <motion.div 
-                      className="relative"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.2, type: "spring" }}
-                    >
-                      {/* Glowing background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-brand-accent/10 via-brand-accent/5 to-transparent blur-3xl scale-150" />
-                      
-                      <div className="relative space-y-4">
-                        <div className="flex items-center gap-2">
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                          >
-                            <Sparkles className="text-brand-accent" size={16} />
-                          </motion.div>
-                          <span className="font-mono text-xs text-brand-accent font-bold tracking-[0.2em] uppercase">
-                            Current Stage
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-baseline gap-4">
-                          <motion.span 
-                            className="font-serif text-7xl font-light bg-gradient-to-br from-brand-dark via-brand-dark to-brand-dark/70 bg-clip-text text-transparent"
-                            animate={{ scale: [1, 1.02, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          >
-                            {choreographyStages[activeStage].stageNumber}
-                          </motion.span>
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1, rotate: [0, 10, 0] }}
-                            transition={{ delay: 0.3, rotate: { duration: 2, repeat: Infinity } }}
-                          >
-                            <CheckCircle2 className="text-brand-accent mb-4" size={32} strokeWidth={2.5} />
-                          </motion.div>
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-brand-accent">
-                          <span className="font-mono text-[11px] tracking-wider uppercase font-semibold">In Progress</span>
-                          <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <ArrowRight size={14} strokeWidth={3} />
-                          </motion.div>
-                        </div>
-                        
-                        {/* Circular progress indicator */}
-                        <div className="relative w-16 h-16 mt-6">
-                          <svg className="transform -rotate-90 w-16 h-16">
-                            <circle
-                              cx="32"
-                              cy="32"
-                              r="28"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                              fill="none"
-                              className="text-gray-200"
-                            />
-                            <motion.circle
-                              cx="32"
-                              cy="32"
-                              r="28"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                              fill="none"
-                              strokeLinecap="round"
-                              className="text-brand-accent"
-                              initial={{ strokeDasharray: "0 175" }}
-                              animate={{ strokeDasharray: `${((activeStage + 1) / 7) * 175} 175` }}
-                              transition={{ duration: 1, ease: "easeInOut" }}
-                            />
-                          </svg>
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-xs font-mono font-bold text-brand-dark">
-                              {Math.round(((activeStage + 1) / 7) * 100)}%
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                    
-                    {/* Right: Enhanced description */}
-                    <motion.div 
-                      className="col-span-2 border-l-[3px] border-brand-accent/40 pl-12 space-y-5"
-                      initial={{ x: 20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <h3 className="font-serif text-4xl text-brand-dark font-semibold tracking-tight">
-                            {choreographyStages[activeStage].title}
-                          </h3>
-                          <motion.div
-                            animate={{ rotate: [0, 15, -15, 0] }}
-                            transition={{ duration: 3, repeat: Infinity }}
-                          >
-                            <Zap className="text-brand-accent" size={24} />
-                          </motion.div>
-                        </div>
-                        <motion.div 
-                          className="h-[3px] w-24 bg-gradient-to-r from-brand-accent via-[#e8865d] to-transparent rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: 96 }}
-                          transition={{ delay: 0.5, duration: 0.8 }}
-                        />
-                      </div>
-                      
-                      <p className="font-sans text-[16px] text-gray-600 leading-[1.8] max-w-xl">
-                        {choreographyStages[activeStage].description}
-                      </p>
-                      
-                      {/* Enhanced progress bar */}
-                      <div className="flex items-center gap-4 pt-4">
-                        <span className="font-mono text-[10px] text-gray-500 uppercase tracking-wider font-semibold">
-                          Stage {activeStage + 1} of {choreographyStages.length}
-                        </span>
-                        <div className="flex-1 h-2 bg-gradient-to-r from-gray-200 to-gray-100 rounded-full overflow-hidden max-w-[300px] shadow-inner">
-                          <motion.div 
-                            className="h-full bg-gradient-to-r from-brand-accent via-[#e8865d] to-brand-accent shadow-lg bg-[length:200%_auto]"
-                            initial={{ width: "0%" }}
-                            animate={{ 
-                              width: `${((activeStage + 1) / choreographyStages.length) * 100}%`,
-                              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                            }}
-                            transition={{ 
-                              width: { duration: 0.8 },
-                              backgroundPosition: { duration: 2, repeat: Infinity, ease: "linear" }
-                            }}
-                          />
-                        </div>
-                        <span className="font-mono text-sm text-brand-accent font-bold">
-                          {Math.round(((activeStage + 1) / choreographyStages.length) * 100)}%
-                        </span>
-                      </div>
-                    </motion.div>
-                  </div>
+                <span className="font-mono text-[11px] tracking-[0.2em] text-brand-accent uppercase font-bold shrink-0 mt-1">
+                  {choreographyStages[activeStage].stageNumber}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="font-serif text-xl text-brand-dark font-semibold tracking-tight">
+                    {choreographyStages[activeStage].title}
+                  </h3>
+                  <p className="font-sans text-[14px] text-gray-500 leading-relaxed max-w-2xl">
+                    {choreographyStages[activeStage].description}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
