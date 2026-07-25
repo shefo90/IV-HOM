@@ -116,29 +116,78 @@ export default function ChoreographySection() {
                     className="flex flex-col items-center group focus:outline-none"
                   >
                     {/* Dot */}
-                    <motion.div
-                      className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
-                        isActive
-                          ? "bg-brand-accent border-brand-accent"
-                          : isPassed
-                          ? "bg-brand-accent border-brand-accent"
-                          : "bg-white border-gray-300 group-hover:border-brand-accent/40"
-                      }`}
-                      animate={isActive ? {
-                        boxShadow: [
-                          "0 0 0 0px rgba(212,107,67,0.4)",
-                          "0 0 0 6px rgba(212,107,67,0)",
-                        ]
-                      } : {}}
-                      transition={{ duration: 1.2, repeat: Infinity }}
-                    >
-                      {isPassed && !isActive && (
-                        <div className="w-2 h-2 rounded-full bg-white" />
-                      )}
+                    <div className="relative flex items-center justify-center">
+                      {/* Glow blob behind active */}
                       {isActive && (
-                        <div className="w-2 h-2 rounded-full bg-white" />
+                        <motion.div
+                          className="absolute w-12 h-12 rounded-full bg-brand-accent/25 blur-xl"
+                          animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.6, 0.3] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
                       )}
-                    </motion.div>
+
+                      <motion.div
+                        className={`relative w-6 h-6 rounded-full flex items-center justify-center shadow-md ${
+                          isActive
+                            ? "bg-gradient-to-br from-brand-accent via-[#d97b53] to-brand-accent shadow-brand-accent/60"
+                            : isPassed
+                            ? "bg-gradient-to-br from-brand-accent to-[#c55a3a] shadow-brand-accent/40"
+                            : "bg-gradient-to-br from-white to-gray-100 shadow-gray-300 group-hover:from-brand-accent/20 group-hover:to-brand-accent/10"
+                        }`}
+                        whileHover={{ scale: 1.25 }}
+                        whileTap={{ scale: 0.9 }}
+                        animate={isActive ? {
+                          scale: [1, 1.15, 1],
+                          boxShadow: [
+                            "0 4px 20px rgba(212,107,67,0.4)",
+                            "0 8px 30px rgba(212,107,67,0.7)",
+                            "0 4px 20px rgba(212,107,67,0.4)",
+                          ],
+                        } : {}}
+                        transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+                      >
+                        {/* Pulsing rings on active */}
+                        {isActive && (
+                          <>
+                            <motion.div
+                              className="absolute inset-0 rounded-full border-2 border-brand-accent/60"
+                              animate={{ scale: [1, 2.2, 1], opacity: [0.6, 0, 0.6] }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            />
+                            <motion.div
+                              className="absolute inset-0 rounded-full border-2 border-brand-accent/40"
+                              animate={{ scale: [1, 2.8, 1], opacity: [0.4, 0, 0.4] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: 0.35 }}
+                            />
+                          </>
+                        )}
+
+                        {/* Checkmark for passed */}
+                        {isPassed && !isActive && (
+                          <motion.div
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ type: "spring", stiffness: 220 }}
+                          >
+                            <CheckCircle2 size={14} className="text-white drop-shadow" strokeWidth={3} />
+                          </motion.div>
+                        )}
+
+                        {/* Inner dot for active */}
+                        {isActive && (
+                          <motion.div
+                            className="w-2.5 h-2.5 bg-white rounded-full shadow-inner"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          />
+                        )}
+
+                        {/* Inactive dot */}
+                        {!isPassed && !isActive && (
+                          <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        )}
+                      </motion.div>
+                    </div>
 
                     {/* Text below — always occupies space, animates in when reached */}
                     <div className="mt-5 text-left w-full px-1 min-h-[90px]">
