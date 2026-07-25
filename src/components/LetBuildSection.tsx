@@ -72,10 +72,10 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
           IV
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-12 md:gap-8 relative z-10">
           
           {/* Brand Info */}
-          <div className="md:col-span-4 space-y-6">
+          <div className="col-span-2 md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full border border-brand-accent flex items-center justify-center">
                 <span className="font-serif text-xs font-bold text-brand-light">IV</span>
@@ -135,7 +135,7 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
           </div>
 
           {/* HS Wood Column */}
-          <div className="md:col-span-3 space-y-4">
+          <div className="col-span-2 md:col-span-3 space-y-4">
             <h4 className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
               HS WOOD INDUSTRIES
             </h4>
