@@ -73,8 +73,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
             <div className="absolute -inset-[2px] rounded-full border border-dashed border-brand-accent/20 animate-[spin_40s_linear_infinite]" />
           </div>
           <div className="flex flex-col">
-            <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-semibold">4TH GENERATION</span>
-            <span className="font-sans text-[8px] tracking-[0.1em] text-gray-500 uppercase -mt-[2px]">CRAFT • COGNITIVE</span>
+            <span className="font-mono text-[10px] tracking-[0.25em] text-brand-accent font-semibold">Fixed furniture</span>
           </div>
         </a>
 
