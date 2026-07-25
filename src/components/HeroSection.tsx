@@ -70,14 +70,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/40 to-brand-dark/20" />
         </div>
 
-        {/* Floating Side Info Coordinate Strip on Desktop */}
-        <div className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 origin-right rotate-90 items-center gap-4 text-gray-400 font-mono text-[9px] tracking-[0.3em] uppercase opacity-75">
-          <span className="text-brand-accent font-bold">CAIRO</span>
-          <span className="h-[1px] w-6 bg-brand-accent" />
-          <span>EGYPT</span>
-          <span className="h-[1px] w-6 bg-brand-border-dark" />
-          <span>30.0444° N / 31.2357° E</span>
-        </div>
+
 
         {/* Floating Overlay Content Block */}
         <div className="relative z-10 p-4 sm:p-6 md:p-12 w-full max-w-xl self-start">

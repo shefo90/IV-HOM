@@ -102,10 +102,6 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
         {/* Cairo Time & CTA Button */}
         <div className="hidden md:flex items-center gap-8">
           <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-gray-400 border-r border-brand-border-dark pr-6 py-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-            <span>{cairoTime || "16:16"}</span>
-            <span className="text-gray-600 font-sans">•</span>
-            <span>CAI</span>
           </div>
           <button
             onClick={onOpenProposal}
@@ -152,8 +148,6 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
               <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                 <span>{cairoTime || "16:16"}</span>
-                <span>•</span>
-                <span>CAI</span>
               </div>
               <span className="text-[10px] tracking-wider text-gray-500 uppercase">Est. IV • MMXXVI</span>
             </div>

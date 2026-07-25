@@ -48,8 +48,9 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const openProposal = (category?: string) => {
-    // Do nothing - user requested nothing to happen when clicking proposal buttons
+  const openProposal = (_category?: string) => {
+    const el = document.getElementById("contact");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   const openTour = () => {
