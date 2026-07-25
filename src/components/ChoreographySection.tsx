@@ -88,173 +88,87 @@ export default function ChoreographySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          {/* Stunning Timeline with 3D-like effects */}
-          <div className="relative hidden lg:block mb-16">
-            {/* Glowing background track */}
-            <div className="absolute top-[7px] left-[5%] right-[5%] h-[3px] bg-gradient-to-r from-transparent via-brand-accent/10 to-transparent blur-sm" />
-            
-            {/* Main background line with shine effect */}
-            <div className="absolute top-[7px] left-[5%] right-[5%] h-[3px] bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full shadow-inner" />
-            
-            {/* Animated progress line with glow */}
-            <motion.div 
-              className="absolute top-[7px] left-[5%] h-[3px] rounded-full shadow-lg shadow-brand-accent/50"
-              style={{
-                background: "linear-gradient(90deg, #d46b43 0%, #e8865d 50%, #d46b43 100%)",
-                backgroundSize: "200% 100%",
-              }}
-              initial={{ width: "0%" }}
-              animate={{ 
-                width: `${(activeStage / 6) * 90}%`,
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{ 
-                width: { duration: 0.8, ease: "easeInOut" },
-                backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" }
-              }}
+          {/* Timeline — desktop */}
+          <div className="relative hidden lg:block">
+            {/* Background track */}
+            <div className="absolute top-[9px] left-[calc(100%/14)] right-[calc(100%/14)] h-[1px] bg-gray-300" />
+
+            {/* Animated progress line */}
+            <motion.div
+              className="absolute top-[9px] left-[calc(100%/14)] h-[1px] origin-left"
+              style={{ background: "#d46b43", right: "calc(100%/14)" }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: activeStage / (choreographyStages.length - 1) }}
+              transition={{ duration: 0.7, ease: "easeInOut" }}
             />
-            
-            {/* Particles along the line */}
-            {activeStage > 0 && (
-              <motion.div
-                className="absolute top-[7px] left-[5%] w-2 h-2 rounded-full bg-white shadow-lg shadow-brand-accent/80"
-                initial={{ x: 0 }}
-                animate={{ x: `${(activeStage / 6) * (window.innerWidth * 0.9 * 0.9)}px` }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-              />
-            )}
-            
-            <div className="grid grid-cols-7 relative z-10">
+
+            {/* Dots row */}
+            <div className="grid grid-cols-7">
               {choreographyStages.map((stage, idx) => {
                 const isActive = idx === activeStage;
                 const isPassed = idx < activeStage;
+                const isRevealed = idx <= activeStage;
+
                 return (
                   <button
                     key={stage.id}
                     onClick={() => setActiveStage(idx)}
-                    className="flex flex-col items-center group focus:outline-none relative"
+                    className="flex flex-col items-center group focus:outline-none"
                   >
-                    {/* Glow effect behind active dot */}
-                    {isActive && (
-                      <motion.div
-                        className="absolute top-0 w-16 h-16 bg-brand-accent/30 rounded-full blur-2xl"
-                        animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.3, 0.6, 0.3] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    )}
-                    
-                    {/* Premium 3D-style dot */}
+                    {/* Dot */}
                     <motion.div
-                      className={`relative w-6 h-6 rounded-full transition-all duration-500 flex items-center justify-center shadow-lg ${
+                      className={`w-[18px] h-[18px] rounded-full border-2 flex items-center justify-center transition-all duration-500 ${
                         isActive
-                          ? "bg-gradient-to-br from-brand-accent via-[#d97b53] to-brand-accent shadow-brand-accent/60"
+                          ? "bg-brand-accent border-brand-accent"
                           : isPassed
-                          ? "bg-gradient-to-br from-brand-accent to-[#c55a3a] shadow-brand-accent/40"
-                          : "bg-gradient-to-br from-white to-gray-100 shadow-gray-300 group-hover:from-brand-accent/20 group-hover:to-brand-accent/10"
+                          ? "bg-brand-accent border-brand-accent"
+                          : "bg-white border-gray-300 group-hover:border-brand-accent/40"
                       }`}
-                      whileHover={{ scale: 1.3, rotate: 180 }}
-                      whileTap={{ scale: 0.9 }}
-                      animate={isActive ? { 
-                        scale: [1, 1.15, 1],
+                      animate={isActive ? {
                         boxShadow: [
-                          "0 4px 20px rgba(212, 107, 67, 0.4)",
-                          "0 8px 30px rgba(212, 107, 67, 0.6)",
-                          "0 4px 20px rgba(212, 107, 67, 0.4)",
+                          "0 0 0 0px rgba(212,107,67,0.4)",
+                          "0 0 0 6px rgba(212,107,67,0)",
                         ]
                       } : {}}
-                      transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+                      transition={{ duration: 1.2, repeat: Infinity }}
                     >
-                      {/* Multi-layer pulsing rings on active */}
-                      {isActive && (
-                        <>
-                          <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-brand-accent/60"
-                            animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
-                          <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-brand-accent/40"
-                            animate={{ scale: [1, 2.5, 1], opacity: [0.4, 0, 0.4] }}
-                            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-                          />
-                        </>
-                      )}
-                      
-                      {/* Inner content based on state */}
                       {isPassed && !isActive && (
-                        <motion.div
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ type: "spring", stiffness: 200 }}
-                        >
-                          <CheckCircle2 size={14} className="text-white drop-shadow-lg" strokeWidth={3} />
-                        </motion.div>
+                        <div className="w-2 h-2 rounded-full bg-white" />
                       )}
-                      
                       {isActive && (
-                        <motion.div 
-                          className="w-3 h-3 bg-white rounded-full shadow-inner"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        />
-                      )}
-                      
-                      {!isPassed && !isActive && (
-                        <div className="w-2 h-2 bg-gray-300 rounded-full" />
+                        <div className="w-2 h-2 rounded-full bg-white" />
                       )}
                     </motion.div>
-                    
-                    {/* Enhanced stage label */}
-                    <motion.span 
-                      className={`font-mono text-[10px] tracking-[0.2em] uppercase mt-5 transition-all duration-300 ${
-                        isActive 
-                          ? "text-brand-accent font-black text-[11px] drop-shadow-[0_2px_10px_rgba(212,107,67,0.5)]" 
-                          : isPassed 
-                          ? "text-brand-dark/80 font-bold" 
-                          : "text-gray-400 group-hover:text-brand-dark font-medium"
-                      }`}
-                      animate={isActive ? { y: [0, -2, 0] } : {}}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      {stage.stageNumber}
-                    </motion.span>
-                    
-                    {/* Stage title below (faded) */}
-                    <span className={`font-serif text-[11px] mt-1 transition-all duration-300 text-center max-w-[100px] ${
-                      isActive ? "text-brand-dark font-semibold" : "text-gray-400 font-light"
-                    }`}>
-                      {stage.title.split(' ')[0]}
-                    </span>
+
+                    {/* Text below — always occupies space, animates in when reached */}
+                    <div className="mt-5 text-left w-full px-1 min-h-[90px]">
+                      <motion.div
+                        initial={false}
+                        animate={isRevealed
+                          ? { opacity: 1, y: 0 }
+                          : { opacity: 0, y: 10 }
+                        }
+                        transition={{ duration: 0.45, ease: "easeOut", delay: isActive ? 0.1 : 0 }}
+                      >
+                        <span className={`font-mono text-[9px] tracking-[0.2em] uppercase block mb-1.5 ${
+                          isActive ? "text-brand-accent" : "text-brand-accent/70"
+                        }`}>
+                          {stage.stageNumber}
+                        </span>
+                        <span className={`font-serif text-[13px] leading-snug block font-medium ${
+                          isActive ? "text-brand-dark" : "text-brand-dark/70"
+                        }`}>
+                          {stage.title}
+                        </span>
+                        <span className="font-sans text-[11px] text-gray-500 leading-relaxed block mt-1.5">
+                          {stage.description}
+                        </span>
+                      </motion.div>
+                    </div>
                   </button>
                 );
               })}
             </div>
-          </div>
-
-          {/* Desktop stage description — appears below timeline on hover/click */}
-          <div className="hidden lg:block relative min-h-[80px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeStage}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="flex items-start gap-8 pt-6"
-              >
-                <span className="font-mono text-[11px] tracking-[0.2em] text-brand-accent uppercase font-bold shrink-0 mt-1">
-                  {choreographyStages[activeStage].stageNumber}
-                </span>
-                <div className="space-y-1">
-                  <h3 className="font-serif text-xl text-brand-dark font-semibold tracking-tight">
-                    {choreographyStages[activeStage].title}
-                  </h3>
-                  <p className="font-sans text-[14px] text-gray-500 leading-relaxed max-w-2xl">
-                    {choreographyStages[activeStage].description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
           </div>
 
           {/* Ultra-Premium Mobile Experience */}
