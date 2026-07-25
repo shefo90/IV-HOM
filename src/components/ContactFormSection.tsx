@@ -36,52 +36,6 @@ export default function ContactFormSection() {
       className="relative bg-brand-dark py-24 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24">
-        {/* Left Column - Contact Information */}
-        <div className="space-y-12">
-          <h2 className="font-serif text-3xl md:text-4xl text-brand-light tracking-wide">
-            REACH US DIRECTLY
-          </h2>
-
-          {/* Phone */}
-          <div>
-            <p className="text-brand-accent text-xs uppercase tracking-widest mb-2">
-              PHONE
-            </p>
-            <p className="text-brand-light font-mono text-sm md:text-base">
-              +90 10 xxxx xxxx
-            </p>
-          </div>
-
-          {/* Email */}
-          <div>
-            <p className="text-brand-accent text-xs uppercase tracking-widest mb-2">
-              EMAIL
-            </p>
-            <p className="text-brand-light font-mono text-sm md:text-base">
-              projects@iv-hswood.com
-            </p>
-          </div>
-
-          {/* Address */}
-          <div>
-            <p className="text-brand-accent text-xs uppercase tracking-widest mb-2">
-              ADDRESS
-            </p>
-            <p className="text-brand-light font-mono text-sm md:text-base">
-              Cairo, Egypt · By appointment
-            </p>
-          </div>
-
-          {/* Hours */}
-          <div>
-            <p className="text-brand-accent text-xs uppercase tracking-widest mb-2">
-              HOURS
-            </p>
-            <p className="text-brand-light font-mono text-sm md:text-base">
-              Sun — Thu, 9:00 — 17:00 CAT
-            </p>
-          </div>
-        </div>
 
         {/* Right Column - Contact Form */}
         <div>

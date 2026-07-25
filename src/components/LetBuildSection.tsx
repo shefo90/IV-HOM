@@ -133,28 +133,7 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
               <li>Cairo • By appointment</li>
             </ul>
           </div>
-
-          {/* HS Wood Column */}
-          <div className="col-span-2 md:col-span-3 space-y-4">
-            <h4 className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
-              HS WOOD INDUSTRIES
-            </h4>
-            <ul className="space-y-2.5 font-sans text-xs text-gray-400">
-              <li>Fixed Furniture Manufactory</li>
-              <li>Cairo, Egypt</li>
-            </ul>
-          </div>
-
         </div>
-
-        {/* Bottom credits */}
-        <div className="border-t border-brand-border-dark/60 mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] font-mono tracking-[0.2em] text-gray-500 uppercase">
-          <span>IV — FIXED FURNITURE • HS WOOD INDUSTRIES © 2026</span>
-          <span className="text-brand-accent">
-            4TH GENERATION CRAFT • POWERED BY INDUSTRY 4.0
-          </span>
-        </div>
-
       </div>
     </section>
   );

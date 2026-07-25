@@ -31,7 +31,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
     <section id="hero" className="relative bg-brand-dark pt-16 md:pt-24 flex flex-col overflow-hidden border-b border-brand-border-dark">
       <div className="flex flex-col md:flex-row">
       {/* LEFT PANEL (50% desktop, dark background with manifesto) */}
-      <div className="w-full md:w-1/2 min-h-[60vh] md:min-h-screen p-4 sm:p-6 md:p-16 flex flex-col justify-center border-r border-brand-border-dark relative">
+      <div className="w-full md:w-1/2 min-h-0 md:min-h-screen p-4 sm:p-6 md:p-16 flex flex-col justify-end md:justify-center border-r border-brand-border-dark relative pb-6 md:pb-16">
         {/* Background Grid Pattern (blueprinted line) */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(212,107,67,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(212,107,67,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
