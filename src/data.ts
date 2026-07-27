@@ -13,6 +13,17 @@ import fullKitchenCNCImage from "./assets/images/full-kitchen-cabinet-production
 import factoryImage from "./assets/images/images.jpg";
 import cncMachineImage from "./assets/images/unnamed-36.png";
 
+// Company logo imports
+import logo1Image from "./assets/company_logos/Gemini_Generated_Image_.png";
+import logo2Image from "./assets/company_logos/Gemini_Generated_Image_ (1).png";
+import logo3Image from "./assets/company_logos/Gemini_Generated_Image_ (2).png";
+import logo4Image from "./assets/company_logos/Gemini_Generated_Image_ (3).png";
+import logo5Image from "./assets/company_logos/Gemini_Generated_Image_ (4).png";
+import logo6Image from "./assets/company_logos/Gemini_Generated_Image_ (5).png";
+import logo7Image from "./assets/company_logos/Gemini_Generated_Image_ (6).png";
+import logo8Image from "./assets/company_logos/Gemini_Generated_Image_ (7).png";
+import logo9Image from "./assets/company_logos/Gemini_Generated_Image_ (8).png";
+
 export interface Discipline {
   id: string;
   number: string;
@@ -53,6 +64,11 @@ export interface ReferenceProject {
   description: string;
   image: string;
   images?: string[]; // Array of images for gallery
+}
+
+export interface Material {
+  name: string;
+  logo: string;
 }
 
 export const disciplines: Discipline[] = [
@@ -224,12 +240,43 @@ export const equipmentList: Equipment[] = [
   }
 ];
 
-export const materials: string[] = [
-  "Matte laminate",
-  "Textured woodgrain laminate",
-  "Fenix laminate",
-  "Egger & Kronospan panels",
-  "Blum hardware"
+export const materials: Material[] = [
+  {
+    name: "Matte laminate",
+    logo: logo1Image
+  },
+  {
+    name: "Textured woodgrain laminate",
+    logo: logo2Image
+  },
+  {
+    name: "Fenix laminate",
+    logo: logo3Image
+  },
+  {
+    name: "Egger & Kronospan panels",
+    logo: logo4Image
+  },
+  {
+    name: "Blum hardware",
+    logo: logo5Image
+  },
+  {
+    name: "Hettich components",
+    logo: logo6Image
+  },
+  {
+    name: "Rehau edging systems",
+    logo: logo7Image
+  },
+  {
+    name: "Grass drawer systems",
+    logo: logo8Image
+  },
+  {
+    name: "Hafele fittings",
+    logo: logo9Image
+  }
 ];
 
 export const referenceProjects: ReferenceProject[] = [
