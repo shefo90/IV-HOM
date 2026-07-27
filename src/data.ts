@@ -13,6 +13,13 @@ import fullKitchenCNCImage from "./assets/images/full-kitchen-cabinet-production
 import factoryImage from "./assets/images/images.jpg";
 import cncMachineImage from "./assets/images/unnamed-36.png";
 
+// Company logo imports
+import matteLogoImage from "./assets/company_logos/Gemini_Generated_Image_.png";
+import texturedLogoImage from "./assets/company_logos/Gemini_Generated_Image_ (1).png";
+import fenixLogoImage from "./assets/company_logos/Gemini_Generated_Image_ (2).png";
+import eggerLogoImage from "./assets/company_logos/Gemini_Generated_Image_ (3).png";
+import blumLogoImage from "./assets/company_logos/Gemini_Generated_Image_ (4).png";
+
 export interface Discipline {
   id: string;
   number: string;
@@ -53,6 +60,11 @@ export interface ReferenceProject {
   description: string;
   image: string;
   images?: string[]; // Array of images for gallery
+}
+
+export interface Material {
+  name: string;
+  logo: string;
 }
 
 export const disciplines: Discipline[] = [
@@ -224,12 +236,27 @@ export const equipmentList: Equipment[] = [
   }
 ];
 
-export const materials: string[] = [
-  "Matte laminate",
-  "Textured woodgrain laminate",
-  "Fenix laminate",
-  "Egger & Kronospan panels",
-  "Blum hardware"
+export const materials: Material[] = [
+  {
+    name: "Matte laminate",
+    logo: matteLogoImage
+  },
+  {
+    name: "Textured woodgrain laminate",
+    logo: texturedLogoImage
+  },
+  {
+    name: "Fenix laminate",
+    logo: fenixLogoImage
+  },
+  {
+    name: "Egger & Kronospan panels",
+    logo: eggerLogoImage
+  },
+  {
+    name: "Blum hardware",
+    logo: blumLogoImage
+  }
 ];
 
 export const referenceProjects: ReferenceProject[] = [
