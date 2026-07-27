@@ -5,12 +5,7 @@
 
 import { MouseEvent } from "react";
 
-interface LetBuildSectionProps {
-  onOpenProposal: () => void;
-  onOpenTour: () => void;
-}
-
-export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuildSectionProps) {
+export default function FooterSection() {
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
@@ -20,36 +15,9 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
   };
 
   return (
-    <section id="contact" className="relative bg-brand-dark pt-20 md:pt-32 overflow-hidden border-t border-brand-border-dark">
+    <section className="relative bg-brand-dark overflow-hidden border-t border-brand-border-dark">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(212,107,67,0.015)_1px,transparent_1.5px)] bg-[size:30px_30px] pointer-events-none" />
-
-      {/* Main CTA Section */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center space-y-10 relative z-10 pb-20 md:pb-32 border-b border-brand-border-dark">
-        <div className="space-y-4 max-w-xl mx-auto">
-          <div className="flex items-center justify-center gap-3">
-            <span className="h-[1px] w-6 bg-brand-accent" />
-            <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-semibold uppercase">
-              READY WHEN YOU ARE
-            </span>
-            <span className="h-[1px] w-6 bg-brand-accent" />
-          </div>
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-light tracking-tighter">
-            Let's{" "}
-            <span className="italic text-brand-accent font-normal">
-              build.
-            </span>
-          </h2>
-        </div>
-
-        <p className="font-sans text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
-          See the factory. Meet the team. Get a project-specific proposal with a committed timeline
-          and a fixed price.
-        </p>
-
-        {/* Action buttons */}
-
-      </div>
 
       {/* Footer Sitemap */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-12 relative z-10">

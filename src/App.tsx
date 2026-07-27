@@ -16,8 +16,9 @@ import DisciplinesSection from "./components/DisciplinesSection";
 import WhatWeBuildSection from "./components/WhatWeBuildSection";
 import ChoreographySection from "./components/ChoreographySection";
 import SelectedWorkSection from "./components/SelectedWorkSection";
-import LetBuildSection from "./components/LetBuildSection";
+import ContactHeaderSection from "./components/ContactHeaderSection";
 import ContactFormSection from "./components/ContactFormSection";
+import FooterSection from "./components/FooterSection";
 import ProposalModal from "./components/ProposalModal";
 
 export default function App() {
@@ -79,12 +80,14 @@ export default function App() {
       {/* Grid of actual completed reference houses/residences */}
       <SelectedWorkSection onSelectProject={(title) => openProposal(`Reference study: ${title}`)} />
 
+      {/* Contact header/title section - "Let's build" */}
+      <ContactHeaderSection />
+
       {/* Contact Form Section */}
       <ContactFormSection />
 
-
-      {/* Large visual call to build and detailed map sitemap footer */}
-      <LetBuildSection onOpenProposal={() => openProposal()} onOpenTour={openTour} />
+      {/* Footer with navigation and contact info */}
+      <FooterSection />
 
       {/* Adaptive submission panel modal */}
       <ProposalModal
