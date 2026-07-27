@@ -6,7 +6,7 @@
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import heroImage from "../assets/images/luxury_kitchen_1784643668452.jpg";
-import { materials } from "../data";
+import { materials, type Material } from "../data";
 
 interface HeroSectionProps {
   onOpenProposal: () => void;
@@ -129,70 +129,59 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/60 to-transparent animate-pulse" />
         
-        <div className="flex whitespace-nowrap animate-[marquee_35s_linear_infinite]">
-          {/* First loop */}
-          <div className="flex gap-10 sm:gap-12 md:gap-14 items-center shrink-0 pr-10 sm:pr-12 md:pr-14">
-            {materials.map((m, idx) => (
-              <div 
-                key={idx} 
-                className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105"
-              >
-                {/* Refined number badge with glow */}
-                <div className="relative flex-shrink-0">
-                  <div className="absolute inset-0 bg-brand-accent/15 blur-lg rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
-                  <span className="relative font-mono text-[9px] sm:text-[10px] tracking-[0.3em] text-brand-accent/80 group-hover/item:text-brand-accent font-bold uppercase bg-brand-accent/5 group-hover/item:bg-brand-accent/10 px-2.5 py-1 border border-brand-accent/20 group-hover/item:border-brand-accent/40 rounded transition-all duration-300">
-                    {String(idx + 1).padStart(2, '0')}
+        <div className="flex whitespace-nowrap animate-[marquee_20s_linear_infinite]">
+          {/* Multiple complete sets for seamless scrolling */}
+          {Array.from({ length: 3 }).map((_, setIndex) => (
+            <div 
+              key={setIndex} 
+              className="flex gap-16 sm:gap-20 md:gap-24 items-center shrink-0 pr-16 sm:pr-20 md:pr-24"
+            >
+              {materials.map((material, idx) => (
+                <div 
+                  key={`${setIndex}-${idx}`} 
+                  className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105"
+                >
+                  {/* Company logo */}
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative bg-transparent p-0">
+                    <img
+                      src={material.logo}
+                      alt={`${material.name} logo`}
+                      className="w-full h-full object-contain opacity-90 group-hover/item:opacity-100 transition-all duration-500 group-hover/item:scale-110"
+                      style={{ 
+                        background: 'transparent',
+                        backgroundColor: 'transparent',
+                        filter: 'drop-shadow(0 2px 8px rgba(212,107,67,0.2))'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Refined number badge with glow */}
+                  <div className="relative flex-shrink-0">
+                    <div className="absolute inset-0 bg-brand-accent/15 blur-lg rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+                    <span className="relative font-mono text-[9px] sm:text-[10px] tracking-[0.3em] text-brand-accent/80 group-hover/item:text-brand-accent font-bold uppercase bg-brand-accent/5 group-hover/item:bg-brand-accent/10 px-2.5 py-1 border border-brand-accent/20 group-hover/item:border-brand-accent/40 rounded transition-all duration-300">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  
+                  {/* Minimalist divider */}
+                  <div className="hidden sm:flex items-center gap-1.5">
+                    <div className="h-[1px] w-4 bg-gradient-to-r from-brand-accent/30 to-transparent" />
+                  </div>
+                  
+                  {/* Material name - elegant and refined */}
+                  <span className="font-serif text-2xl sm:text-3xl md:text-4xl italic text-brand-light/90 group-hover/item:text-brand-accent font-light tracking-wide transition-all duration-500 drop-shadow-[0_2px_10px_rgba(212,107,67,0.15)] group-hover/item:drop-shadow-[0_4px_20px_rgba(212,107,67,0.4)]">
+                    {material.name}
                   </span>
+                  
+                  {/* Subtle trailing dot */}
+                  <div className="hidden sm:flex items-center gap-1.5">
+                    <div className="h-[1px] w-4 bg-gradient-to-l from-brand-accent/30 to-transparent" />
+                    <div className="w-1 h-1 rounded-full bg-brand-accent/50 group-hover/item:bg-brand-accent animate-pulse" />
+                  </div>
                 </div>
-                
-                {/* Minimalist divider */}
-                <div className="hidden sm:flex items-center gap-1.5">
-                  <div className="h-[1px] w-4 bg-gradient-to-r from-brand-accent/30 to-transparent" />
-                </div>
-                
-                {/* Material name - elegant and refined */}
-                <span className="font-serif text-2xl sm:text-3xl md:text-4xl italic text-brand-light/90 group-hover/item:text-brand-accent font-light tracking-wide transition-all duration-500 drop-shadow-[0_2px_10px_rgba(212,107,67,0.15)] group-hover/item:drop-shadow-[0_4px_20px_rgba(212,107,67,0.4)]">
-                  {m}
-                </span>
-                
-                {/* Subtle trailing dot */}
-                <div className="hidden sm:flex items-center gap-1.5">
-                  <div className="h-[1px] w-4 bg-gradient-to-l from-brand-accent/30 to-transparent" />
-                  <div className="w-1 h-1 rounded-full bg-brand-accent/50 group-hover/item:bg-brand-accent animate-pulse" />
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Duplicate loop for seamless scroll */}
-          <div className="flex gap-10 sm:gap-12 md:gap-14 items-center shrink-0 pr-10 sm:pr-12 md:pr-14" aria-hidden="true">
-            {materials.map((m, idx) => (
-              <div 
-                key={`dup-${idx}`} 
-                className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105"
-              >
-                <div className="relative flex-shrink-0">
-                  <div className="absolute inset-0 bg-brand-accent/15 blur-lg rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
-                  <span className="relative font-mono text-[9px] sm:text-[10px] tracking-[0.3em] text-brand-accent/80 group-hover/item:text-brand-accent font-bold uppercase bg-brand-accent/5 group-hover/item:bg-brand-accent/10 px-2.5 py-1 border border-brand-accent/20 group-hover/item:border-brand-accent/40 rounded transition-all duration-300">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                
-                <div className="hidden sm:flex items-center gap-1.5">
-                  <div className="h-[1px] w-4 bg-gradient-to-r from-brand-accent/30 to-transparent" />
-                </div>
-                
-                <span className="font-serif text-2xl sm:text-3xl md:text-4xl italic text-brand-light/90 group-hover/item:text-brand-accent font-light tracking-wide transition-all duration-500 drop-shadow-[0_2px_10px_rgba(212,107,67,0.15)] group-hover/item:drop-shadow-[0_4px_20px_rgba(212,107,67,0.4)]">
-                  {m}
-                </span>
-                
-                <div className="hidden sm:flex items-center gap-1.5">
-                  <div className="h-[1px] w-4 bg-gradient-to-l from-brand-accent/30 to-transparent" />
-                  <div className="w-1 h-1 rounded-full bg-brand-accent/50 group-hover/item:bg-brand-accent animate-pulse" />
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -200,7 +189,14 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-33.333%); }
+        }
+        
+        /* Remove any background from logos */
+        img[alt*="logo"] {
+          background: transparent !important;
+          background-color: transparent !important;
+          backdrop-filter: none !important;
         }
       `}</style>
     </section>
