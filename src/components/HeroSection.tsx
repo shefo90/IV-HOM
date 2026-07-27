@@ -129,17 +129,15 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/60 to-transparent animate-pulse" />
         
-        <div className="flex whitespace-nowrap animate-[marquee_20s_linear_infinite]">
-          {/* Multiple complete sets for seamless scrolling */}
-          {Array.from({ length: 3 }).map((_, setIndex) => (
-            <div 
-              key={setIndex} 
-              className="flex gap-16 sm:gap-20 md:gap-24 items-center shrink-0 pr-16 sm:pr-20 md:pr-24"
-            >
-              {materials.map((material, idx) => (
+        <div className="flex whitespace-nowrap animate-[marquee_80s_linear_infinite]">
+          {/* Create a very long list to ensure all items are visible */}
+          <div className="flex gap-20 sm:gap-24 md:gap-28 items-center shrink-0">
+            {/* Repeat all materials multiple times */}
+            {Array.from({ length: 6 }).flatMap((_, repeatIndex) => 
+              materials.map((material, idx) => (
                 <div 
-                  key={`${setIndex}-${idx}`} 
-                  className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105"
+                  key={`${repeatIndex}-${idx}`} 
+                  className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105 mr-20 sm:mr-24 md:mr-28"
                 >
                   {/* Company logo */}
                   <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative bg-transparent p-0">
@@ -179,9 +177,9 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
                     <div className="w-1 h-1 rounded-full bg-brand-accent/50 group-hover/item:bg-brand-accent animate-pulse" />
                   </div>
                 </div>
-              ))}
-            </div>
-          ))}
+              ))
+            )}
+          </div>
         </div>
       </div>
 
@@ -189,7 +187,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
-          100% { transform: translateX(-33.333%); }
+          100% { transform: translateX(-100%); }
         }
         
         /* Remove any background from logos */
