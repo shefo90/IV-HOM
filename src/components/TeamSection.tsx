@@ -21,9 +21,9 @@ export default function TeamSection() {
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight text-brand-accent tracking-tight font-medium">
-            A small team.{" "}
+            A small team<span className="orange-dot">.</span>{" "}
             <span className="italic text-brand-light font-medium">
-              Every project owned end-to-end.
+              Every project owned end-to-end<span className="orange-dot">.</span>
             </span>
           </h2>
         </div>

@@ -22,7 +22,7 @@ export default function ContactHeaderSection() {
           <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-accent tracking-tighter">
             Let's{" "}
             <span className="italic text-brand-light font-normal">
-              build.
+              build<span className="orange-dot">.</span>
             </span>
           </h2>
         </div>

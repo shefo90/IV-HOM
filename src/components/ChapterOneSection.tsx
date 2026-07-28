@@ -24,7 +24,7 @@ export default function ChapterOneSection() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.1] text-brand-accent tracking-tight font-medium">
             A gap between low-cost workshops{" "}
             <span className="italic text-brand-light font-medium">
-              and imported franchises.
+              and imported franchises<span className="orange-dot">.</span>
             </span>
           </h2>
 

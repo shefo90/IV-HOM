@@ -49,9 +49,9 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-brand-accent leading-[1.1] tracking-tight font-medium">
-            Fourth–generation craft.{" "}
+            Fourth–generation craft<span className="orange-dot">.</span>{" "}
             <span className="italic text-brand-light font-medium">
-              Powered by Industry 4.0.
+              Powered by Industry 4.0<span className="orange-dot">.</span>
             </span>
           </h2>
         </motion.div>

@@ -19,9 +19,9 @@ export default function TechSection() {
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight font-medium">
-              Guided by the machine.{" "}
+              Guided by the machine<span className="orange-dot">.</span>{" "}
               <span className="italic text-brand-light font-medium">
-                Refined by the maker.
+                Refined by the maker<span className="orange-dot">.</span>
               </span>
             </h2>
           </div>

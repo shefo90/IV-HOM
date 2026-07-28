@@ -38,7 +38,7 @@ export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSec
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight font-medium">
               Selected{" "}
               <span className="italic text-brand-light font-medium">
-                work.
+                work<span className="orange-dot">.</span>
               </span>
             </h2>
           </div>

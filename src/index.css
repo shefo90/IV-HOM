@@ -48,25 +48,12 @@
 input:focus, textarea:focus {
   outline: none;
 }
-/* Enhanced header dots */
-h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
-  content: '';
-  display: inline-block;
-  width: 0.3em;
-  height: 0.3em;
-  background: currentColor;
-  border-radius: 50%;
-  margin-left: 0.1em;
-  vertical-align: middle;
-}
 
-/* Larger dots for bigger headers */
-h1::after {
-  width: 0.25em;
-  height: 0.25em;
-}
-
-h2::after {
-  width: 0.22em;
-  height: 0.22em;
+/* Style for orange period at end of headers */
+.orange-dot {
+  color: var(--color-brand-accent) !important;
+  font-size: 1.4em;
+  font-weight: 900;
+  line-height: 0.8;
+  vertical-align: baseline;
 }

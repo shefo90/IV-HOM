@@ -19,9 +19,9 @@ export default function DisciplinesSection() {
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight">
-              Seven disciplines.{" "}
+              Seven disciplines<span className="orange-dot">.</span>{" "}
               <span className="italic text-brand-dark font-normal">
-                Every project, every time.
+                Every project, every time<span className="orange-dot">.</span>
               </span>
             </h2>
           </div>
