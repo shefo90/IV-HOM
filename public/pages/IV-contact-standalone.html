@@ -74,6 +74,7 @@
   /* ============ TYPOGRAPHY ============ */
   h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.015em;font-variation-settings:"opsz" 96;color:var(--gold);}
   em{font-style:italic;color:var(--text-light);font-variation-settings:"opsz" 144;}
+  .orange-dot{color:var(--gold);font-size:1.4em;font-weight:900;line-height:0.8;vertical-align:baseline;}
   .display{font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;}
   .mono{font-family:var(--mono);}
   .eyebrow{
@@ -260,7 +261,7 @@
   .about{background:var(--cream);color:var(--text-dark);position:relative;overflow:hidden;}
   .about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:100px;align-items:center;}
   .about-txt h2{font-size:clamp(38px,4.4vw,64px);margin:26px 0 30px;font-weight:300;font-variation-settings:"opsz" 144;}
-  .about-txt h2 em{font-weight:400;}
+  .about-txt h2 em, .section.about .about-txt h2 em{font-weight:400;color:var(--text-dark) !important;}
   .about-txt .lede{color:var(--text-dark);font-size:19px;line-height:1.55;font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 96;max-width:520px;margin-bottom:26px;}
   .about-txt p{color:var(--text-dark-mute);font-size:15px;line-height:1.75;max-width:500px;font-weight:400;}
   .about-chips{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;border-top:1px solid var(--line-light);}
@@ -327,6 +328,7 @@
   .why{background:var(--cream);color:var(--text-dark);}
   .why-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:80px;align-items:end;}
   .why-head h2{font-size:clamp(38px,4.4vw,60px);margin-top:22px;font-weight:300;font-variation-settings:"opsz" 144;max-width:560px;}
+  .why-head h2 em{color:var(--text-dark) !important;}
   .why-head p{color:var(--text-dark-mute);font-size:15px;line-height:1.75;max-width:380px;}
   .why-grid{
     display:grid;grid-template-columns:repeat(4,1fr);
@@ -845,7 +847,7 @@
   <div class="subhero-inner">
     <div class="crumbs"><a href="/">Home</a> / Contact</div>
     <div class="eyebrow reveal" style="color:var(--gold);">Get in touch</div>
-    <h1 class="reveal">Let's <em>build.</em></h1>
+    <h1 class="reveal">Let's <em>build</em><span class="orange-dot">.</span></h1>
     <p class="reveal">See the factory. Meet the team. Get a project‑specific proposal with a committed timeline and a fixed price.</p>
   </div>
 </section>
