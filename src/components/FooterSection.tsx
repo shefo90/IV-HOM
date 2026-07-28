@@ -37,7 +37,7 @@ export default function FooterSection() {
               </div>
             </div>
             <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm">
-              The fixed-furniture manufacturing brand of HS Wood Industries. Fourth-generation
+              The fixed-furniture manufacturing brand of HS Wood Industries. <span className="text-brand-accent">Fourth-generation</span>
               craft, powered by Industry 4.0.
             </p>
           </div>
