@@ -19,9 +19,9 @@ export default function ContactHeaderSection() {
             </span>
             <span className="h-[1px] w-6 bg-brand-accent" />
           </div>
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-light tracking-tighter">
+          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-accent tracking-tighter">
             Let's{" "}
-            <span className="italic text-brand-accent font-normal">
+            <span className="italic text-brand-light font-normal">
               build.
             </span>
           </h2>

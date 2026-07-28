@@ -21,9 +21,9 @@ export default function ChapterOneSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.1] text-brand-light tracking-tight font-medium">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.1] text-brand-accent tracking-tight font-medium">
             A gap between low-cost workshops{" "}
-            <span className="italic text-brand-accent font-medium">
+            <span className="italic text-brand-light font-medium">
               and imported franchises.
             </span>
           </h2>

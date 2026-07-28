@@ -34,9 +34,9 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
             </span>
             <span className="h-[1px] w-6 bg-brand-accent" />
           </div>
-          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-light tracking-tighter font-medium">
+          <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-accent tracking-tighter font-medium">
             Let's{" "}
-            <span className="italic text-brand-accent font-medium">
+            <span className="italic text-brand-light font-medium">
               build.
             </span>
           </h2>

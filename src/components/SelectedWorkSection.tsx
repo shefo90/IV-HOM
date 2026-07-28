@@ -35,9 +35,9 @@ export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSec
                 05 • REFERENCE PROJECTS
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-light tracking-tight font-medium">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight font-medium">
               Selected{" "}
-              <span className="italic text-brand-accent font-medium">
+              <span className="italic text-brand-light font-medium">
                 work.
               </span>
             </h2>

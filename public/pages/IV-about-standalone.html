@@ -73,8 +73,8 @@
   }
 
   /* ============ TYPOGRAPHY ============ */
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.015em;font-variation-settings:"opsz" 96;}
-  em{font-style:italic;color:var(--gold);font-variation-settings:"opsz" 144;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.015em;font-variation-settings:"opsz" 96;color:var(--gold);}
+  em{font-style:italic;color:var(--text-light);font-variation-settings:"opsz" 144;}
   .display{font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;}
   .mono{font-family:var(--mono);}
   .eyebrow{
@@ -90,7 +90,8 @@
   .light{background:var(--cream);color:var(--text-dark);}
   .light .eyebrow{color:var(--gold-soft);}
   .light .eyebrow::before{background:var(--gold-soft);}
-  .light em{color:var(--gold-soft);}
+  .light em{color:var(--text-dark);}
+  .light h1,.light h2,.light h3,.light h4{color:var(--gold-soft);}
 
   /* ============ BUTTONS (MAGNETIC) ============ */
   .btn{
