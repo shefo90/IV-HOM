@@ -67,7 +67,6 @@ export default function LetBuildSection({ onOpenProposal, onOpenTour }: LetBuild
               <div className="w-8 h-8 rounded-full border border-brand-accent flex items-center justify-center">
                 <span className="font-serif text-xs font-bold text-brand-light">IV</span>
               </div>
-              <span className="font-serif text-2xl text-brand-light tracking-tight">IV</span>
             </div>
             <p className="font-sans text-xs text-gray-500 leading-relaxed max-w-sm">
               The fixed-furniture manufacturing brand of HS Wood Industries. Fourth-generation

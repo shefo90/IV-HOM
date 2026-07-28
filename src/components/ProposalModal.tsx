@@ -97,10 +97,10 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               </button>
             </div>
 
-            <h3 className="font-serif text-2xl md:text-3xl text-brand-light mb-2 tracking-tight">
+            <h3 className="font-serif text-2xl md:text-3xl text-brand-light mb-2 tracking-tight text-center md:text-left">
               {formType === "proposal" ? "Get a tailored digital-first proposal." : "See the robotic factory floor in Cairo."}
             </h3>
-            <p className="font-sans text-xs text-gray-400 mb-8 max-w-md">
+            <p className="font-sans text-xs text-gray-400 mb-8 max-w-md text-center md:text-left mx-auto md:mx-0">
               {formType === "proposal"
                 ? "Send us your project specifications or floor plans. Our engineering algorithm outputs a transparent, line-item price locked for 6 months."
                 : "Walk the shop floor, experience the CNC precision systems, and meet the design-engineering division. Scheduled by appointments only."}
@@ -109,8 +109,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Basic Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                <div className="px-8 md:px-0">
+                  <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                     FULL NAME *
                   </label>
                   <input
@@ -122,8 +122,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                     placeholder="e.g. John Doe"
                   />
                 </div>
-                <div>
-                  <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                <div className="px-8 md:px-0">
+                  <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                     EMAIL ADDRESS *
                   </label>
                   <input
@@ -138,8 +138,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                <div className="px-8 md:px-0">
+                  <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                     PHONE / WHATSAPP *
                   </label>
                   <input
@@ -151,8 +151,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                     placeholder="+20 1xx xxxx xxx"
                   />
                 </div>
-                <div>
-                  <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                <div className="px-8 md:px-0">
+                  <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                     PROJECT CATEGORY
                   </label>
                   <select
@@ -171,10 +171,10 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               {/* Form specific fields */}
               {formType === "proposal" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2 flex justify-between">
+                  <div className="px-8 md:px-0">
+                    <label className="flex justify-center md:justify-between font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                       <span>APPROXIMATE SIZE (SQM OR LM)</span>
-                      <span className="text-gray-500 font-sans normal-case">{formData.size} sqm</span>
+                      <span className="text-gray-500 font-sans normal-case hidden md:inline">{formData.size} sqm</span>
                     </label>
                     <input
                       type="range"
@@ -186,8 +186,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                       className="w-full accent-brand-accent cursor-pointer"
                     />
                   </div>
-                  <div>
-                    <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                  <div className="px-8 md:px-0">
+                    <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                       TIMEFRAME
                     </label>
                     <select
@@ -204,8 +204,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                  <div className="px-8 md:px-0">
+                    <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                       PREFERRED DATE
                     </label>
                     <input
@@ -216,8 +216,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                       className="w-full bg-brand-dark border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
                     />
                   </div>
-                  <div>
-                    <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+                  <div className="px-8 md:px-0">
+                    <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                       TIME SLOT
                     </label>
                     <select
@@ -235,8 +235,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               )}
 
               {/* Text Area */}
-              <div>
-                <label className="block font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
+              <div className="px-8 md:px-0">
+                <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
                   ADDITIONAL INSTRUCTIONS / FLOOR PLAN ACCESS LINKS
                 </label>
                 <textarea
