@@ -42,7 +42,7 @@ export default function ContactFormSection() {
             <div>
               <label
                 htmlFor="fullName"
-                className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+                className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
                 FULL NAME
               </label>
@@ -59,7 +59,7 @@ export default function ContactFormSection() {
             <div>
               <label
                 htmlFor="company"
-                className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+                className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
                 COMPANY
               </label>
@@ -79,7 +79,7 @@ export default function ContactFormSection() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+                className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
                 EMAIL
               </label>
@@ -96,7 +96,7 @@ export default function ContactFormSection() {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+                className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
                 PHONE
               </label>
@@ -115,7 +115,7 @@ export default function ContactFormSection() {
           <div>
             <label
               htmlFor="interestedIn"
-              className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+              className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
             >
               INTERESTED IN
             </label>
@@ -142,7 +142,7 @@ export default function ContactFormSection() {
           <div>
             <label
               htmlFor="projectDetails"
-              className="block text-brand-accent text-xs uppercase tracking-widest mb-3"
+              className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
             >
               PROJECT DETAILS
             </label>
