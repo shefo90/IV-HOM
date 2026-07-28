@@ -131,50 +131,26 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         
         <div className="flex whitespace-nowrap animate-[marquee_80s_linear_infinite]">
           {/* Create a very long list to ensure all items are visible */}
-          <div className="flex gap-20 sm:gap-24 md:gap-28 items-center shrink-0">
+          <div className="flex gap-12 sm:gap-16 md:gap-20 items-center shrink-0">
             {/* Repeat all materials multiple times */}
             {Array.from({ length: 6 }).flatMap((_, repeatIndex) => 
               materials.map((material, idx) => (
                 <div 
                   key={`${repeatIndex}-${idx}`} 
-                  className="flex items-center gap-3 sm:gap-4 group/item transition-all duration-500 hover:scale-105 mr-20 sm:mr-24 md:mr-28"
+                  className="flex items-center justify-center group/item transition-all duration-500 hover:scale-105 mr-12 sm:mr-16 md:mr-20"
                 >
-                  {/* Company logo */}
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative bg-transparent p-0">
+                  {/* Company logo only */}
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 relative bg-transparent p-1">
                     <img
                       src={material.logo}
-                      alt={`${material.name} logo`}
-                      className="w-full h-full object-contain opacity-90 group-hover/item:opacity-100 transition-all duration-500 group-hover/item:scale-110"
+                      alt={`Company logo ${idx + 1}`}
+                      className="w-full h-full object-contain opacity-80 group-hover/item:opacity-100 transition-all duration-500 group-hover/item:scale-110"
                       style={{ 
                         background: 'transparent',
                         backgroundColor: 'transparent',
                         filter: 'drop-shadow(0 2px 8px rgba(212,107,67,0.2))'
                       }}
                     />
-                  </div>
-                  
-                  {/* Refined number badge with glow */}
-                  <div className="relative flex-shrink-0">
-                    <div className="absolute inset-0 bg-brand-accent/15 blur-lg rounded-full opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
-                    <span className="relative font-mono text-[9px] sm:text-[10px] tracking-[0.3em] text-brand-accent/80 group-hover/item:text-brand-accent font-bold uppercase bg-brand-accent/5 group-hover/item:bg-brand-accent/10 px-2.5 py-1 border border-brand-accent/20 group-hover/item:border-brand-accent/40 rounded transition-all duration-300">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  
-                  {/* Minimalist divider */}
-                  <div className="hidden sm:flex items-center gap-1.5">
-                    <div className="h-[1px] w-4 bg-gradient-to-r from-brand-accent/30 to-transparent" />
-                  </div>
-                  
-                  {/* Material name - elegant and refined */}
-                  <span className="font-serif text-2xl sm:text-3xl md:text-4xl italic text-brand-light/90 group-hover/item:text-brand-accent font-light tracking-wide transition-all duration-500 drop-shadow-[0_2px_10px_rgba(212,107,67,0.15)] group-hover/item:drop-shadow-[0_4px_20px_rgba(212,107,67,0.4)]">
-                    {material.name}
-                  </span>
-                  
-                  {/* Subtle trailing dot */}
-                  <div className="hidden sm:flex items-center gap-1.5">
-                    <div className="h-[1px] w-4 bg-gradient-to-l from-brand-accent/30 to-transparent" />
-                    <div className="w-1 h-1 rounded-full bg-brand-accent/50 group-hover/item:bg-brand-accent animate-pulse" />
                   </div>
                 </div>
               ))

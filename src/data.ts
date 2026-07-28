@@ -14,15 +14,15 @@ import factoryImage from "./assets/images/images.jpg";
 import cncMachineImage from "./assets/images/unnamed-36.png";
 
 // Company logo imports
-import logo1Image from "./assets/company_logos/Gemini_Generated_Image_.png";
-import logo2Image from "./assets/company_logos/Gemini_Generated_Image_ (1).png";
-import logo3Image from "./assets/company_logos/Gemini_Generated_Image_ (2).png";
-import logo4Image from "./assets/company_logos/Gemini_Generated_Image_ (3).png";
-import logo5Image from "./assets/company_logos/Gemini_Generated_Image_ (4).png";
-import logo6Image from "./assets/company_logos/Gemini_Generated_Image_ (5).png";
-import logo7Image from "./assets/company_logos/Gemini_Generated_Image_ (6).png";
-import logo8Image from "./assets/company_logos/Gemini_Generated_Image_ (7).png";
-import logo9Image from "./assets/company_logos/Gemini_Generated_Image_ (8).png";
+import logo1Image from "./assets/company_logos/Gemini_Generated_Image_-removebg-preview.png";
+import logo2Image from "./assets/company_logos/Gemini_Generated_Image___1_-removebg-preview.png";
+import logo3Image from "./assets/company_logos/Gemini_Generated_Image___2_-removebg-preview.png";
+import logo4Image from "./assets/company_logos/Gemini_Generated_Image___3_-removebg-preview.png";
+import logo5Image from "./assets/company_logos/Gemini_Generated_Image___4_-removebg-preview.png";
+import logo6Image from "./assets/company_logos/Gemini_Generated_Image___5_-removebg-preview.png";
+import logo7Image from "./assets/company_logos/Gemini_Generated_Image___6_-removebg-preview.png";
+import logo8Image from "./assets/company_logos/Gemini_Generated_Image___7_-removebg-preview.png";
+import logo9Image from "./assets/company_logos/Gemini_Generated_Image___8_-removebg-preview.png";
 
 export interface Discipline {
   id: string;
@@ -242,39 +242,39 @@ export const equipmentList: Equipment[] = [
 
 export const materials: Material[] = [
   {
-    name: "Matte laminate",
+    name: "",
     logo: logo1Image
   },
   {
-    name: "Textured woodgrain laminate",
+    name: "",
     logo: logo2Image
   },
   {
-    name: "Fenix laminate",
+    name: "",
     logo: logo3Image
   },
   {
-    name: "Egger & Kronospan panels",
+    name: "",
     logo: logo4Image
   },
   {
-    name: "Blum hardware",
+    name: "",
     logo: logo5Image
   },
   {
-    name: "Hettich components",
+    name: "",
     logo: logo6Image
   },
   {
-    name: "Rehau edging systems",
+    name: "",
     logo: logo7Image
   },
   {
-    name: "Grass drawer systems",
+    name: "",
     logo: logo8Image
   },
   {
-    name: "Hafele fittings",
+    name: "",
     logo: logo9Image
   }
 ];
