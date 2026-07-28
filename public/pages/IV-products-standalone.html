@@ -676,13 +676,14 @@
   .hamburger.open span:last-child{top:19px;transform:rotate(-45deg);}
 
   .mobile-menu{
-    position:fixed;inset:0;z-index:150;background:var(--ink);
-    display:flex;flex-direction:column;justify-content:space-between;
-    padding:120px 32px 40px;
+    position:fixed;top:70px;left:0;right:0;z-index:150;background:var(--ink);border-bottom:1px solid var(--line-dark);
+    display:flex;flex-direction:column;justify-content:flex-start;
+    padding:20px 32px;max-height:calc(100vh - 70px);overflow-y:auto;
     opacity:0;visibility:hidden;transform:translateY(-12px);
     transition:opacity .4s var(--ease),transform .4s var(--ease),visibility 0s linear .4s;
   }
   .mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s var(--ease),transform .4s var(--ease);}
+    body.menu-open{overflow:hidden;}
   .mobile-menu-links{display:flex;flex-direction:column;gap:4px;}
   .mobile-menu-links a{
     font-family:var(--sans);font-weight:400;font-size:12px;letter-spacing:0.15em;
@@ -1138,6 +1139,17 @@
     });
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    // close menu when clicking or tapping outside the menu or the hamburger
+    document.addEventListener('click', (e) => {
+      const el = e.target;
+      if (!(el instanceof Element)) return;
+      if (!mobileMenu.contains(el) && !hamburger.contains(el)) closeMenu();
+    });
+    document.addEventListener('touchstart', (e) => {
+      const el = e.target;
+      if (!(el instanceof Element)) return;
+      if (!mobileMenu.contains(el) && !hamburger.contains(el)) closeMenu();
+    });
   }
 
 </script>
