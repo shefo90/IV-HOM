@@ -21,9 +21,9 @@ export default function ChapterOneSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.1] text-brand-light tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.1] text-brand-light tracking-tight font-medium">
             A gap between low-cost workshops{" "}
-            <span className="italic text-brand-accent font-normal">
+            <span className="italic text-brand-accent font-medium">
               and imported franchises.
             </span>
           </h2>
@@ -48,7 +48,7 @@ export default function ChapterOneSection() {
               <span className="block font-mono text-[9px] tracking-[0.15em] text-gray-500 uppercase">
                 01 / ESTABLISHED
               </span>
-              <span className="block font-serif text-4xl font-light text-brand-light mt-2 tracking-tight">
+              <span className="block font-serif text-4xl font-semibold text-brand-light mt-2 tracking-tight">
                 IV
               </span>
               <span className="block font-sans text-[10px] tracking-wider text-gray-500 mt-1 uppercase">
@@ -59,7 +59,7 @@ export default function ChapterOneSection() {
               <span className="block font-mono text-[9px] tracking-[0.15em] text-gray-500 uppercase">
                 02 / INDEX
               </span>
-              <span className="block font-serif text-4xl font-light text-brand-accent mt-2 tracking-tight">
+              <span className="block font-serif text-4xl font-semibold text-brand-accent mt-2 tracking-tight">
                 &lt;0.4%
               </span>
               <span className="block font-sans text-[10px] tracking-wider text-gray-500 mt-1 uppercase">

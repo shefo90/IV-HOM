@@ -20,9 +20,9 @@ export default function TeamSection() {
               02 • THE TEAM
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight text-brand-light tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight text-brand-light tracking-tight font-medium">
             A small team.{" "}
-            <span className="italic text-brand-accent font-normal">
+            <span className="italic text-brand-accent font-medium">
               Every project owned end-to-end.
             </span>
           </h2>

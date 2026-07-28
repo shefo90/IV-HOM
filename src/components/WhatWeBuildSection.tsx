@@ -23,9 +23,9 @@ export default function WhatWeBuildSection({ onSelectCategory }: WhatWeBuildSect
                 03 • WHAT WE BUILD
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-light tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-light tracking-tight font-medium">
               Three signatures.{" "}
-              <span className="italic text-brand-accent font-normal">
+              <span className="italic text-brand-accent font-medium">
                 One standard.
               </span>
             </h2>

@@ -48,9 +48,9 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
               THE FIXED FURNITURE MANUFACTORY
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-brand-light leading-[1.1] tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-brand-light leading-[1.1] tracking-tight font-medium">
             Fourth–generation craft.{" "}
-            <span className="italic text-brand-accent font-normal">
+            <span className="italic text-brand-accent font-medium">
               Powered by Industry 4.0.
             </span>
           </h2>
