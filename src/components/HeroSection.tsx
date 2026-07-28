@@ -116,7 +116,7 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
       </div>
 
       {/* Enhanced Scrolling Marquee of Materials - Redesigned */}
-      <div className="w-full border-t border-b border-brand-accent/20 bg-brand-dark py-5 sm:py-6 md:py-7 overflow-hidden relative group">
+      <div className="w-full border-t border-b border-brand-accent/20 bg-brand-dark py-6 sm:py-6 md:py-7 overflow-hidden relative group">
         {/* Subtle animated background with depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,107,67,0.05)_0%,transparent_70%)] pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(212,107,67,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(212,107,67,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-30" />
@@ -129,18 +129,18 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/60 to-transparent animate-pulse" />
         
-        <div className="flex whitespace-nowrap animate-[marquee_80s_linear_infinite]">
+        <div className="flex whitespace-nowrap animate-[marquee_60s_linear_infinite]">
           {/* Create a very long list to ensure all items are visible */}
-          <div className="flex gap-12 sm:gap-16 md:gap-20 items-center shrink-0">
+          <div className="flex gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center shrink-0">
             {/* Repeat all materials multiple times */}
             {Array.from({ length: 6 }).flatMap((_, repeatIndex) => 
               materials.map((material, idx) => (
                 <div 
                   key={`${repeatIndex}-${idx}`} 
-                  className="flex items-center justify-center group/item transition-all duration-500 hover:scale-105 mr-12 sm:mr-16 md:mr-20"
+                  className="flex items-center justify-center group/item transition-all duration-500 hover:scale-105 mr-8 sm:mr-12 md:mr-16 lg:mr-20"
                 >
-                  {/* Company logo only */}
-                  <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 relative bg-transparent p-1">
+                  {/* Company logo only - larger on mobile */}
+                  <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 relative bg-transparent p-1">
                     <img
                       src={material.logo}
                       alt={`Company logo ${idx + 1}`}
