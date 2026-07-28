@@ -82,9 +82,9 @@ export default function FooterSection() {
               CONTACT
             </h4>
             <ul className="space-y-2.5 font-sans text-xs text-gray-400">
-              <li>+20 10 xxxx xxxx</li>
-              <li>projects@iv-hswood.com</li>
-              <li>Cairo • By appointment</li>
+              <li>+20 107 0009907</li>
+              <li>contact@ivfixed.com</li>
+              <li>Industrial area factory buildings 7 8 9 10 / Anabib Al Petrol Street Gesr Al Suez, Cairo</li>
             </ul>
           </div>
         </div>
