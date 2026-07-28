@@ -19,7 +19,7 @@ export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSec
   const stats = [
     { value: "96%", label: "ON-TIME RATE" },
     { value: "<0.4%", label: "DEFECT RATE" },
-    { value: "2025", label: "PRODUCTION YEAR" },
+    { value: "2026", label: "PRODUCTION YEAR" },
   ];
 
   return (
@@ -44,7 +44,7 @@ export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSec
           </div>
 
           <p className="font-sans text-[13px] text-gray-400 leading-relaxed max-w-md md:pb-2">
-            A short selection from the 2025 production year. Numbers are auditable — timelines and
+            A short selection from the 2026 production year. Numbers are auditable — timelines and
             defect rates. Ask for the full brief.
           </p>
         </div>

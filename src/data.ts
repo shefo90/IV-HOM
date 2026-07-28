@@ -294,7 +294,7 @@ export const referenceProjects: ReferenceProject[] = [
     id: "ref-2",
     caseNumber: "Case 02",
     location: "SIDI ABDEL RAHMAN",
-    scope: "Villa kitchens • handed over June 2025",
+    scope: "Villa kitchens • handed over June 2026",
     title: "Marassi North Coast",
     description: "High-end bespoke walnut cabinetry and walk-in dressing rooms built to rigorous seaside environmental specifications.",
     image: luxuryWardrobeImage,
