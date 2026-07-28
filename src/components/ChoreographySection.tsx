@@ -61,7 +61,7 @@ export default function ChoreographySection() {
             <h2 className="font-serif text-4xl sm:text-5xl md:text-[62px] leading-[0.95] text-brand-dark tracking-tight">
               Seven stages<span className="orange-dot">.</span>{" "}
               <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-[#d97b53] to-brand-accent font-normal animate-gradient bg-[length:200%_auto]">
-                Every checkpoint has a signature<span className="orange-dot">.</span>
+                Every checkpoint has a signature
               </span>
             </h2>
           </motion.div>
