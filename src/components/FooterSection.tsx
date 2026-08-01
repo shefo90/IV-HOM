@@ -4,13 +4,27 @@
  */
 
 import { MouseEvent } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function FooterSection() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
+
+  // On the home page these are same-page anchor scrolls, exactly as before.
+  // On the six converted routes there is nothing to scroll to (those ids only
+  // exist on the home page), so navigate to the real route instead — that
+  // includes "#process", which has no target on the home page either (that's
+  // pre-existing and left alone), but does have a real /process route.
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    if (isHome) {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(`/${href.slice(1)}`);
     }
   };
 

@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import type React from "react";
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
