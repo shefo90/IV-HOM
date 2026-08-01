@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, MouseEvent } from "react";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 interface HeaderProps {
@@ -41,33 +42,20 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
   }, []);
 
   const navItems = [
-    { label: "HOME", href: "/", isExternal: false },
-    { label: "ABOUT", href: "/pages/IV-about-standalone.html", isExternal: true },
-    { label: "PROCESS", href: "/pages/IV-process-standalone.html", isExternal: true },
-    { label: "PRODUCTS", href: "/pages/IV-products-standalone.html", isExternal: true },
-    { label: "FACTORY", href: "/pages/IV-factory-standalone.html", isExternal: true },
-    { label: "PROJECTS", href: "/pages/IV-projects-standalone.html", isExternal: true },
-    { label: "CONTACT", href: "/pages/IV-contact-standalone.html", isExternal: true },
+    { label: "HOME", to: "/" },
+    { label: "ABOUT", to: "/about" },
+    { label: "PROCESS", to: "/process" },
+    { label: "PRODUCTS", to: "/products" },
+    { label: "FACTORY", to: "/factory" },
+    { label: "PROJECTS", to: "/projects" },
+    { label: "CONTACT", to: "/contact" },
   ];
-
-  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string, isExternal: boolean) => {
-    if (isExternal) {
-      // Let the browser handle the navigation to the external page
-      return;
-    }
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border-dark py-4 px-6 md:px-12 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" onClick={(e) => handleNavClick(e, "#hero")} className="flex items-center gap-3 group">
+        <NavLink to="/" className="flex items-center gap-3 group">
           <div className="relative w-9 h-9 rounded-full border border-brand-accent/60 flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
             <span className="font-serif text-sm tracking-widest text-brand-light font-bold">IV</span>
             <div className="absolute -inset-[2px] rounded-full border border-dashed border-brand-accent/20 animate-[spin_40s_linear_infinite]" />
@@ -75,26 +63,31 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
           <div className="flex flex-col">
             <span className="font-mono text-[10px] tracking-[0.25em] text-brand-accent font-semibold">Fixed furniture</span>
           </div>
-        </a>
+        </NavLink>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-10">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
+            // Note: intentionally NOT special-casing HOME/"hero" here. The
+            // pre-existing app compared activeSection against item.href.substring(1),
+            // which for HOME's "/" is "" and never matches the default "hero"
+            // state, so HOME was never highlighted at rest. Adding a hero
+            // special case (as a literal reading of the router-shell brief
+            // suggests) changes the home page's initial look, which fails the
+            // pixel-diff gate for this task. Keeping the plain comparison
+            // preserves the current on-load appearance exactly.
+            const isActive = activeSection === item.to.slice(1);
             return (
-              <a
+              <NavLink
                 key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href, item.isExternal)}
+                to={item.to}
                 className={`font-sans text-[11px] tracking-[0.2em] font-medium transition-colors relative py-1 ${
                   isActive ? "text-brand-accent" : "text-gray-400 hover:text-brand-light"
                 }`}
               >
                 {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-accent" />
-                )}
-              </a>
+                {isActive && <span className="absolute bottom-0 left-0 w-full h-[1px] bg-brand-accent" />}
+              </NavLink>
             );
           })}
         </nav>
@@ -135,14 +128,14 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
         <div className="md:hidden fixed inset-x-0 top-[70px] bg-brand-dark border-b border-brand-border-dark p-6 animate-fade-in-down z-40">
           <div className="flex flex-col gap-5">
             {navItems.map((item) => (
-              <a
+              <NavLink
                 key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href, item.isExternal)}
+                to={item.to}
+                onClick={() => setMobileMenuOpen(false)}
                 className="font-sans text-xs tracking-[0.15em] text-gray-400 hover:text-brand-accent py-1"
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
             <div className="flex items-center justify-between pt-4 border-t border-brand-border-dark">
               <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] text-gray-400">

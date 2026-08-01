@@ -1,0 +1,45 @@
+/* Factory-page-only overrides.
+   FactoryPage renders <div className="iv-page iv-factory">, and every selector
+   here is prefixed with the COMPOUND `.iv-page.iv-factory` (no space between
+   the two classes). Both halves of that matter:
+
+   - Not plain `.iv-page`, because Vite bundles every CSS import into one global
+     stylesheet, so importing this file from a single component does not scope it
+     to that component. Under `.iv-page` these rules applied to all six pages —
+     the 1.6em dot below inflated the subhero <h1> by 15px everywhere.
+
+   - Not plain `.iv-factory` either, because several of these rules shadow a
+     baseline rule in standalone.css with the SAME specificity — e.g.
+     `.iv-factory .numbers-head h2` vs `.iv-page .numbers-head h2` are both
+     (0,2,1). A tie is broken by source order, and in the production bundle the
+     baseline happens to be emitted last, so the override silently lost and the
+     CAPACITY heading rendered at 38px instead of 52px. The compound form is
+     (0,3,1) and wins on specificity, independent of bundle order. */
+
+/* Make the subhero/title trailing dot slightly larger on factory page */
+.iv-page.iv-factory .subhero h1 .orange-dot { font-size: 1.6em; color: var(--gold); }
+.iv-page.iv-factory .numbers-head { position: relative; z-index: 2; max-width: 960px; }
+.iv-page.iv-factory .numbers-head h2 { font-size: clamp(52px,6.5vw,96px); margin-top: 24px; font-weight: 300; font-variation-settings: "opsz" 144; line-height: 1.05; }
+.iv-page.iv-factory .numbers-head .lead { font-size: clamp(16px,1.4vw,20px); color: var(--text-light-mute); line-height: 1.75; max-width: 660px; margin-top: 36px; font-weight: 300; }
+.iv-page.iv-factory .process-head h2 em { color: var(--text-dark) !important; }
+
+/* Warranty cards: hover and animated-in states. These override the inline base
+   styles on the .wcard elements once useWarrantyCards adds the wcard-in /
+   wquote-in class. Moved verbatim from the source page's in-<main> <style>
+   block (lines 964-980); only the selectors changed. The !important flags are
+   load-bearing — they are what beat the elements' inline style attributes. */
+@media(max-width:900px){
+  .iv-page.iv-factory .warranty-header-grid{grid-template-columns:1fr!important;gap:20px!important;}
+  .iv-page.iv-factory .warranty-cards-grid{grid-template-columns:1fr!important;}
+}
+.iv-page.iv-factory .wcard:hover{
+  box-shadow:0 0 60px rgba(169,128,63,0.12),0 20px 40px rgba(0,0,0,.4)!important;
+  transform:translateY(-4px)!important;
+}
+.iv-page.iv-factory .wcard.wcard-in{
+  opacity:1!important;
+  transform:translateY(0)!important;
+}
+.iv-page.iv-factory .wcard.wcard-in .wcard-line{width:100%!important;}
+.iv-page.iv-factory .wcard.wcard-in .wcard-lifetime{clip-path:inset(0 0% 0 0)!important;}
+.iv-page.iv-factory .wquote-block.wquote-in{opacity:1!important;transform:translateX(0)!important;}

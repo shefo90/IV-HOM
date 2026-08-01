@@ -4,6 +4,7 @@
  */
 
 import { useState } from "react";
+import type React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ReferenceProject } from "../data";
 

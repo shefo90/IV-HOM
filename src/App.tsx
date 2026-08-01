@@ -3,97 +3,69 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { useState, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import ChapterOneSection from "./components/ChapterOneSection";
-import DisciplinesSection from "./components/DisciplinesSection";
-import WhatWeBuildSection from "./components/WhatWeBuildSection";
-import ChoreographySection from "./components/ChoreographySection";
-import SelectedWorkSection from "./components/SelectedWorkSection";
-import ContactHeaderSection from "./components/ContactHeaderSection";
-import ContactFormSection from "./components/ContactFormSection";
 import FooterSection from "./components/FooterSection";
 import ProposalModal from "./components/ProposalModal";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ProcessPage from "./pages/ProcessPage";
+import ProductsPage from "./pages/ProductsPage";
+import FactoryPage from "./pages/FactoryPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   const [proposalOpen, setProposalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"proposal" | "tour">("proposal");
-  const [activeSection, setActiveSection] = useState("hero");
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Intersection or offset scroll listener to highlight correct nav link
+  const isHome = location.pathname === "/";
+
+  // The nav highlight follows the route only. On the six converted pages
+  // that's the route itself; on the home page nothing should highlight —
+  // "hero" is a sentinel that never matches any nav item's route slice
+  // (mirroring the pre-project behaviour, where the comparison never matched
+  // its own default state either).
+  const active = isHome ? "hero" : location.pathname.slice(1);
+
+  // The originals were full page loads and always started at the top;
+  // BrowserRouter doesn't restore scroll on its own, so do it explicitly on
+  // every route change.
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["hero", "about", "products", "process", "projects", "contact"];
-      const scrollPosition = window.scrollY + 160; // offset for header
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const openProposal = (_category?: string) => {
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const openTour = () => {
-    // Do nothing - user requested nothing to happen when clicking tour buttons
-  };
+  const openProposal = useCallback(() => {
+    if (isHome) {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/contact");
+    }
+  }, [isHome, navigate]);
 
   return (
     <div className="min-h-screen bg-brand-dark selection:bg-brand-accent selection:text-brand-dark overflow-x-hidden">
-      {/* Dynamic Navigation Header */}
-      <Header onOpenProposal={() => openProposal()} activeSection={activeSection} />
+      <Header onOpenProposal={openProposal} activeSection={active} />
 
-      {/* Hero / Landing Screen (Split panel) */}
-      <HeroSection onOpenProposal={() => openProposal()} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/process" element={<ProcessPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/factory" element={<FactoryPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
 
-      {/* Chapter One Narrative Section */}
-      <ChapterOneSection />
-
-
-
-      {/* Categories we build (Kitchens, Closet/Wardrobes, Vanities) */}
-      <WhatWeBuildSection onSelectCategory={(cat) => openProposal(cat)} />
-
-      {/* Process stage timeline sequence */}
-      <ChoreographySection />
-
-      {/* Grid of actual completed reference houses/residences */}
-      <SelectedWorkSection onSelectProject={(title) => openProposal(`Reference study: ${title}`)} />
-
-      {/* Contact header/title section - "Let's build" */}
-      <ContactHeaderSection />
-
-      {/* Contact Form Section */}
-      <ContactFormSection />
-
-      {/* Footer with navigation and contact info */}
       <FooterSection />
 
-      {/* Adaptive submission panel modal */}
       <ProposalModal
         isOpen={proposalOpen}
         onClose={() => setProposalOpen(false)}
-        initialType={modalType}
+        initialType="proposal"
       />
     </div>
   );

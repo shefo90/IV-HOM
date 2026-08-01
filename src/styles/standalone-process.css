@@ -1,0 +1,11 @@
+/* Process-page-only override.
+   Prefixed with the compound `.iv-page.iv-process` (no space between the two
+   classes) for the same reason as the factory overrides: Vite bundles every
+   CSS import into one global stylesheet, so a component-level import is not
+   scoped to that component — plain `.iv-process` alone would already avoid
+   leaking to the other five pages, but the compound form also means
+   specificity (not source order) decides against any future same-specificity
+   rule in standalone.css, exactly like the factory overrides.
+   ProcessPage renders <div className="iv-page iv-process">. */
+
+.iv-page.iv-process .quality h2 em { color: var(--text-dark); }

@@ -12,11 +12,17 @@
 
 ## Global Constraints
 
+- **NO GIT ACTIONS.** Do not run `git add`, `git commit`, `git push`, `git checkout`,
+  `git stash`, `git reset`, or any other command that mutates the repository or working
+  tree. Leave all work uncommitted in the working tree. Read-only inspection
+  (`git diff`, `git status`, `git log`) is permitted. This overrides any commit step that
+  may still appear in a task.
 - **Page bodies must render pixel-identically.** Header and footer are the only permitted visual change (see spec).
 - **Never edit `public/pages/*.html`.** They are the reference the tests diff against, and they must keep working at their current URLs.
 - Node 24.15.0, npm 11.12.1. Windows host — use forward slashes in JS, and `npx` for local binaries.
 - Existing code style: default exports, `.tsx` per component, 2-space indent, `/** @license SPDX-License-Identifier: Apache-2.0 */` header on new source files (match `src/components/*.tsx`).
-- `npm run lint` (`tsc --noEmit`) must pass at the end of every task.
+- `npm run lint` (`tsc --noEmit`) must pass at the end of every task. Task 0 clears the
+  25 pre-existing failures that make this gate meaningless otherwise.
 - Never widen scope into: rewriting page CSS as Tailwind, splitting pages into section components, deleting the original HTML, changing home-page layout, or building an `/api/contact` backend.
 
 ### HTML → JSX transformation rules
@@ -100,6 +106,65 @@ playwright.config.ts
 **Modified:** `src/App.tsx` (→ router shell), `src/main.tsx` (→ `BrowserRouter`), `src/components/Header.tsx` (→ route links), `index.html` (→ Tabler CDN), `Dockerfile:17` (→ `serve -s`), `package.json`.
 
 **Never touched:** `public/pages/*.html`.
+
+---
+
+### Task 0: Make the lint gate real
+
+`npm run lint` fails 25 times on this branch and on `main`, so "lint must pass" cannot
+gate anything until these are cleared. None are caused by the conversion. The missing
+`vite-env.d.ts` also blocks the image imports Tasks 6–11 depend on.
+
+**Files:**
+- Create: `src/vite-env.d.ts`
+- Modify: `src/components/ContactFormSection.tsx`, `src/components/ProjectCard.tsx`
+
+- [ ] **Step 1: Record the baseline**
+
+```bash
+npm run lint 2>&1 | grep -c "error TS"
+```
+
+Expected: `25` — 20 × TS2307, 4 × TS2503, 1 × TS2554.
+
+- [ ] **Step 2: Add the missing Vite client types**
+
+This is standard Vite scaffolding that was never created. It declares the module types for
+`.jpg`, `.png`, `.webp` and friends, clearing all 20 TS2307 errors.
+
+Create `src/vite-env.d.ts`:
+
+```ts
+/// <reference types="vite/client" />
+```
+
+- [ ] **Step 3: Import the React namespace where it is used as a type**
+
+`ContactFormSection.tsx:19,27` and `ProjectCard.tsx:20,25` reference `React.ChangeEvent`
+and `React.MouseEvent` without importing `React`. Add to the top of each file's import
+block:
+
+```ts
+import type React from "react";
+```
+
+Do not change any other line in either file.
+
+- [ ] **Step 4: Verify only the known-remaining error is left**
+
+```bash
+npm run lint 2>&1 | grep "error TS"
+```
+
+Expected: exactly one line —
+`src/components/Header.tsx(70,41): error TS2554: Expected 3 arguments, but got 2.`
+
+That call is inside `handleNavClick`, which **Task 3 Step 9 deletes entirely**. Leave it.
+Do not patch `Header.tsx` in this task.
+
+- [ ] **Step 5: Leave the work uncommitted**
+
+Do not commit. Report the files you changed and the final lint output.
 
 ---
 
@@ -255,9 +320,9 @@ Add to `package.json` scripts so page tasks can confirm the expected imbalance:
 
 Run `npm run check:divs`. Expected: delta 0 for about and factory, delta 1 for the other four.
 
-- [ ] **Step 7: Ignore test output and commit**
+- [ ] **Step 7: Ignore test output**
 
-Add to `.gitignore`:
+Add to `.gitignore` (editing the file only — do not stage or commit it):
 
 ```
 tests/visual/__output__/
@@ -265,10 +330,7 @@ test-results/
 playwright-report/
 ```
 
-```bash
-git add playwright.config.ts tests/ package.json package-lock.json .gitignore
-git commit -m "test: add pixel-diff harness for HTML-to-React conversion"
-```
+Do not commit. Report the files you changed and the test output.
 
 ---
 
@@ -336,10 +398,7 @@ Read each extracted image to see what it depicts, then rename to a descriptive k
 
 - [ ] **Step 5: Commit**
 
-```bash
-git add scripts/extract-images.mjs src/assets/images/standalone/
-git commit -m "feat: extract 16 base64 embeds to 6 deduplicated image files"
-```
+Do not commit. Report the extracted filenames and their sizes.
 
 ---
 
@@ -645,10 +704,7 @@ Re-screenshot the home page and compare against `home-before.png` from Step 1. T
 
 - [ ] **Step 14: Commit**
 
-```bash
-git add -A
-git commit -m "feat: add react-router shell and route the header to page paths"
-```
+Do not commit. Report the files you changed and the test output.
 
 ---
 
@@ -760,10 +816,7 @@ Re-screenshot `/` at 1440×1000 and compare with `home-before.png` from Task 3 S
 
 - [ ] **Step 8: Commit**
 
-```bash
-git add src/styles src/main.tsx tests/visual/scoping.spec.ts
-git commit -m "feat: add page stylesheet scoped under .iv-page"
-```
+Do not commit. Report the files you changed and the test output.
 
 ---
 
@@ -1076,10 +1129,7 @@ Expected: clean. Unused-hook warnings are fine — page tasks consume them.
 
 - [ ] **Step 9: Commit**
 
-```bash
-git add src/hooks/
-git commit -m "feat: port standalone page scripts to seven scoped React hooks"
-```
+Do not commit. Report the files you created and the lint output.
 
 ---
 
@@ -1199,10 +1249,7 @@ Expected: clean.
 
 - [ ] **Step 6: Commit**
 
-```bash
-git add src/pages/AboutPage.tsx tests/visual/pages.spec.ts
-git commit -m "feat: convert the about page to React"
-```
+Do not commit. Report the page file you wrote and the three diff-test results.
 
 ---
 
@@ -1244,11 +1291,9 @@ docker build -t iv-test . && docker run --rm -p 3000:3000 iv-test
 
 Then hard-refresh `http://localhost:3000/about`. It must render the About page, not a 404. This is what the `-s` flag in Task 3 Step 11 fixes.
 
-- [ ] **Step 5: Commit any final fixes**
+- [ ] **Step 5: Leave everything uncommitted**
 
-```bash
-git add -A && git commit -m "chore: final verification pass"
-```
+Do not commit. Report the full suite results, the `dist/` size, and the Docker check.
 
 ---
 

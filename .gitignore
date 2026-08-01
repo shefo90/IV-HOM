@@ -6,3 +6,7 @@ coverage/
 *.log
 .env*
 !.env.example
+
+tests/visual/__output__/
+test-results/
+playwright-report/
