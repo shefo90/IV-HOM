@@ -19,6 +19,7 @@ const INITIAL_FORM = {
   message: "",
 };
 
+
 export default function ContactPage() {
   const ref = useRef<HTMLDivElement>(null);
 
