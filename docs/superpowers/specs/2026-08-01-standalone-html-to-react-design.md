@@ -193,20 +193,45 @@ before mount and would leak observers across client-side navigations. Every hook
 registers its listeners and `IntersectionObserver`s in `useEffect` and disconnects them on
 unmount.
 
+Counting the *markup* (not the script text, which mentions every selector on every page
+because the script is shared) gives the real usage:
+
 | Hook | Targets | Used by |
 | --- | --- | --- |
 | `useScrollProgress` | `#scrollProgress` width from scroll position | all 6 |
-| `useReveal` | `.reveal`, `.reveal-stagger` → adds `.in` | all 6 |
-| `useMagnetic` | `[data-magnetic]` mousemove translate | all 6 |
-| `useParallax` | `[data-parallax]` translateY on scroll | all 6 |
-| `useTilt` | `[data-tilt]` rotateX/rotateY on mousemove | all 6 |
-| `useTimelineFill` | `#ptimeline-fill` → width 100% on intersect | all 6 |
-| `useSplitText` | `#heroHeadline .split-word` staggered 80ms | where present |
-| `useCounters` | `.counter[data-target]` ease-out count-up | process |
-| `useWarrantyCards` | `.wcard`, `.wcount`, `.wquote-block` | factory |
+| `useReveal` | `.reveal`, `.reveal-stagger` → adds `.in` | all 6 (2–7 elements each) |
+| `useMagnetic` | `[data-magnetic]` mousemove translate | all 6 (1–3 each) |
+| `useTilt` | `[data-tilt]` rotateX/rotateY on mousemove | **about (1), products (3)** only |
+| `useCounters` | `.counter[data-target]` ease-out count-up | **process** only |
+| `useTimelineFill` | `#ptimeline-fill` → width 100% on intersect | **process** only |
+| `useWarrantyCards` | `.wcard`, `.wcount`, `.wquote-block` | **factory** only |
 
-The nav-scroll (`.scrolled`), mobile-menu and Cairo-clock portions of the original script
-are not ported — they belong to the chrome being replaced.
+Seven hooks, not nine. Two behaviours in the shared script are **dead on all six pages**
+and are not ported:
+
+- `useSplitText` — `#heroHeadline` appears in **zero** pages' markup.
+- `useParallax` — `[data-parallax]` appears in **zero** pages' markup.
+
+The nav-scroll (`.scrolled`), mobile-menu and Cairo-clock portions are also not ported —
+they belong to the chrome being replaced.
+
+### The contact form
+
+`IV-contact-standalone.html` carries a second script block (lines 1100–1132) wiring
+`#contactForm`. On submit it disables the button, sets its text to `Sending…`, POSTs the
+form as JSON to `/api/contact`, then writes either a success or failure message into
+`#formMsg` and adds `.show`.
+
+**`/api/contact` does not exist.** `express` is listed in `package.json` but no server
+code is present anywhere in the repo, so this request always rejects and the form always
+shows *"Something went wrong. Please try again or email us directly."* today.
+
+That behaviour is **preserved exactly as-is**, including the failing endpoint. Building a
+backend is out of scope. The form becomes a controlled React component in
+`ContactPage.tsx` with identical markup, identical states, and the same `fetch` call.
+
+(This is separate from `ContactFormSection.tsx` on the home page, which only
+`console.log`s its data — that component is untouched.)
 
 ### Images
 
@@ -246,7 +271,7 @@ until its diff is clean.
    rewrite `Header.tsx` nav to routes; fix the Dockerfile `serve -s` flag. Confirm the
    home page is unchanged.
 3. Create the scoped `standalone.css` plus the two override files.
-4. Write the nine hooks.
+4. Write the seven hooks.
 5. Convert pages one at a time, screenshot-diffing each: **about** first as the pilot
    (5 sections, balanced markup, validates the whole pattern), then contact → projects →
    process → products → factory (its extra script last).
@@ -258,3 +283,5 @@ until its diff is clean.
 - Deleting the original HTML files.
 - Changing the home page's layout.
 - Fixing the empty Cairo-clock div.
+- Building a `/api/contact` backend, or otherwise making the contact form succeed.
+- Porting the two dead behaviours (`useSplitText`, `useParallax`) that target nothing.
