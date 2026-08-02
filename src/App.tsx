@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header";
 import FooterSection from "./components/FooterSection";
@@ -15,6 +15,10 @@ import ProductsPage from "./pages/ProductsPage";
 import FactoryPage from "./pages/FactoryPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
+
+// Code-split: the admin is a few hundred KB of forms and a media library that
+// a site visitor must never download.
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 
 export default function App() {
   const [proposalOpen, setProposalOpen] = useState(false);
@@ -44,6 +48,17 @@ export default function App() {
       navigate("/contact");
     }
   }, [isHome, navigate]);
+
+  // The admin has its own chrome, so it replaces the page rather than
+  // rendering inside the site's header and footer. Every hook above runs
+  // first, so this early return does not change the hook order.
+  if (location.pathname.startsWith("/admin")) {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-brand-dark" />}>
+        <AdminApp />
+      </Suspense>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-brand-dark selection:bg-brand-accent selection:text-brand-dark overflow-x-hidden">

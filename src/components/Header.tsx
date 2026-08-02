@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { useContent } from "../content/ContentProvider";
 
 interface HeaderProps {
   onOpenProposal: () => void;
@@ -15,6 +16,7 @@ interface HeaderProps {
 export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
   const [cairoTime, setCairoTime] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { brand, nav } = useContent().site;
 
   useEffect(() => {
     const updateTime = () => {
@@ -41,15 +43,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const navItems = [
-    { label: "HOME", to: "/" },
-    { label: "ABOUT", to: "/about" },
-    { label: "PROCESS", to: "/process" },
-    { label: "PRODUCTS", to: "/products" },
-    { label: "FACTORY", to: "/factory" },
-    { label: "PROJECTS", to: "/projects" },
-    { label: "CONTACT", to: "/contact" },
-  ];
+  const navItems = nav.items;
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-brand-border-dark py-4 px-6 md:px-12 transition-all duration-300">
@@ -57,11 +51,11 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3 group">
           <div className="relative w-9 h-9 rounded-full border border-brand-accent/60 flex items-center justify-center transition-transform duration-500 group-hover:rotate-180">
-            <span className="font-serif text-sm tracking-widest text-brand-light font-bold">IV</span>
+            <span className="font-serif text-sm tracking-widest text-brand-light font-bold">{brand.monogram}</span>
             <div className="absolute -inset-[2px] rounded-full border border-dashed border-brand-accent/20 animate-[spin_40s_linear_infinite]" />
           </div>
           <div className="flex flex-col">
-            <span className="font-mono text-[10px] tracking-[0.25em] text-brand-accent font-semibold">Fixed furniture</span>
+            <span className="font-mono text-[10px] tracking-[0.25em] text-brand-accent font-semibold">{brand.tagline}</span>
           </div>
         </NavLink>
 
@@ -101,7 +95,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
             className="group relative px-5 py-2 overflow-hidden border border-brand-accent text-brand-light font-sans text-[11px] tracking-[0.15em] transition-colors duration-300"
           >
             <span className="absolute inset-0 bg-brand-accent translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" />
-            <span className="relative z-10 font-semibold group-hover:text-brand-dark">GET PROPOSAL</span>
+            <span className="relative z-10 font-semibold group-hover:text-brand-dark">{nav.proposalCta}</span>
           </button>
         </div>
 
@@ -111,7 +105,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
             onClick={onOpenProposal}
             className="px-3 py-1.5 border border-brand-accent text-brand-light font-sans text-[9px] tracking-[0.1em] font-medium"
           >
-            PROPOSAL
+            {nav.proposalCtaMobile}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -142,7 +136,7 @@ export default function Header({ onOpenProposal, activeSection }: HeaderProps) {
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                 <span>{cairoTime || "16:16"}</span>
               </div>
-              <span className="text-[10px] tracking-wider text-gray-500 uppercase">Est. IV • MMXXVI</span>
+              <span className="text-[10px] tracking-wider text-gray-500 uppercase">{nav.established}</span>
             </div>
           </div>
         </div>

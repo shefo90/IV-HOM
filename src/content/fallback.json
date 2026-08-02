@@ -1,0 +1,761 @@
+{
+  "site": {
+    "brand": {
+      "monogram": "IV",
+      "tagline": "Fixed furniture"
+    },
+    "nav": {
+      "items": [
+        { "label": "HOME", "to": "/" },
+        { "label": "ABOUT", "to": "/about" },
+        { "label": "PROCESS", "to": "/process" },
+        { "label": "PRODUCTS", "to": "/products" },
+        { "label": "FACTORY", "to": "/factory" },
+        { "label": "PROJECTS", "to": "/projects" },
+        { "label": "CONTACT", "to": "/contact" }
+      ],
+      "proposalCta": "GET PROPOSAL",
+      "proposalCtaMobile": "PROPOSAL",
+      "established": "Est. IV • MMXXVI"
+    },
+    "footer": {
+      "monogram": "IV",
+      "blurb": "The fixed-furniture manufacturing brand of HS Wood Industries. **Fourth-generation** craft, powered by Industry 4.0.",
+      "watermark": "IV",
+      "navHeading": "NAVIGATE",
+      "navLinks": [
+        { "label": "About", "href": "#about" },
+        { "label": "Products", "href": "#products" },
+        { "label": "Process", "href": "#process" },
+        { "label": "Projects", "href": "#projects" },
+        { "label": "Contact", "href": "#contact" }
+      ],
+      "contactHeading": "CONTACT",
+      "contactLines": [
+        "+20 107 0009907",
+        "contact@ivfixed.com",
+        "Industrial area factory buildings 7 8 9 10 / Anabib Al Petrol Street Gesr Al Suez, Cairo"
+      ]
+    },
+    "contactForm": {
+      "fullNameLabel": "FULL NAME",
+      "companyLabel": "COMPANY",
+      "emailLabel": "EMAIL",
+      "phoneLabel": "PHONE",
+      "interestedInLabel": "INTERESTED IN",
+      "interestedInOptions": ["Kitchens", "Wardrobes", "Vanities", "Other"],
+      "projectDetailsLabel": "PROJECT DETAILS",
+      "projectDetailsPlaceholder": "Unit count, timeline, location...",
+      "submitLabel": "SEND MESSAGE",
+      "sendingLabel": "SENDING...",
+      "successMessage": "Thank you — your message has been received. We'll be in touch shortly.",
+      "errorMessage": "Something went wrong. Please email contact@ivfixed.com instead."
+    },
+    "proposalModal": {
+      "proposalTab": "REQUEST PROPOSAL",
+      "tourTab": "SCHEDULE FACTORY TOUR",
+      "proposalHeading": "Get a tailored digital-first proposal.",
+      "proposalIntro": "Send us your project specifications or floor plans. Our engineering algorithm outputs a transparent, line-item price locked for 6 months.",
+      "tourHeading": "See the robotic factory floor in Cairo.",
+      "tourIntro": "Walk the shop floor, experience the CNC precision systems, and meet the design-engineering division. Scheduled by appointments only.",
+      "nameLabel": "FULL NAME *",
+      "namePlaceholder": "e.g. John Doe",
+      "emailLabel": "EMAIL ADDRESS *",
+      "emailPlaceholder": "name@company.com",
+      "phoneLabel": "PHONE / WHATSAPP *",
+      "phonePlaceholder": "+20 1xx xxxx xxx",
+      "categoryLabel": "PROJECT CATEGORY",
+      "categoryOptions": [
+        { "value": "Kitchens", "label": "Kitchens (Signature 01)" },
+        { "value": "Dressing Rooms", "label": "Dressing Rooms (Signature 02)" },
+        { "value": "Vanities", "label": "Vanities (Signature 03)" },
+        { "value": "Complete Villa", "label": "Complete Villa Furnishing" }
+      ],
+      "sizeLabel": "APPROXIMATE SIZE (SQM OR LM)",
+      "sizeSuffix": "sqm",
+      "timeframeLabel": "TIMEFRAME",
+      "timeframeOptions": [
+        { "value": "Immediate", "label": "Immediate (< 1 month)" },
+        { "value": "1-3 months", "label": "1 - 3 Months" },
+        { "value": "3-6 months", "label": "3 - 6 Months" },
+        { "value": "6+ months", "label": "6+ Months / Planning" }
+      ],
+      "tourDateLabel": "PREFERRED DATE",
+      "tourTimeLabel": "TIME SLOT",
+      "tourTimeOptions": [
+        { "value": "10:00", "label": "10:00 AM (Morning Batch)" },
+        { "value": "11:30", "label": "11:30 AM (Production Slot)" },
+        { "value": "13:30", "label": "01:30 PM (Midday Run)" },
+        { "value": "15:00", "label": "03:00 PM (Final Handover)" }
+      ],
+      "detailsLabel": "ADDITIONAL INSTRUCTIONS / FLOOR PLAN ACCESS LINKS",
+      "detailsPlaceholder": "Share details about design preferences, site constraints, or link to Google Drive folders with CAD drawings.",
+      "estimateHeading": "PRELIMINARY FABRICATION INDEX",
+      "estimatePrefix": "Est. range:",
+      "estimateNote": "Includes 7-stage quality checks, 0.5mm precision cutting, Austrian premium Blum slides, and structural marine plywood core framing.",
+      "cancelLabel": "CANCEL",
+      "submitProposalLabel": "SUBMIT BRIEF",
+      "submitTourLabel": "REQUEST PASS",
+      "submittingLabel": "CALCULATING...",
+      "proposalSuccessHeading": "Project brief received.",
+      "proposalSuccessBody": "Your {category} brief is with our engineering team. We'll come back to you within one business day with a manufacturing breakdown and a fixed price.",
+      "tourSuccessHeading": "Tour request received.",
+      "tourSuccessBody": "Your visitor pass request for the Cairo workshop on {date} at {time} has been logged. We'll confirm the slot and security clearance with you within one business day.",
+      "tourDateFallback": "selected date",
+      "dismissLabel": "RETURN TO WORKSPACE",
+      "errorMessage": "Something went wrong. Please email contact@ivfixed.com instead."
+    }
+  },
+
+  "home": {
+    "hero": {
+      "eyebrow": "THE FIXED FURNITURE MANUFACTORY",
+      "headingLead": "**Fourth–generation craft**",
+      "headingRest": "*Powered by Industry 4.0.*",
+      "image": "/media/luxury-kitchen.jpg",
+      "imageAlt": "Signature IV Kitchen Interior",
+      "statementLabel": "[ A STATEMENT ]",
+      "statement": "Precision CNC manufacturing for kitchens, dressing rooms, and vanities — engineered for developers and architects who demand consistent quality across scale. Not a single well-finished showpiece — the same standard, repeated.",
+      "exploreCta": "EXPLORE PROJECTS",
+      "proposalCta": "GET PROPOSAL",
+      "scrollLabel": "SCROLL TO ENTER",
+      "scrollLabelShort": "SCROLL"
+    },
+    "chapterOne": {
+      "eyebrow": "01 • CHAPTER ONE",
+      "heading": "A gap between low-cost workshops *and imported franchises.*",
+      "body": [
+        "IV is the fixed-furniture manufacturing brand of HS Wood Industries — Egypt's first digital-first fixed furniture atelier. We synthesize ancestral cabinetry heritage with contemporary robotic carving.",
+        "We serve B2B clients who need consistent quality across volume, not just a single well-finished showpiece. Every panel — first unit or last — is cut from the same digital file. The signature is invisible — because it is everywhere."
+      ],
+      "stats": [
+        { "index": "01 / ESTABLISHED", "value": "IV", "label": "Generations" },
+        { "index": "02 / INDEX", "value": "<0.4%", "label": "Defect Rate" }
+      ],
+      "image": "/media/digital-factory.jpg",
+      "imageAlt": "IV Digital Manufacturing Workshop",
+      "imageBadge": "CNC • HS WOOD",
+      "imageCaption": "FIG. 01 — WORKSHOP, HS WOOD INDUSTRIES",
+      "imageYear": "2026"
+    },
+    "whatWeBuild": {
+      "eyebrow": "03 • WHAT WE BUILD",
+      "heading": "Three signatures. *One standard.*",
+      "intro": "Three product categories, one manufacturing discipline. Every unit — kitchen, dressing room, or vanity — passes through the same seven checkpoints. The material changes. The standard does not.",
+      "categories": [
+        {
+          "id": "build-kitchens",
+          "number": "SIGNATURE • 01",
+          "title": "Kitchens",
+          "techSpecs": "Modular • CNC-cut",
+          "materials": "Modern laminate finishes",
+          "image": "/media/luxury-kitchen.jpg"
+        },
+        {
+          "id": "build-dressing-rooms",
+          "number": "SIGNATURE • 02",
+          "title": "Dressing Rooms",
+          "techSpecs": "Bespoke • Walnut",
+          "materials": "Made to spec",
+          "image": "/media/luxury-wardrobe.jpg"
+        },
+        {
+          "id": "build-vanities",
+          "number": "SIGNATURE • 03",
+          "title": "Vanities",
+          "techSpecs": "Fluted • Brass",
+          "materials": "Contract-grade",
+          "image": "/media/luxury-vanity.jpg"
+        }
+      ]
+    },
+    "choreography": {
+      "eyebrow": "04 • PRODUCTION CHOREOGRAPHY",
+      "heading": "Seven stages. *Every checkpoint has a signature*",
+      "quote": "Each stage is owned. Each hand-off is documented. The line between digital file and finished cabinet is unbroken — from measurement to installation.",
+      "stages": [
+        {
+          "id": "stage-1",
+          "stageNumber": "Stage 01",
+          "title": "Measurement",
+          "description": "On-site verified against architectural drawings — no assumptions."
+        },
+        {
+          "id": "stage-2",
+          "stageNumber": "Stage 02",
+          "title": "3D Design",
+          "description": "Full digital model rendered for client approval before cutting."
+        },
+        {
+          "id": "stage-3",
+          "stageNumber": "Stage 03",
+          "title": "Engineering",
+          "description": "Fit, function, and hardware placement reviewed and locked."
+        },
+        {
+          "id": "stage-4",
+          "stageNumber": "Stage 04",
+          "title": "CNC Cutting",
+          "description": "Panels cut to exact digital spec on a Simplex CNC machine with boring head."
+        },
+        {
+          "id": "stage-5",
+          "stageNumber": "Stage 05",
+          "title": "Assembly",
+          "description": "Edge banded, hardware fitted, units built to specification."
+        },
+        {
+          "id": "stage-6",
+          "stageNumber": "Stage 06",
+          "title": "QC Inspection",
+          "description": "Every unit checked against original spec — nothing leaves the factory unverified."
+        },
+        {
+          "id": "stage-7",
+          "stageNumber": "Stage 07",
+          "title": "Installation",
+          "description": "Trained in-house team on site — signed off by the client."
+        }
+      ]
+    },
+    "selectedWork": {
+      "eyebrow": "05 • REFERENCE PROJECTS",
+      "heading": "Selected *work.*",
+      "intro": "A short selection from the 2026 production year. Numbers are auditable — timelines and defect rates. Ask for the full brief.",
+      "stats": [
+        { "value": "96%", "label": "ON-TIME RATE" },
+        { "value": "<0.4%", "label": "DEFECT RATE" },
+        { "value": "2026", "label": "PRODUCTION YEAR" }
+      ],
+      "projects": [
+        {
+          "id": "ref-1",
+          "caseNumber": "Case 01",
+          "location": "NEW CAIRO • DEVELOPER",
+          "scope": "Phased delivery across 6 months • consistent quality throughout",
+          "title": "Zed East Residences",
+          "description": "Standardized luxury kitchen systems manufactured and delivered in strict production choreography.",
+          "image": "/media/luxury-kitchen.jpg",
+          "images": [
+            "/media/luxury-kitchen.jpg",
+            "/media/kitchen-cabinet.jpg",
+            "/media/kitchen-cnc-production.webp"
+          ]
+        },
+        {
+          "id": "ref-2",
+          "caseNumber": "Case 02",
+          "location": "SIDI ABDEL RAHMAN",
+          "scope": "Villa kitchens • handed over June 2026",
+          "title": "Marassi North Coast",
+          "description": "High-end bespoke walnut cabinetry and walk-in dressing rooms built to rigorous seaside environmental specifications.",
+          "image": "/media/luxury-wardrobe.jpg",
+          "images": [
+            "/media/luxury-wardrobe.jpg",
+            "/media/digital-factory.jpg",
+            "/media/factory-floor.jpg"
+          ]
+        },
+        {
+          "id": "ref-3",
+          "caseNumber": "Case 03",
+          "location": "KATAMEYA • PRIVATE VILLA",
+          "scope": "Full interior fit-out • architect-specified detailing",
+          "title": "Palm Hills Katameya",
+          "description": "Integrated signature vanity and bathroom cabinetry featuring brass accents and custom fluted panelling.",
+          "image": "/media/luxury-vanity.jpg",
+          "images": [
+            "/media/luxury-vanity.jpg",
+            "/media/cnc-router.webp",
+            "/media/cnc-machine.png"
+          ]
+        }
+      ]
+    },
+    "contactHeader": {
+      "eyebrow": "READY WHEN YOU ARE",
+      "heading": "Let's *build.*",
+      "intro": "See the factory. Meet the team. Get a project-specific proposal with a committed timeline and a fixed price."
+    },
+    "materials": [
+      { "name": "", "logo": "/media/logo-01.png" },
+      { "name": "", "logo": "/media/logo-02.png" },
+      { "name": "", "logo": "/media/logo-03.png" },
+      { "name": "", "logo": "/media/logo-04.png" },
+      { "name": "", "logo": "/media/logo-05.png" },
+      { "name": "", "logo": "/media/logo-06.png" },
+      { "name": "", "logo": "/media/logo-07.png" },
+      { "name": "", "logo": "/media/logo-08.png" },
+      { "name": "", "logo": "/media/logo-09.png" }
+    ]
+  },
+
+  "about": {
+    "subhero": {
+      "image": "/media/factory-cnc-cutting.jpg",
+      "imageAlt": "About IV",
+      "crumbs": { "homeLabel": "Home", "current": "About" },
+      "eyebrow": "About IV",
+      "heading": "**Fourth‑generation craft**, *built for scale*.",
+      "body": "IV is the fixed‑furniture manufacturing brand of HS Wood Industries — Egypt's first digital‑first fixed furniture atelier, serving developers and architects who need consistent quality across volume."
+    },
+    "mission": {
+      "eyebrow": "Our story",
+      "heading": "From a family workshop *to an Industry 4.0 factory.*",
+      "lede": "Four generations of woodworking, rebuilt around a digital production line.",
+      "body": [
+        "HS Wood Industries began as a family joinery workshop. Today, IV is its fixed‑furniture brand — an 8,500m² factory floor where every kitchen, dressing room, and vanity is cut from the same digital file, whether it's unit one or unit three‑hundred.",
+        "We exist in the gap between low‑cost workshops that can't hold tolerance at scale, and imported franchises that can't localise price or lead time. Our answer is a digital‑first production system, run by a fourth‑generation team that still signs off every unit by hand."
+      ],
+      "image": "/media/craftsman-measuring-detail.jpg",
+      "imageAlt": "Craftsmanship at HS Wood",
+      "imageCorner": "IV · HS WOOD",
+      "imageTag": "Fig. 01 — In the workshop"
+    },
+    "stats": [
+      { "index": "N° 1", "value": "IV", "label": "Generations" },
+      { "index": "N° 2", "value": "8,500m²", "label": "Factory floor" },
+      { "index": "N° 3", "value": "120", "label": "Production workforce" },
+      { "index": "N° 4", "value": "<0.4%", "label": "Defect rate" }
+    ],
+    "values": {
+      "eyebrow": "What we stand for",
+      "heading": "Seven disciplines\\. *Every project, every time.*",
+      "cards": [
+        {
+          "number": "D · 01",
+          "title": "Precision manufacturing",
+          "description": "CNC technology delivering sub‑millimetre accuracy on every panel, every batch."
+        },
+        {
+          "number": "D · 02",
+          "title": "Faster delivery",
+          "description": "Optimised digital processes deliver every project on time, at scale."
+        },
+        {
+          "number": "D · 03",
+          "title": "Premium hardware",
+          "description": "Blum and top‑tier Austrian components on every hinge and slide."
+        },
+        {
+          "number": "D · 04",
+          "title": "Transparent process",
+          "description": "Digital communication from first sketch to final handover, versioned and traceable."
+        }
+      ],
+      "feature": {
+        "number": "The IV Signature",
+        "title": "Every project.\nEvery time.",
+        "body": "The signature is invisible — because it is everywhere."
+      }
+    },
+    "cta": {
+      "eyebrow": "Meet the team in person",
+      "heading": "Let's *talk\\.*",
+      "body": "Schedule a factory tour, or get a project‑specific proposal with a committed timeline and a fixed price.",
+      "primaryLabel": "Get a Proposal",
+      "primaryTo": "/contact",
+      "secondaryLabel": "See Our Work",
+      "secondaryTo": "/projects"
+    }
+  },
+
+  "projects": {
+    "subhero": {
+      "image": "/media/luxury-walk-in-wardrobe.jpg",
+      "imageAlt": "IV Projects",
+      "crumbs": { "homeLabel": "Home", "current": "Projects" },
+      "eyebrow": "Reference projects",
+      "heading": "**Capacity**, *proven*.",
+      "body": "A selection from the 2026 production year. Numbers are auditable — timelines, unit counts, defect rates. Ask for the full brief."
+    },
+    "stats": [
+      { "value": "4,200+", "label": "Units delivered" },
+      { "value": "96%", "label": "On‑time rate" },
+      { "value": "<0.4%", "label": "Defect rate" },
+      { "value": "2026", "label": "Production year" }
+    ],
+    "featured": {
+      "image": "/media/luxury-black-gold-kitchen.jpg",
+      "imageAlt": "Zed East Residences",
+      "corner": "Case 01",
+      "tag": "New Cairo · Developer",
+      "title": "Zed East Residences",
+      "description": "340 kitchen units · phased delivery across 6 months · zero rejects"
+    },
+    "secondary": [
+      {
+        "image": "/media/luxury-walk-in-wardrobe.jpg",
+        "imageAlt": "Marassi North Coast",
+        "corner": "Case 02",
+        "tag": "Sidi Abdel Rahman",
+        "title": "Marassi North Coast",
+        "description": "88 villa kitchens · handed over June 2026"
+      },
+      {
+        "image": "/media/luxury-bathroom-vanity.jpg",
+        "imageAlt": "Palm Hills Katameya",
+        "corner": "Case 03",
+        "tag": "Katameya · Private Villa",
+        "title": "Palm Hills Katameya",
+        "description": "Full interior fit‑out · architect‑specified detailing"
+      }
+    ],
+    "cta": {
+      "eyebrow": "Your project could be next",
+      "heading": "Start a *brief\\.*",
+      "body": "Send us the scope and we'll come back with a fixed price and a committed timeline.",
+      "primaryLabel": "Get a Proposal",
+      "primaryTo": "/contact"
+    }
+  },
+
+  "contact": {
+    "subhero": {
+      "image": "/media/luxury-bathroom-vanity.jpg",
+      "imageAlt": "Contact IV",
+      "crumbs": { "homeLabel": "Home", "current": "Contact" },
+      "eyebrow": "Get in touch",
+      "heading": "**Let's** *build*.",
+      "body": "See the factory. Meet the team. Get a project‑specific proposal with a committed timeline and a fixed price."
+    },
+    "details": {
+      "eyebrow": "Reach us directly",
+      "items": [
+        { "label": "Phone", "value": "+20 107 0009907" },
+        { "label": "Email", "value": "contact@ivfixed.com" },
+        {
+          "label": "Address",
+          "value": "Industrial area factory buildings 7 8 9 10 / Anabib Al Petrol Street Gesr Al Suez, Cairo"
+        },
+        { "label": "Hours", "value": "Sun — Thu, 9:00 — 17:00 CAI" }
+      ]
+    },
+    "form": {
+      "nameLabel": "Full name",
+      "companyLabel": "Company",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "interestLabel": "Interested in",
+      "interestOptions": [
+        "Kitchens",
+        "Dressing Rooms",
+        "Vanities",
+        "Multiple / Developer program",
+        "Other"
+      ],
+      "messageLabel": "Project details",
+      "messagePlaceholder": "Unit count, timeline, location…",
+      "submitLabel": "Send Message",
+      "sendingLabel": "Sending…",
+      "successMessage": "Thank you — we'll be in touch shortly.",
+      "errorMessage": "Something went wrong. Please try again or email us directly."
+    }
+  },
+
+  "process": {
+    "subhero": {
+      "image": "/media/craftsman-measuring-detail.jpg",
+      "imageAlt": "IV Process",
+      "crumbs": { "homeLabel": "Home", "current": "Process" },
+      "eyebrow": "How we build",
+      "headingLead": "**Seven stages**",
+      "headingRest": "***Every checkpoint*** *has a signature*.",
+      "body": "Each stage is owned. Each hand‑off is documented. The line between digital file and finished cabinet is unbroken — from measurement to installation."
+    },
+    "steps": [
+      {
+        "owner": "Sarah, Site Lead",
+        "number": "Stage 01",
+        "title": "Measurement",
+        "description": "On‑site verified against architectural drawings — no assumptions\\."
+      },
+      {
+        "owner": "Karim, Design",
+        "number": "Stage 02",
+        "title": "3D Design",
+        "description": "Full digital model rendered for client approval before cutting\\."
+      },
+      {
+        "owner": "Omar, Engineering",
+        "number": "Stage 03",
+        "title": "Engineering",
+        "description": "Fit, function, and hardware placement reviewed and locked\\."
+      },
+      {
+        "owner": "CNC Cell A",
+        "number": "Stage 04",
+        "title": "CNC Cutting",
+        "description": "Panels cut to exact digital spec on 5‑axis HOMAG router\\."
+      },
+      {
+        "owner": "Assembly Bay",
+        "number": "Stage 05",
+        "title": "Assembly",
+        "description": "Edge banded, hardware fitted, units built to specification\\."
+      },
+      {
+        "owner": "QC Station",
+        "number": "Stage 06",
+        "title": "QC Inspection",
+        "description": "Every unit checked against original spec — nothing leaves unverified."
+      },
+      {
+        "owner": "Field Team",
+        "number": "Stage 07",
+        "title": "Installation",
+        "description": "Trained in‑house team on site — signed off by the client\\."
+      }
+    ],
+    "tech": {
+      "eyebrow": "Technology & materials",
+      "heading": "Guided by the machine\\. *Refined by the maker.*",
+      "intro": "Equipment is not the story — capability is. What matters is what happens between the digital file and the finished edge.",
+      "items": [
+        {
+          "eq": "EQ · 01",
+          "title": "CNC Cutting",
+          "description": "HOMAG 5‑axis flatbed router with 3060×2050mm bed, sub‑millimetre repeatability.",
+          "specs": [
+            { "label": "Tolerance", "value": "< 0.5 mm" },
+            { "label": "Bed", "value": "3060 × 2050" },
+            { "label": "Axes", "value": "5" }
+          ]
+        },
+        {
+          "eq": "EQ · 02",
+          "title": "Edge Banding Line",
+          "description": "Automated PU / EVA edge banding — factory‑grade finish on every visible edge, at speed.",
+          "specs": [
+            { "label": "Bonding", "value": "PU / EVA" },
+            { "label": "Cycle", "value": "Automated" },
+            { "label": "", "value": "" }
+          ]
+        },
+        {
+          "eq": "EQ · 03",
+          "title": "Drilling & Boring",
+          "description": "Multi‑spindle CNC boring for hinges, drawer slides, and connectors.",
+          "specs": [
+            { "label": "Precision", "value": "± 0.1 mm" },
+            { "label": "Type", "value": "Multi‑spindle" },
+            { "label": "", "value": "" }
+          ]
+        },
+        {
+          "eq": "EQ · 04",
+          "title": "Design Stack",
+          "description": "AutoCAD, Cabinet Vision, and 3D‑Max rendering — every file stored, versioned, and traceable.",
+          "specs": [
+            { "label": "Tools", "value": "AutoCAD · Cabinet Vision · 3D‑Max" },
+            { "label": "", "value": "" },
+            { "label": "", "value": "" }
+          ]
+        }
+      ]
+    },
+    "quality": {
+      "eyebrow": "Quality control",
+      "heading": "Quality isn't a claim. *It's a checklist*",
+      "statTarget": "0.4",
+      "statDecimals": "1",
+      "statCaption": "Pre‑dispatch reject rate · 2026",
+      "statLede": "Across 4,200 units produced last year. Catching an issue at design stage costs 100× less than catching it after installation.",
+      "rows": [
+        {
+          "number": "01",
+          "title": "Design‑stage review",
+          "description": "Technical drawings checked against architectural specifications before a single panel is ordered."
+        },
+        {
+          "number": "02",
+          "title": "In‑process checks",
+          "description": "Dimensions verified after cutting, before assembly begins."
+        },
+        {
+          "number": "03",
+          "title": "Pre‑dispatch",
+          "description": "Every completed unit checked against its original spec."
+        },
+        {
+          "number": "04",
+          "title": "Post‑install walkthrough",
+          "description": "Client sign‑off confirms the finished result matches what was approved."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "See it in person",
+      "heading": "Tour the *factory\\.*",
+      "body": "Walk the floor, meet the team behind every stage, and see the checkpoints for yourself.",
+      "primaryLabel": "Schedule a Tour",
+      "primaryTo": "/contact"
+    }
+  },
+
+  "factory": {
+    "subhero": {
+      "image": "/media/factory-cnc-cutting.jpg",
+      "imageAlt": "Inside the IV Factory",
+      "crumbs": { "homeLabel": "Home", "current": "Factory" },
+      "eyebrow": "Inside HS Wood Industries",
+      "heading": "**The factory** *behind IV*.",
+      "body": "A capacity-checked look at the floor, the machines, and the 138 people who turn a digital file into three-hundred identical units — on schedule, every time."
+    },
+    "capacity": {
+      "eyebrow": "1 · Scale",
+      "heading": "Before design\\. Before price *Capacity is what a serious client checks first.*",
+      "lead": "8,500 m² of production floor. 450 units per month. 120 craftsmen. The infrastructure exists to take on complex, large-scale projects without compromise — and deliver them on schedule."
+    },
+    "delivery": {
+      "eyebrow": "2 · Delivery",
+      "heading": "Logistics *& install.*",
+      "intro": "In-house crews. Not ad-hoc subcontractors. The people who installed unit 1 are the people who install unit 340.",
+      "coverageEyebrow": "Geographic coverage · Nationwide, Egypt",
+      "coverage": [
+        { "area": "Cairo", "note": "Same-week installation slots" },
+        { "area": "New Cairo", "note": "Dedicated developer zone" },
+        { "area": "North Coast", "note": "Seasonal projects handled" },
+        { "area": "Sokhna", "note": "Coastal-grade logistics" },
+        { "area": "Sheikh Zayed", "note": "Compound-cleared teams" },
+        { "area": "Custom / Export", "note": "On request, project-priced" }
+      ],
+      "rows": [
+        {
+          "number": "02",
+          "title": "Trained in-house crews",
+          "description": "Uniformed, badged, insured — the same faces on every visit, from delivery to walkthrough\\."
+        },
+        {
+          "number": "03",
+          "title": "Booked, not improvised",
+          "description": "Installation slots coordinated in advance with the client's own site timeline — no overlapping trades, no chaos\\."
+        },
+        {
+          "number": "04",
+          "title": "Signed off, unit by unit",
+          "description": "Every unit walked through with the client — snags logged, closed, and signed off before we leave."
+        }
+      ]
+    },
+    "warranty": {
+      "eyebrow": "3 · Assurance",
+      "heading": "**Warranty** *& assurance.*",
+      "intro": "A signature at handover isn't the end of the relationship — it's the beginning of the warranty.",
+      "cards": [
+        {
+          "label": "01 · Manufacturing",
+          "count": { "target": "5", "suffix": " YRS" },
+          "title": "Manufacturing defects",
+          "description": "Structural integrity, panels & joinery — every piece, every joint."
+        },
+        {
+          "label": "02 · Hardware",
+          "text": "Life\ntime",
+          "title": "Blum hardware",
+          "description": "Hinges, drawer systems & soft-close — covered indefinitely."
+        },
+        {
+          "label": "03 · Support",
+          "count": { "target": "72", "suffix": " HRS" },
+          "title": "Post-installation support",
+          "description": "Response within 72 hours — same-week resolution, always."
+        }
+      ],
+      "quote": "\"Our warranty terms are what we're prepared to put in writing — not what we hope you'll never have to use.\""
+    },
+    "cta": {
+      "eyebrow": "Ready when you are",
+      "heading": "See it for *yourself\\.*",
+      "body": "Schedule a factory tour — walk the CNC lines, the QC bays, and the finished units before they ship.",
+      "primaryLabel": "Schedule a Factory Tour",
+      "primaryTo": "/contact"
+    }
+  },
+
+  "products": {
+    "subhero": {
+      "image": "/media/wood-veneer-samples.jpg",
+      "imageAlt": "IV Products",
+      "crumbs": { "homeLabel": "Home", "current": "Products" },
+      "eyebrow": "What we build",
+      "headingLead": "**Three signatures**",
+      "headingRest": "***One*** *manufacturing standard*.",
+      "body": "Kitchens, dressing rooms, and vanities — every unit passes through the same seven checkpoints. The material changes. The standard does not."
+    },
+    "categories": [
+      {
+        "to": "/contact",
+        "image": "/media/luxury-black-gold-kitchen.jpg",
+        "imageAlt": "Kitchens",
+        "index": "SIGNATURE · 01",
+        "title": "Kitchens",
+        "metaLeft": "Modular · CNC‑cut",
+        "metaRight": "340+ units / 2026"
+      },
+      {
+        "to": "/contact",
+        "image": "/media/luxury-walk-in-wardrobe.jpg",
+        "imageAlt": "Dressing Rooms",
+        "index": "SIGNATURE · 02",
+        "title": "Dressing Rooms",
+        "metaLeft": "Bespoke · Walnut",
+        "metaRight": "Made to spec"
+      },
+      {
+        "to": "/contact",
+        "image": "/media/luxury-bathroom-vanity.jpg",
+        "imageAlt": "Vanities",
+        "index": "SIGNATURE · 03",
+        "title": "Vanities",
+        "metaLeft": "Fluted · Brass",
+        "metaRight": "Contract‑grade"
+      }
+    ],
+    "details": [
+      {
+        "eyebrow": "SIGNATURE · 01",
+        "title": "Kitchens",
+        "lede": "Fully modular kitchen systems engineered for phased, multi‑unit developer delivery — from carcass to handle, cut from one digital file.",
+        "image": "/media/luxury-black-gold-kitchen.jpg",
+        "imageAlt": "Kitchens",
+        "tag": "Modular · CNC‑cut"
+      },
+      {
+        "eyebrow": "SIGNATURE · 02",
+        "title": "Dressing Rooms",
+        "lede": "Bespoke walnut dressing rooms and wardrobe systems, made to the millimetre for private villas and penthouse suites.",
+        "image": "/media/luxury-walk-in-wardrobe.jpg",
+        "imageAlt": "Dressing Rooms",
+        "tag": "Bespoke · Walnut"
+      },
+      {
+        "eyebrow": "SIGNATURE · 03",
+        "title": "Vanities",
+        "lede": "Fluted, brass‑detailed vanity units built to contract‑grade specification for hospitality and high‑end residential.",
+        "image": "/media/luxury-bathroom-vanity.jpg",
+        "imageAlt": "Vanities",
+        "tag": "Fluted · Brass"
+      }
+    ],
+    "materials": {
+      "eyebrow": "Materials & hardware",
+      "heading": "The palette *behind every unit.*",
+      "intro": "A curated set of veneers, laminates, and hardware — sourced for durability and consistency across a full production run.",
+      "items": [
+        { "code": "M · 01", "name": "Oak veneer" },
+        { "code": "M · 02", "name": "Walnut solid" },
+        { "code": "M · 03", "name": "Fenix laminate" },
+        { "code": "M · 04", "name": "Egger MDF" },
+        { "code": "M · 05", "name": "Brass hardware" }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Ready when you are",
+      "heading": "Spec a *run\\.*",
+      "body": "Tell us the category, the unit count, and the timeline — we'll come back with a fixed price and a committed delivery date.",
+      "primaryLabel": "Get a Proposal",
+      "primaryTo": "/contact"
+    }
+  }
+}

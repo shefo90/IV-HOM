@@ -3,7 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useContent } from "../content/ContentProvider";
+import RichText from "./RichText";
+
 export default function ContactHeaderSection() {
+  const { contactHeader } = useContent().home;
+
   return (
     <section className="relative bg-brand-dark pt-20 md:pt-32 overflow-hidden border-t border-brand-border-dark">
       {/* Background blueprint elements */}
@@ -15,21 +20,19 @@ export default function ContactHeaderSection() {
           <div className="flex items-center justify-center gap-3">
             <span className="h-[1px] w-6 bg-brand-accent" />
             <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-semibold uppercase">
-              READY WHEN YOU ARE
+              {contactHeader.eyebrow}
             </span>
             <span className="h-[1px] w-6 bg-brand-accent" />
           </div>
           <h2 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[90px] leading-none text-brand-accent tracking-tighter">
-            Let's{" "}
-            <span className="italic text-brand-light font-normal">
-              build<span className="orange-dot">.</span>
-            </span>
+            <RichText emClass="italic text-brand-light font-normal">
+              {contactHeader.heading}
+            </RichText>
           </h2>
         </div>
 
         <p className="font-sans text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
-          See the factory. Meet the team. Get a project-specific proposal with a committed timeline
-          and a fixed price.
+          {contactHeader.intro}
         </p>
       </div>
     </section>

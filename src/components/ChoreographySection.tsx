@@ -4,12 +4,15 @@
  */
 
 import { useState } from "react";
-import { choreographyStages } from "../data";
-import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, Sparkles, Zap } from "lucide-react";
+import { motion } from "motion/react";
+import { CheckCircle2, Sparkles } from "lucide-react";
+import { useContent } from "../content/ContentProvider";
+import RichText from "./RichText";
 
 export default function ChoreographySection() {
   const [activeStage, setActiveStage] = useState(3); // Default to Stage 04 (index 3)
+  const { choreography } = useContent().home;
+  const stages = choreography.stages;
 
   return (
     <section className="relative bg-gradient-to-br from-[#faf8f5] via-[#f5f1ed] to-[#ede7e0] text-brand-dark py-20 md:py-32 px-6 md:px-12 border-b border-brand-accent/20 overflow-hidden">
@@ -55,14 +58,13 @@ export default function ChoreographySection() {
               />
               <span className="font-mono text-[10px] tracking-[0.28em] text-brand-accent font-bold uppercase flex items-center gap-2">
                 <Sparkles size={12} className="animate-pulse" />
-                04 • PRODUCTION CHOREOGRAPHY
+                {choreography.eyebrow}
               </span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl md:text-[62px] leading-[0.95] text-brand-dark tracking-tight">
-              Seven stages<span className="orange-dot">.</span>{" "}
-              <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-[#d97b53] to-brand-accent font-normal animate-gradient bg-[length:200%_auto]">
-                Every checkpoint has a signature
-              </span>
+              <RichText emClass="italic text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-[#d97b53] to-brand-accent font-normal animate-gradient bg-[length:200%_auto]">
+                {choreography.heading}
+              </RichText>
             </h2>
           </motion.div>
 
@@ -74,8 +76,7 @@ export default function ChoreographySection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="absolute -left-4 top-0 text-4xl text-brand-accent/20 font-serif">"</span>
-            Each stage is owned. Each hand-off is documented. The line between digital file and
-            finished cabinet is unbroken — from measurement to installation.
+            {choreography.quote}
             <span className="absolute -right-2 bottom-0 text-4xl text-brand-accent/20 font-serif">"</span>
           </motion.p>
         </div>
@@ -98,13 +99,13 @@ export default function ChoreographySection() {
               className="absolute top-[9px] left-[calc(100%/14)] h-[1px] origin-left"
               style={{ background: "#d46b43", right: "calc(100%/14)" }}
               initial={{ scaleX: 0 }}
-              animate={{ scaleX: activeStage / (choreographyStages.length - 1) }}
+              animate={{ scaleX: activeStage / (stages.length - 1) }}
               transition={{ duration: 0.7, ease: "easeInOut" }}
             />
 
             {/* Dots row */}
             <div className="grid grid-cols-7">
-              {choreographyStages.map((stage, idx) => {
+              {stages.map((stage, idx) => {
                 const isActive = idx === activeStage;
                 const isPassed = idx < activeStage;
                 const isRevealed = idx <= activeStage;
@@ -222,7 +223,7 @@ export default function ChoreographySection() {
 
           {/* Ultra-Premium Mobile Experience */}
           <div className="lg:hidden space-y-6">
-            {choreographyStages.map((stage, idx) => {
+            {stages.map((stage, idx) => {
               const isActive = idx === activeStage;
               const isPassed = idx < activeStage;
               return (
@@ -279,7 +280,7 @@ export default function ChoreographySection() {
                         <CheckCircle2 size={10} className="text-white" strokeWidth={3} />
                       )}
                     </motion.div>
-                    {idx < choreographyStages.length - 1 && (
+                    {idx < stages.length - 1 && (
                       <motion.div 
                         className={`w-[3px] h-20 rounded-full mt-2 ${
                           isPassed ? "bg-gradient-to-b from-brand-accent to-brand-accent/30" : "bg-gradient-to-b from-gray-300 to-transparent"

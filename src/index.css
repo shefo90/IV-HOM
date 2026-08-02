@@ -49,6 +49,14 @@ input:focus, textarea:focus {
   outline: none;
 }
 
+/* Gold emphasis inside a heading. Replaces the hand-written
+   style={{ color: 'var(--gold)' }} spans; see components/RichText.tsx.
+   Applied directly to the span, so it always beats the colour the
+   heading would otherwise pass down by inheritance. */
+.gold {
+  color: var(--gold);
+}
+
 /* Style for orange period at end of headers */
 .orange-dot {
   color: var(--color-brand-accent) !important;

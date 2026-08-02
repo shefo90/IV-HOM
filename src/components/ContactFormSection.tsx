@@ -5,16 +5,27 @@
 
 import { useState } from "react";
 import type React from "react";
+import { useContent } from "../content/ContentProvider";
+import Honeypot from "./Honeypot";
+import { useSubmitForm } from "../lib/submissions";
+
+const EMPTY = {
+  fullName: "",
+  company: "",
+  email: "",
+  phone: "",
+  projectDetails: "",
+};
 
 export default function ContactFormSection() {
+  const { contactForm } = useContent().site;
+
   const [formData, setFormData] = useState({
-    fullName: "",
-    company: "",
-    email: "",
-    phone: "",
-    interestedIn: "Kitchens",
-    projectDetails: "",
+    ...EMPTY,
+    interestedIn: contactForm.interestedInOptions[0],
   });
+  const [honeypot, setHoneypot] = useState("");
+  const { submit, state } = useSubmitForm();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -25,10 +36,27 @@ export default function ContactFormSection() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+
+    // Sent under the same field names as the contact page's own form, so both
+    // land in the inbox as one `contact` shape rather than two variants.
+    const ok = await submit(
+      {
+        kind: "contact",
+        name: formData.fullName,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        interest: formData.interestedIn,
+        message: formData.projectDetails,
+      },
+      honeypot,
+    );
+
+    if (ok) {
+      setFormData({ ...EMPTY, interestedIn: contactForm.interestedInOptions[0] });
+    }
   };
 
   return (
@@ -38,6 +66,7 @@ export default function ContactFormSection() {
     >
       <div className="max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-8">
+          <Honeypot value={honeypot} onChange={setHoneypot} />
           {/* Full Name & Company */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -45,7 +74,7 @@ export default function ContactFormSection() {
                 htmlFor="fullName"
                 className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
-                FULL NAME
+                {contactForm.fullNameLabel}
               </label>
               <input
                 type="text"
@@ -62,7 +91,7 @@ export default function ContactFormSection() {
                 htmlFor="company"
                 className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
-                COMPANY
+                {contactForm.companyLabel}
               </label>
               <input
                 type="text"
@@ -82,7 +111,7 @@ export default function ContactFormSection() {
                 htmlFor="email"
                 className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
-                EMAIL
+                {contactForm.emailLabel}
               </label>
               <input
                 type="email"
@@ -99,7 +128,7 @@ export default function ContactFormSection() {
                 htmlFor="phone"
                 className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
               >
-                PHONE
+                {contactForm.phoneLabel}
               </label>
               <input
                 type="tel"
@@ -118,7 +147,7 @@ export default function ContactFormSection() {
               htmlFor="interestedIn"
               className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
             >
-              INTERESTED IN
+              {contactForm.interestedInLabel}
             </label>
             <select
               id="interestedIn"
@@ -132,10 +161,11 @@ export default function ContactFormSection() {
                 backgroundPosition: 'right 0.5rem center',
               }}
             >
-              <option value="Kitchens">Kitchens</option>
-              <option value="Wardrobes">Wardrobes</option>
-              <option value="Vanities">Vanities</option>
-              <option value="Other">Other</option>
+              {contactForm.interestedInOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -145,14 +175,14 @@ export default function ContactFormSection() {
               htmlFor="projectDetails"
               className="block text-center md:text-left text-brand-accent text-xs uppercase tracking-widest mb-3"
             >
-              PROJECT DETAILS
+              {contactForm.projectDetailsLabel}
             </label>
             <textarea
               id="projectDetails"
               name="projectDetails"
               value={formData.projectDetails}
               onChange={handleChange}
-              placeholder="Unit count, timeline, location..."
+              placeholder={contactForm.projectDetailsPlaceholder}
               rows={4}
               className="w-full bg-transparent border-b border-brand-border-dark text-brand-light font-mono text-sm py-2 placeholder:text-brand-border-dark focus:border-brand-accent transition-colors resize-none"
             />
@@ -162,10 +192,24 @@ export default function ContactFormSection() {
           <div className="pt-4 text-center">
             <button
               type="submit"
-              className="bg-brand-accent hover:bg-brand-accent-hover text-brand-dark font-mono text-xs uppercase tracking-widest px-8 py-4 transition-colors duration-300"
+              disabled={state === "sending"}
+              className="bg-brand-accent hover:bg-brand-accent-hover text-brand-dark font-mono text-xs uppercase tracking-widest px-8 py-4 transition-colors duration-300 disabled:opacity-50"
             >
-              SEND MESSAGE
+              {state === "sending" ? contactForm.sendingLabel : contactForm.submitLabel}
             </button>
+
+            {state === "sent" && (
+              <p className="mt-4 font-mono text-[11px] tracking-wider text-brand-accent">
+                {contactForm.successMessage}
+              </p>
+            )}
+            {state === "error" && (
+              // The API being down must not look like a hung spinner; the
+              // message carries an address the visitor can fall back to.
+              <p className="mt-4 font-mono text-[11px] tracking-wider text-red-400">
+                {contactForm.errorMessage}
+              </p>
+            )}
           </div>
         </form>
       </div>

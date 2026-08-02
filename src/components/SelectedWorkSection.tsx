@@ -3,24 +3,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { referenceProjects } from "../data";
 import ProjectCard from "./ProjectCard";
+import { useContent } from "../content/ContentProvider";
+import RichText from "./RichText";
 
 interface SelectedWorkSectionProps {
   onSelectProject: (title: string) => void;
 }
 
 export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSectionProps) {
-  // We'll organize the layout such that Case 01 is on the left, and Case 02 & 03 are stacked on the right
-  const project1 = referenceProjects[0];
-  const project2 = referenceProjects[1];
-  const project3 = referenceProjects[2];
+  const { selectedWork } = useContent().home;
+  const { stats, projects } = selectedWork;
 
-  const stats = [
-    { value: "96%", label: "ON-TIME RATE" },
-    { value: "<0.4%", label: "DEFECT RATE" },
-    { value: "2026", label: "PRODUCTION YEAR" },
-  ];
+  // We'll organize the layout such that Case 01 is on the left, and Case 02 & 03 are stacked on the right
+  const project1 = projects[0];
+  const project2 = projects[1];
+  const project3 = projects[2];
 
   return (
     <section id="projects" className="relative bg-brand-dark py-16 md:py-28 px-6 md:px-12 border-b border-brand-border-dark overflow-hidden">
@@ -32,20 +30,18 @@ export default function SelectedWorkSection({ onSelectProject }: SelectedWorkSec
             <div className="flex items-center gap-3">
               <span className="h-[1.5px] w-8 bg-brand-accent" />
               <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
-                05 • REFERENCE PROJECTS
+                {selectedWork.eyebrow}
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight font-medium">
-              Selected{" "}
-              <span className="italic text-brand-light font-medium">
-                work<span className="orange-dot">.</span>
-              </span>
+              <RichText emClass="italic text-brand-light font-medium">
+                {selectedWork.heading}
+              </RichText>
             </h2>
           </div>
 
           <p className="font-sans text-[13px] text-gray-400 leading-relaxed max-w-md md:pb-2">
-            A short selection from the 2026 production year. Numbers are auditable — timelines and
-            defect rates. Ask for the full brief.
+            {selectedWork.intro}
           </p>
         </div>
 

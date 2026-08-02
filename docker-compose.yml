@@ -1,0 +1,51 @@
+# Two services and three volumes. No database container: content lives in a
+# git repo on a volume, and submissions in a SQLite file on a separate one.
+#
+#   docker compose up -d --build
+#   docker compose exec api python -m app.cli seed
+#   docker compose exec api python -m app.cli create-user you@example.com --name "You" --role admin
+#
+# Put TLS in front of this (Caddy, or nginx + certbot) and point it at web:80.
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${IV_HTTP_PORT:-8080}:80"
+    volumes:
+      # Read-only: nginx serves /media and /content.json from here but must
+      # never be able to write to the content repo.
+      - content:/data/content:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  api:
+    build:
+      # Root context on purpose: the image bakes in src/content/fallback.json
+      # and public/media as seed data.
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      # No default. Startup refuses to run with the sample secret when
+      # cookies are secure, rather than issuing forgeable sessions.
+      IV_JWT_SECRET: ${IV_JWT_SECRET:?set IV_JWT_SECRET in .env}
+      IV_COOKIE_SECURE: ${IV_COOKIE_SECURE:-true}
+      IV_BACKUP_REMOTE: ${IV_BACKUP_REMOTE:-}
+      IV_TRASH_RETENTION_DAYS: ${IV_TRASH_RETENTION_DAYS:-30}
+    volumes:
+      - content:/data/content
+      # Deliberately separate: this holds personal data and password hashes,
+      # and must never travel with the content repo's backup push.
+      - appdata:/data/app
+      - authdata:/data/auth
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+volumes:
+  content:
+  appdata:
+  authdata:

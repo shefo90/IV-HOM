@@ -5,14 +5,16 @@
 
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
-import heroImage from "../assets/images/luxury_kitchen_1784643668452.jpg";
-import { materials, type Material } from "../data";
+import { useContent } from "../content/ContentProvider";
+import RichText from "./RichText";
 
 interface HeroSectionProps {
   onOpenProposal: () => void;
 }
 
 export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
+  const { hero, materials } = useContent().home;
+
   const scrollToAbout = () => {
     const target = document.querySelector("#about");
     if (target) {
@@ -45,14 +47,20 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
           <div className="flex items-center gap-3">
             <span className="h-[1px] w-8 sm:w-10 bg-brand-accent" />
             <span className="font-mono text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.25em] sm:tracking-[0.3em] text-brand-accent font-semibold uppercase">
-              THE FIXED FURNITURE MANUFACTORY
+              {hero.eyebrow}
             </span>
           </div>
+          {/* The empty orange-dot between the halves draws no glyph, but its
+              1.4em inline box sets this line's height. Structural, not
+              content — see the note on HomeContent.hero. */}
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-brand-accent leading-[1.1] tracking-tight font-medium">
-            <span className="text-brand-accent">Fourth–generation craft</span><span className="orange-dot"></span>{" "}
-            <span className="italic text-brand-light font-medium">
-              Powered by Industry 4.0<span className="orange-dot">.</span>
-            </span>
+            <RichText goldClass="text-brand-accent" emClass="italic text-brand-light font-medium">
+              {hero.headingLead}
+            </RichText>
+            <span className="orange-dot"></span>{" "}
+            <RichText goldClass="text-brand-accent" emClass="italic text-brand-light font-medium">
+              {hero.headingRest}
+            </RichText>
           </h2>
         </motion.div>
       </div>
@@ -62,8 +70,8 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         {/* Background Image of Luxury Kitchen */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImage}
-            alt="Signature IV Kitchen Interior"
+            src={hero.image}
+            alt={hero.imageAlt}
             className="w-full h-full object-cover grayscale-[15%] brightness-[80%] hover:grayscale-0 transition-all duration-1000 object-center"
             referrerPolicy="no-referrer"
           />
@@ -76,14 +84,12 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         <div className="relative z-10 p-4 sm:p-6 md:p-12 w-full max-w-xl self-start">
           <div className="bg-brand-dark/90 backdrop-blur-md border border-brand-accent/20 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
             <div className="flex items-center gap-3">
-              <span className="text-brand-accent text-[9px] sm:text-[10px] font-mono tracking-widest">[ A STATEMENT ]</span>
+              <span className="text-brand-accent text-[9px] sm:text-[10px] font-mono tracking-widest">{hero.statementLabel}</span>
               <span className="h-[1px] flex-grow bg-brand-border-dark" />
             </div>
 
             <p className="font-sans text-[12px] sm:text-[13px] leading-relaxed text-gray-300">
-              Precision CNC manufacturing for kitchens, dressing rooms, and vanities — engineered for
-              developers and architects who demand consistent quality across scale. Not a single
-              well-finished showpiece — the same standard, repeated.
+              {hero.statement}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
@@ -91,13 +97,13 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
                 onClick={scrollToProjects}
                 className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] font-bold px-5 sm:px-6 py-3 sm:py-3.5 bg-brand-accent hover:bg-brand-accent-hover text-brand-dark transition-all duration-300 flex items-center justify-center gap-2"
               >
-                EXPLORE PROJECTS
+                {hero.exploreCta}
               </button>
               <button
                 onClick={onOpenProposal}
                 className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] font-medium px-5 sm:px-6 py-3 sm:py-3.5 border border-brand-accent text-brand-light hover:bg-brand-accent/10 transition-all duration-300"
               >
-                GET PROPOSAL
+                {hero.proposalCta}
               </button>
             </div>
           </div>
@@ -109,8 +115,8 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
           className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10 text-gray-400 hover:text-brand-accent flex items-center gap-2 font-mono text-[8px] sm:text-[9px] tracking-[0.2em] transition-all bg-brand-dark/75 p-1.5 sm:p-2 rounded-sm border border-brand-border-dark"
         >
           <ArrowDown size={10} className="sm:w-3 sm:h-3 animate-bounce" />
-          <span className="hidden sm:inline">SCROLL TO ENTER</span>
-          <span className="sm:hidden">SCROLL</span>
+          <span className="hidden sm:inline">{hero.scrollLabel}</span>
+          <span className="sm:hidden">{hero.scrollLabelShort}</span>
         </button>
       </div>
       </div>

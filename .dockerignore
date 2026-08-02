@@ -2,3 +2,18 @@ node_modules
 dist
 .git
 .vscode
+
+# Python dev artefacts — the api image installs from requirements.txt.
+api/.venv
+api/tests
+**/__pycache__
+*.pyc
+
+# Test output
+tests/visual/__output__
+test-results
+playwright-report
+
+.env
+.env.*
+!.env.example

@@ -8,7 +8,10 @@ import type { FormEvent } from "react";
 import useScrollProgress from "../hooks/useScrollProgress";
 import useReveal from "../hooks/useReveal";
 import useMagnetic from "../hooks/useMagnetic";
-import luxuryBathroomVanity from "../assets/images/standalone/luxury-bathroom-vanity.jpg";
+import { useContent } from "../content/ContentProvider";
+import RichText from "../components/RichText";
+import Honeypot from "../components/Honeypot";
+import { useSubmitForm } from "../lib/submissions";
 
 const INITIAL_FORM = {
   name: "",
@@ -22,14 +25,17 @@ const INITIAL_FORM = {
 
 export default function ContactPage() {
   const ref = useRef<HTMLDivElement>(null);
+  const { subhero, details, form: copy } = useContent().contact;
 
   useScrollProgress(ref);
   useReveal(ref);
   useMagnetic(ref);
 
   const [form, setForm] = useState(INITIAL_FORM);
-  const [sending, setSending] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formMsg, setFormMsg] = useState("");
+  const { submit, state } = useSubmitForm();
+  const sending = state === "sending";
 
   const handleChange = (
     e: FormEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -40,21 +46,9 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSending(true);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setFormMsg("Thank you — we'll be in touch shortly.");
-      setForm(INITIAL_FORM);
-    } catch {
-      setFormMsg("Something went wrong. Please try again or email us directly.");
-    } finally {
-      setSending(false);
-    }
+    const ok = await submit({ kind: "contact", ...form }, honeypot);
+    setFormMsg(ok ? copy.successMessage : copy.errorMessage);
+    if (ok) setForm(INITIAL_FORM);
   };
 
   return (
@@ -62,12 +56,12 @@ export default function ContactPage() {
       <div className="scroll-progress" id="scrollProgress" />
       <main>{/* SUBHERO */}
         <section className="subhero" style={{ minHeight: '46vh' }}>
-          <div className="subhero-img"><img src={luxuryBathroomVanity} alt="Contact IV" /></div>
+          <div className="subhero-img"><img src={subhero.image} alt={subhero.imageAlt} /></div>
           <div className="subhero-inner">
-            <div className="crumbs"><a href="/">Home</a> / Contact</div>
-            <div className="eyebrow reveal" style={{ color: 'var(--gold)' }}>Get in touch</div>
-            <h1 className="reveal"><span style={{ color: 'var(--gold)' }}>Let's</span> <em>build</em><span className="orange-dot">.</span></h1>
-            <p className="reveal">See the factory. Meet the team. Get a project‑specific proposal with a committed timeline and a fixed price.</p>
+            <div className="crumbs"><a href="/">{subhero.crumbs.homeLabel}</a> / {subhero.crumbs.current}</div>
+            <div className="eyebrow reveal" style={{ color: 'var(--gold)' }}>{subhero.eyebrow}</div>
+            <h1 className="reveal"><RichText>{subhero.heading}</RichText></h1>
+            <p className="reveal">{subhero.body}</p>
           </div>
         </section>
 
@@ -75,62 +69,51 @@ export default function ContactPage() {
         <section className="section" style={{ background: 'var(--ink)', padding: '100px 56px 140px' }}>
           <div className="wrap contact-wrap">
             <div>
-              <div className="eyebrow reveal" style={{ color: 'var(--gold)' }}>Reach us directly</div>
-              <div className="contact-info-item reveal">
-                <div className="lbl">Phone</div>
-                <div className="val">+20 107 0009907</div>
-              </div>
-              <div className="contact-info-item reveal">
-                <div className="lbl">Email</div>
-                <div className="val">contact@ivfixed.com</div>
-              </div>
-              <div className="contact-info-item reveal">
-                <div className="lbl">Address</div>
-                <div className="val">Industrial area factory buildings 7 8 9 10 / Anabib Al Petrol Street Gesr Al Suez, Cairo</div>
-              </div>
-              <div className="contact-info-item reveal">
-                <div className="lbl">Hours</div>
-                <div className="val">Sun — Thu, 9:00 — 17:00 CAI</div>
-              </div>
+              <div className="eyebrow reveal" style={{ color: 'var(--gold)' }}>{details.eyebrow}</div>
+              {details.items.map((item, idx) => (
+                <div className="contact-info-item reveal" key={idx}>
+                  <div className="lbl">{item.label}</div>
+                  <div className="val">{item.value}</div>
+                </div>
+              ))}
             </div>
             <div className="reveal">
               <form className="cform" id="contactForm" onSubmit={handleSubmit}>
+                <Honeypot value={honeypot} onChange={setHoneypot} />
                 <div className="row2">
                   <div>
-                    <label>Full name</label>
+                    <label>{copy.nameLabel}</label>
                     <input type="text" name="name" required value={form.name} onChange={handleChange} />
                   </div>
                   <div>
-                    <label>Company</label>
+                    <label>{copy.companyLabel}</label>
                     <input type="text" name="company" value={form.company} onChange={handleChange} />
                   </div>
                 </div>
                 <div className="row2">
                   <div>
-                    <label>Email</label>
+                    <label>{copy.emailLabel}</label>
                     <input type="email" name="email" required value={form.email} onChange={handleChange} />
                   </div>
                   <div>
-                    <label>Phone</label>
+                    <label>{copy.phoneLabel}</label>
                     <input type="tel" name="phone" value={form.phone} onChange={handleChange} />
                   </div>
                 </div>
                 <div>
-                  <label>Interested in</label>
+                  <label>{copy.interestLabel}</label>
                   <select name="interest" value={form.interest} onChange={handleChange}>
-                    <option value="Kitchens">Kitchens</option>
-                    <option value="Dressing Rooms">Dressing Rooms</option>
-                    <option value="Vanities">Vanities</option>
-                    <option value="Multiple / Developer program">Multiple / Developer program</option>
-                    <option value="Other">Other</option>
+                    {copy.interestOptions.map((option) => (
+                      <option value={option} key={option}>{option}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
-                  <label>Project details</label>
-                  <textarea name="message" rows={4} placeholder="Unit count, timeline, location…" value={form.message} onChange={handleChange} />
+                  <label>{copy.messageLabel}</label>
+                  <textarea name="message" rows={4} placeholder={copy.messagePlaceholder} value={form.message} onChange={handleChange} />
                 </div>
                 <div className="submit-row">
-                  <button type="submit" className="btn filled" data-cursor="link" data-magnetic="" disabled={sending}>{sending ? 'Sending…' : 'Send Message'} <i className="ti ti-arrow-up-right" /></button>
+                  <button type="submit" className="btn filled" data-cursor="link" data-magnetic="" disabled={sending}>{sending ? copy.sendingLabel : copy.submitLabel} <i className="ti ti-arrow-up-right" /></button>
                   <span className={formMsg ? 'form-msg show' : 'form-msg'} id="formMsg">{formMsg}</span>
                 </div>
               </form>

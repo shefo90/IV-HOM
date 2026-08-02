@@ -5,6 +5,9 @@
 
 import { useState, FormEvent } from "react";
 import { X, Send, Calendar, Check, Info } from "lucide-react";
+import { useContent } from "../content/ContentProvider";
+import Honeypot from "./Honeypot";
+import { useSubmitForm } from "../lib/submissions";
 
 interface ProposalModalProps {
   isOpen: boolean;
@@ -12,7 +15,13 @@ interface ProposalModalProps {
   initialType?: "proposal" | "tour";
 }
 
+/** Substitutes {name} placeholders in an editable string. */
+function fill(template: string, values: Record<string, string>): string {
+  return template.replace(/\{(\w+)\}/g, (_match, key) => values[key] ?? "");
+}
+
 export default function ProposalModal({ isOpen, onClose, initialType = "proposal" }: ProposalModalProps) {
+  const copy = useContent().site.proposalModal;
   const [formType, setFormType] = useState<"proposal" | "tour">(initialType);
   const [formData, setFormData] = useState({
     name: "",
@@ -23,10 +32,15 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
     timeframe: "3-6 months",
     details: "",
     tourDate: "",
+    // NOTE: "11:00" is not one of the four tourTimeOptions, so this select
+    // opens with no option selected while the value stays 11:00. Pre-existing;
+    // preserved here rather than silently changed.
     tourTime: "11:00",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const { submit, state, reset } = useSubmitForm();
+  const isSubmitting = state === "sending";
+  const isSuccess = state === "sent";
 
   if (!isOpen) return null;
 
@@ -41,15 +55,33 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
     return (sizeNum * baseRate).toLocaleString();
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1500);
+
+    const shared = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      project_type: formData.projectType,
+      details: formData.details,
+    };
+
+    await submit(
+      formType === "proposal"
+        ? {
+            kind: "proposal",
+            ...shared,
+            size: formData.size,
+            timeframe: formData.timeframe,
+          }
+        : {
+            kind: "tour",
+            ...shared,
+            tour_date: formData.tourDate,
+            tour_time: formData.tourTime,
+          },
+      honeypot,
+    );
   };
 
   return (
@@ -78,7 +110,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   formType === "proposal" ? "text-brand-accent" : "text-gray-400 hover:text-brand-light"
                 }`}
               >
-                REQUEST PROPOSAL
+                {copy.proposalTab}
                 {formType === "proposal" && (
                   <span className="absolute bottom-[-17px] left-0 w-full h-[2px] bg-brand-accent" />
                 )}
@@ -90,7 +122,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   formType === "tour" ? "text-brand-accent" : "text-gray-400 hover:text-brand-light"
                 }`}
               >
-                SCHEDULE FACTORY TOUR
+                {copy.tourTab}
                 {formType === "tour" && (
                   <span className="absolute bottom-[-17px] left-0 w-full h-[2px] bg-brand-accent" />
                 )}
@@ -98,20 +130,19 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
             </div>
 
             <h3 className="font-serif text-2xl md:text-3xl text-brand-light mb-2 tracking-tight text-center md:text-left">
-              {formType === "proposal" ? "Get a tailored digital-first proposal." : "See the robotic factory floor in Cairo."}
+              {formType === "proposal" ? copy.proposalHeading : copy.tourHeading}
             </h3>
             <p className="font-sans text-xs text-gray-400 mb-8 max-w-md text-center md:text-left mx-auto md:mx-0">
-              {formType === "proposal"
-                ? "Send us your project specifications or floor plans. Our engineering algorithm outputs a transparent, line-item price locked for 6 months."
-                : "Walk the shop floor, experience the CNC precision systems, and meet the design-engineering division. Scheduled by appointments only."}
+              {formType === "proposal" ? copy.proposalIntro : copy.tourIntro}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              <Honeypot value={honeypot} onChange={setHoneypot} />
               {/* Basic Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="px-8 md:px-0">
                   <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                    FULL NAME *
+                    {copy.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -119,12 +150,12 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full bg-brand-dark/50 border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
-                    placeholder="e.g. John Doe"
+                    placeholder={copy.namePlaceholder}
                   />
                 </div>
                 <div className="px-8 md:px-0">
                   <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                    EMAIL ADDRESS *
+                    {copy.emailLabel}
                   </label>
                   <input
                     type="email"
@@ -132,7 +163,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full bg-brand-dark/50 border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
-                    placeholder="name@company.com"
+                    placeholder={copy.emailPlaceholder}
                   />
                 </div>
               </div>
@@ -140,7 +171,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="px-8 md:px-0">
                   <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                    PHONE / WHATSAPP *
+                    {copy.phoneLabel}
                   </label>
                   <input
                     type="tel"
@@ -148,22 +179,21 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full bg-brand-dark/50 border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
-                    placeholder="+20 1xx xxxx xxx"
+                    placeholder={copy.phonePlaceholder}
                   />
                 </div>
                 <div className="px-8 md:px-0">
                   <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                    PROJECT CATEGORY
+                    {copy.categoryLabel}
                   </label>
                   <select
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full bg-brand-dark border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
                   >
-                    <option value="Kitchens">Kitchens (Signature 01)</option>
-                    <option value="Dressing Rooms">Dressing Rooms (Signature 02)</option>
-                    <option value="Vanities">Vanities (Signature 03)</option>
-                    <option value="Complete Villa">Complete Villa Furnishing</option>
+                    {copy.categoryOptions.map((option) => (
+                      <option value={option.value} key={option.value}>{option.label}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -173,8 +203,8 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="px-8 md:px-0">
                     <label className="flex justify-center md:justify-between font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                      <span>APPROXIMATE SIZE (SQM OR LM)</span>
-                      <span className="text-gray-500 font-sans normal-case hidden md:inline">{formData.size} sqm</span>
+                      <span>{copy.sizeLabel}</span>
+                      <span className="text-gray-500 font-sans normal-case hidden md:inline">{formData.size} {copy.sizeSuffix}</span>
                     </label>
                     <input
                       type="range"
@@ -188,17 +218,16 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   </div>
                   <div className="px-8 md:px-0">
                     <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                      TIMEFRAME
+                      {copy.timeframeLabel}
                     </label>
                     <select
                       value={formData.timeframe}
                       onChange={(e) => setFormData({ ...formData, timeframe: e.target.value })}
                       className="w-full bg-brand-dark border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
                     >
-                      <option value="Immediate">Immediate (&lt; 1 month)</option>
-                      <option value="1-3 months">1 - 3 Months</option>
-                      <option value="3-6 months">3 - 6 Months</option>
-                      <option value="6+ months">6+ Months / Planning</option>
+                      {copy.timeframeOptions.map((option) => (
+                        <option value={option.value} key={option.value}>{option.label}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -206,7 +235,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="px-8 md:px-0">
                     <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                      PREFERRED DATE
+                      {copy.tourDateLabel}
                     </label>
                     <input
                       type="date"
@@ -218,17 +247,16 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   </div>
                   <div className="px-8 md:px-0">
                     <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                      TIME SLOT
+                      {copy.tourTimeLabel}
                     </label>
                     <select
                       value={formData.tourTime}
                       onChange={(e) => setFormData({ ...formData, tourTime: e.target.value })}
                       className="w-full bg-brand-dark border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors"
                     >
-                      <option value="10:00">10:00 AM (Morning Batch)</option>
-                      <option value="11:30">11:30 AM (Production Slot)</option>
-                      <option value="13:30">01:30 PM (Midday Run)</option>
-                      <option value="15:00">03:00 PM (Final Handover)</option>
+                      {copy.tourTimeOptions.map((option) => (
+                        <option value={option.value} key={option.value}>{option.label}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -237,14 +265,14 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               {/* Text Area */}
               <div className="px-8 md:px-0">
                 <label className="flex justify-center md:justify-start font-mono text-[9px] tracking-widest text-brand-accent uppercase mb-2">
-                  ADDITIONAL INSTRUCTIONS / FLOOR PLAN ACCESS LINKS
+                  {copy.detailsLabel}
                 </label>
                 <textarea
                   value={formData.details}
                   onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                   rows={3}
                   className="w-full bg-brand-dark/50 border border-brand-border-dark text-brand-light px-4 py-2.5 text-xs font-sans focus:border-brand-accent transition-colors resize-none"
-                  placeholder="Share details about design preferences, site constraints, or link to Google Drive folders with CAD drawings."
+                  placeholder={copy.detailsPlaceholder}
                 />
               </div>
 
@@ -254,16 +282,24 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   <Info className="text-brand-accent mt-0.5 shrink-0" size={14} />
                   <div>
                     <p className="font-sans text-[10px] text-gray-500 uppercase tracking-widest">
-                      PRELIMINARY FABRICATION INDEX
+                      {copy.estimateHeading}
                     </p>
                     <p className="font-serif text-lg text-brand-light mt-1">
-                      Est. range: <span className="text-brand-accent">${calculateEstimate()} USD</span>
+                      {copy.estimatePrefix} <span className="text-brand-accent">${calculateEstimate()} USD</span>
                     </p>
                     <p className="font-sans text-[9px] text-gray-500 mt-1 leading-normal">
-                      Includes 7-stage quality checks, 0.5mm precision cutting, Austrian premium Blum slides, and structural marine plywood core framing.
+                      {copy.estimateNote}
                     </p>
                   </div>
                 </div>
+              )}
+
+              {state === "error" && (
+                // Without this the visitor sees the spinner stop and nothing
+                // else, and assumes the brief was sent when it was not.
+                <p className="font-sans text-[11px] text-red-400 text-center md:text-left">
+                  {copy.errorMessage}
+                </p>
               )}
 
               {/* Submit Buttons */}
@@ -273,7 +309,7 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   onClick={onClose}
                   className="font-sans text-[10px] tracking-[0.2em] px-6 py-3 border border-brand-border-dark text-gray-400 hover:text-brand-light transition-colors"
                 >
-                  CANCEL
+                  {copy.cancelLabel}
                 </button>
                 <button
                   type="submit"
@@ -283,17 +319,17 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
                   {isSubmitting ? (
                     <>
                       <div className="w-3 h-3 border-2 border-brand-dark border-t-transparent rounded-full animate-spin" />
-                      CALCULATING...
+                      {copy.submittingLabel}
                     </>
                   ) : formType === "proposal" ? (
                     <>
                       <Send size={11} />
-                      SUBMIT BRIEF
+                      {copy.submitProposalLabel}
                     </>
                   ) : (
                     <>
                       <Calendar size={11} />
-                      REQUEST PASS
+                      {copy.submitTourLabel}
                     </>
                   )}
                 </button>
@@ -306,21 +342,24 @@ export default function ProposalModal({ isOpen, onClose, initialType = "proposal
               <Check className="text-brand-accent" size={32} />
             </div>
             <h3 className="font-serif text-3xl text-brand-light mb-4 tracking-tight">
-              {formType === "proposal" ? "Project brief registered successfully." : "Tour request received."}
+              {formType === "proposal" ? copy.proposalSuccessHeading : copy.tourSuccessHeading}
             </h3>
             <p className="font-sans text-xs text-gray-400 max-w-md mx-auto leading-relaxed mb-8">
               {formType === "proposal"
-                ? `An email confirmation and CAD blueprint link have been dispatched. Our chief engineering officer is assembling a full manufacturing breakdown for your ${formData.projectType.toLowerCase()} specifications.`
-                : `Your visitor pass request for Cairo Workshop on ${formData.tourDate || "selected date"} at ${formData.tourTime} has been submitted. A coordination representative will call you inside 2 hours to confirm security clearance.`}
+                ? fill(copy.proposalSuccessBody, { category: formData.projectType.toLowerCase() })
+                : fill(copy.tourSuccessBody, {
+                    date: formData.tourDate || copy.tourDateFallback,
+                    time: formData.tourTime,
+                  })}
             </p>
             <button
               onClick={() => {
-                setIsSuccess(false);
+                reset();
                 onClose();
               }}
               className="font-sans text-[10px] tracking-[0.2em] px-8 py-3 bg-brand-accent text-brand-dark font-bold hover:bg-brand-accent-hover transition-colors"
             >
-              RETURN TO WORKSPACE
+              {copy.dismissLabel}
             </button>
           </div>
         )}

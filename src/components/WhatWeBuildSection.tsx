@@ -3,14 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { buildCategories } from "../data";
 import { ArrowUpRight } from "lucide-react";
+import { useContent } from "../content/ContentProvider";
+import RichText from "./RichText";
 
 interface WhatWeBuildSectionProps {
   onSelectCategory: (category: string) => void;
 }
 
 export default function WhatWeBuildSection({ onSelectCategory }: WhatWeBuildSectionProps) {
+  const { whatWeBuild } = useContent().home;
+
   return (
     <section id="products" className="relative bg-brand-dark py-16 md:py-28 px-6 md:px-12 border-b border-brand-border-dark overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-16">
@@ -20,27 +23,24 @@ export default function WhatWeBuildSection({ onSelectCategory }: WhatWeBuildSect
             <div className="flex items-center gap-3">
               <span className="h-[1.5px] w-8 bg-brand-accent" />
               <span className="font-mono text-[9px] tracking-[0.25em] text-brand-accent font-bold uppercase">
-                03 • WHAT WE BUILD
+                {whatWeBuild.eyebrow}
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-[52px] leading-none text-brand-accent tracking-tight font-medium">
-              Three signatures<span className="orange-dot">.</span>{" "}
-              <span className="italic text-brand-light font-medium">
-                One standard<span className="orange-dot">.</span>
-              </span>
+              <RichText emClass="italic text-brand-light font-medium">
+                {whatWeBuild.heading}
+              </RichText>
             </h2>
           </div>
 
           <p className="font-sans text-[13px] text-gray-400 leading-relaxed max-w-md md:pb-2">
-            Three product categories, one manufacturing discipline. Every unit — kitchen, dressing
-            room, or vanity — passes through the same seven checkpoints. The material changes.
-            The standard does not.
+            {whatWeBuild.intro}
           </p>
         </div>
 
         {/* 3 Portrait Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {buildCategories.map((c) => (
+          {whatWeBuild.categories.map((c) => (
             <div
               key={c.id}
               onClick={() => onSelectCategory(c.title)}

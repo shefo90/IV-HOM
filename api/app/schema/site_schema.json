@@ -1,0 +1,2495 @@
+{
+  "$comment": "Generated from src/content/fallback.json by scripts/gen-schema. Both the FastAPI validator and the admin form renderer read this file.",
+  "documents": [
+    {
+      "slug": "site",
+      "label": "Site-wide (nav, footer, forms)",
+      "fields": [
+        {
+          "key": "brand",
+          "label": "Brand",
+          "type": "group",
+          "fields": [
+            {
+              "key": "monogram",
+              "label": "Monogram",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tagline",
+              "label": "Tagline",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "nav",
+          "label": "Nav",
+          "type": "group",
+          "fields": [
+            {
+              "key": "items",
+              "label": "Items",
+              "type": "list",
+              "min": 7,
+              "max": 7,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "to",
+                    "label": "To",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "proposalCta",
+              "label": "Proposal CTA",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalCtaMobile",
+              "label": "Proposal CTA Mobile",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "established",
+              "label": "Established",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "footer",
+          "label": "Footer",
+          "type": "group",
+          "fields": [
+            {
+              "key": "monogram",
+              "label": "Monogram",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "blurb",
+              "label": "Blurb",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "watermark",
+              "label": "Watermark",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "navHeading",
+              "label": "Nav Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "navLinks",
+              "label": "Nav Links",
+              "type": "list",
+              "min": 5,
+              "max": 5,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "href",
+                    "label": "Href",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "contactHeading",
+              "label": "Contact Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "contactLines",
+              "label": "Contact Lines",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        {
+          "key": "contactForm",
+          "label": "Contact Form",
+          "type": "group",
+          "fields": [
+            {
+              "key": "fullNameLabel",
+              "label": "Full Name Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "companyLabel",
+              "label": "Company Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "emailLabel",
+              "label": "Email Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "phoneLabel",
+              "label": "Phone Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "interestedInLabel",
+              "label": "Interested In Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "interestedInOptions",
+              "label": "Interested In Options",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "string"
+              }
+            },
+            {
+              "key": "projectDetailsLabel",
+              "label": "Project Details Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "projectDetailsPlaceholder",
+              "label": "Project Details Placeholder",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "submitLabel",
+              "label": "Submit Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "sendingLabel",
+              "label": "Sending Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "successMessage",
+              "label": "Success Message",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "errorMessage",
+              "label": "Error Message",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "proposalModal",
+          "label": "Proposal Modal",
+          "type": "group",
+          "fields": [
+            {
+              "key": "proposalTab",
+              "label": "Proposal Tab",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tourTab",
+              "label": "Tour Tab",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalHeading",
+              "label": "Proposal Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalIntro",
+              "label": "Proposal Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "tourHeading",
+              "label": "Tour Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tourIntro",
+              "label": "Tour Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "nameLabel",
+              "label": "Name Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "namePlaceholder",
+              "label": "Name Placeholder",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "emailLabel",
+              "label": "Email Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "emailPlaceholder",
+              "label": "Email Placeholder",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "phoneLabel",
+              "label": "Phone Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "phonePlaceholder",
+              "label": "Phone Placeholder",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "categoryLabel",
+              "label": "Category Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "categoryOptions",
+              "label": "Category Options",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "sizeLabel",
+              "label": "Size Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "sizeSuffix",
+              "label": "Size Suffix",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "timeframeLabel",
+              "label": "Timeframe Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "timeframeOptions",
+              "label": "Timeframe Options",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "tourDateLabel",
+              "label": "Tour Date Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tourTimeLabel",
+              "label": "Tour Time Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tourTimeOptions",
+              "label": "Tour Time Options",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "detailsLabel",
+              "label": "Details Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "detailsPlaceholder",
+              "label": "Details Placeholder",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "estimateHeading",
+              "label": "Estimate Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "estimatePrefix",
+              "label": "Estimate Prefix",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "estimateNote",
+              "label": "Estimate Note",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "cancelLabel",
+              "label": "Cancel Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "submitProposalLabel",
+              "label": "Submit Proposal Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "submitTourLabel",
+              "label": "Submit Tour Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "submittingLabel",
+              "label": "Submitting Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalSuccessHeading",
+              "label": "Proposal Success Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalSuccessBody",
+              "label": "Proposal Success Body",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "tourSuccessHeading",
+              "label": "Tour Success Heading",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tourSuccessBody",
+              "label": "Tour Success Body",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "tourDateFallback",
+              "label": "Tour Date Fallback",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "dismissLabel",
+              "label": "Dismiss Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "errorMessage",
+              "label": "Error Message",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "home",
+      "label": "Home page",
+      "fields": [
+        {
+          "key": "hero",
+          "label": "Hero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "headingLead",
+              "label": "Heading Lead",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "headingRest",
+              "label": "Heading Rest",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "statementLabel",
+              "label": "Statement Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "statement",
+              "label": "Statement",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "exploreCta",
+              "label": "Explore CTA",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "proposalCta",
+              "label": "Proposal CTA",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "scrollLabel",
+              "label": "Scroll Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "scrollLabelShort",
+              "label": "Scroll Label Short",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "chapterOne",
+          "label": "Chapter One",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "list",
+              "min": 2,
+              "max": 2,
+              "item": {
+                "type": "string"
+              }
+            },
+            {
+              "key": "stats",
+              "label": "Stats",
+              "type": "list",
+              "min": 2,
+              "max": 2,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "index",
+                    "label": "Index",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "imageBadge",
+              "label": "Image Badge",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "imageCaption",
+              "label": "Image Caption",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "imageYear",
+              "label": "Image Year",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "whatWeBuild",
+          "label": "What We Build",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "categories",
+              "label": "Categories",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "id",
+                    "label": "Id",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "number",
+                    "label": "Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "techSpecs",
+                    "label": "Tech Specs",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "materials",
+                    "label": "Materials",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "image",
+                    "label": "Image",
+                    "type": "image",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "choreography",
+          "label": "Choreography",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "quote",
+              "label": "Quote",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "stages",
+              "label": "Stages",
+              "type": "list",
+              "min": 7,
+              "max": 7,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "id",
+                    "label": "Id",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "stageNumber",
+                    "label": "Stage Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "selectedWork",
+          "label": "Selected Work",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "stats",
+              "label": "Stats",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "projects",
+              "label": "Projects",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "id",
+                    "label": "Id",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "caseNumber",
+                    "label": "Case Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "location",
+                    "label": "Location",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "scope",
+                    "label": "Scope",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "text",
+                    "required": true
+                  },
+                  {
+                    "key": "image",
+                    "label": "Image",
+                    "type": "image",
+                    "required": true
+                  },
+                  {
+                    "key": "images",
+                    "label": "Images",
+                    "type": "list",
+                    "min": 3,
+                    "max": 3,
+                    "item": {
+                      "type": "image"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "contactHeader",
+          "label": "Contact Header",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "materials",
+          "label": "Materials",
+          "type": "list",
+          "min": 9,
+          "max": 9,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "name",
+                "label": "Name",
+                "type": "string",
+                "required": false
+              },
+              {
+                "key": "logo",
+                "label": "Logo",
+                "type": "image",
+                "required": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "about",
+      "label": "About page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "mission",
+          "label": "Mission",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "lede",
+              "label": "Lede",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "list",
+              "min": 2,
+              "max": 2,
+              "item": {
+                "type": "string"
+              }
+            },
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "imageCorner",
+              "label": "Image Corner",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "imageTag",
+              "label": "Image Tag",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "stats",
+          "label": "Stats",
+          "type": "list",
+          "min": 4,
+          "max": 4,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "index",
+                "label": "Index",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "value",
+                "label": "Value",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "label",
+                "label": "Label",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "values",
+          "label": "Values",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "cards",
+              "label": "Cards",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "number",
+                    "label": "Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "feature",
+              "label": "Feature",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "number",
+                  "label": "Number",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "title",
+                  "label": "Title",
+                  "type": "richtext",
+                  "required": true
+                },
+                {
+                  "key": "body",
+                  "label": "Body",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "cta",
+          "label": "CTA",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "primaryLabel",
+              "label": "Primary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryTo",
+              "label": "Primary To",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "secondaryLabel",
+              "label": "Secondary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "secondaryTo",
+              "label": "Secondary To",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "projects",
+      "label": "Projects page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "stats",
+          "label": "Stats",
+          "type": "list",
+          "min": 4,
+          "max": 4,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "value",
+                "label": "Value",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "label",
+                "label": "Label",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "featured",
+          "label": "Featured",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "corner",
+              "label": "Corner",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "tag",
+              "label": "Tag",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "title",
+              "label": "Title",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "description",
+              "label": "Description",
+              "type": "string",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "secondary",
+          "label": "Secondary",
+          "type": "list",
+          "min": 2,
+          "max": 2,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "image",
+                "label": "Image",
+                "type": "image",
+                "required": true
+              },
+              {
+                "key": "imageAlt",
+                "label": "Image Alt",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "corner",
+                "label": "Corner",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "tag",
+                "label": "Tag",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "title",
+                "label": "Title",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "description",
+                "label": "Description",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "cta",
+          "label": "CTA",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryLabel",
+              "label": "Primary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryTo",
+              "label": "Primary To",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "contact",
+      "label": "Contact page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "details",
+          "label": "Details",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "items",
+              "label": "Items",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "value",
+                    "label": "Value",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "form",
+          "label": "Form",
+          "type": "group",
+          "fields": [
+            {
+              "key": "nameLabel",
+              "label": "Name Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "companyLabel",
+              "label": "Company Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "emailLabel",
+              "label": "Email Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "phoneLabel",
+              "label": "Phone Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "interestLabel",
+              "label": "Interest Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "interestOptions",
+              "label": "Interest Options",
+              "type": "list",
+              "min": 5,
+              "max": 5,
+              "item": {
+                "type": "string"
+              }
+            },
+            {
+              "key": "messageLabel",
+              "label": "Message Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "messagePlaceholder",
+              "label": "Message Placeholder",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "submitLabel",
+              "label": "Submit Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "sendingLabel",
+              "label": "Sending Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "successMessage",
+              "label": "Success Message",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "errorMessage",
+              "label": "Error Message",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "process",
+      "label": "Process page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "headingLead",
+              "label": "Heading Lead",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "headingRest",
+              "label": "Heading Rest",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "steps",
+          "label": "Steps",
+          "type": "list",
+          "min": 7,
+          "max": 7,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "owner",
+                "label": "Owner",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "number",
+                "label": "Number",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "title",
+                "label": "Title",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "description",
+                "label": "Description",
+                "type": "richtext",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "tech",
+          "label": "Tech",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "items",
+              "label": "Items",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "eq",
+                    "label": "Eq",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "specs",
+                    "label": "Specs",
+                    "type": "list",
+                    "min": 3,
+                    "max": 3,
+                    "item": {
+                      "type": "group",
+                      "fields": [
+                        {
+                          "key": "label",
+                          "label": "Label",
+                          "type": "string",
+                          "required": true
+                        },
+                        {
+                          "key": "value",
+                          "label": "Value",
+                          "type": "string",
+                          "required": true
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "quality",
+          "label": "Quality",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "statTarget",
+              "label": "Stat Target",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "statDecimals",
+              "label": "Stat Decimals",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "statCaption",
+              "label": "Stat Caption",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "statLede",
+              "label": "Stat Lede",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "rows",
+              "label": "Rows",
+              "type": "list",
+              "min": 4,
+              "max": 4,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "number",
+                    "label": "Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "text",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "cta",
+          "label": "CTA",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryLabel",
+              "label": "Primary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryTo",
+              "label": "Primary To",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "factory",
+      "label": "Factory page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "capacity",
+          "label": "Capacity",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "lead",
+              "label": "Lead",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "delivery",
+          "label": "Delivery",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "coverageEyebrow",
+              "label": "Coverage Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "coverage",
+              "label": "Coverage",
+              "type": "list",
+              "min": 6,
+              "max": 6,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "area",
+                    "label": "Area",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "note",
+                    "label": "Note",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            },
+            {
+              "key": "rows",
+              "label": "Rows",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "number",
+                    "label": "Number",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "richtext",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "warranty",
+          "label": "Warranty",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "cards",
+              "label": "Cards",
+              "type": "list",
+              "min": 3,
+              "max": 3,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "label",
+                    "label": "Label",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "count",
+                    "label": "Count",
+                    "type": "group",
+                    "fields": [
+                      {
+                        "key": "target",
+                        "label": "Target",
+                        "type": "string",
+                        "required": true
+                      },
+                      {
+                        "key": "suffix",
+                        "label": "Suffix",
+                        "type": "string",
+                        "required": true
+                      }
+                    ],
+                    "required": false
+                  },
+                  {
+                    "key": "title",
+                    "label": "Title",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "description",
+                    "label": "Description",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "text",
+                    "label": "Text",
+                    "type": "richtext",
+                    "required": false
+                  }
+                ]
+              }
+            },
+            {
+              "key": "quote",
+              "label": "Quote",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "cta",
+          "label": "CTA",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "primaryLabel",
+              "label": "Primary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryTo",
+              "label": "Primary To",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "products",
+      "label": "Products page",
+      "fields": [
+        {
+          "key": "subhero",
+          "label": "Subhero",
+          "type": "group",
+          "fields": [
+            {
+              "key": "image",
+              "label": "Image",
+              "type": "image",
+              "required": true
+            },
+            {
+              "key": "imageAlt",
+              "label": "Image Alt",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "crumbs",
+              "label": "Crumbs",
+              "type": "group",
+              "fields": [
+                {
+                  "key": "homeLabel",
+                  "label": "Home Label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "key": "current",
+                  "label": "Current",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "headingLead",
+              "label": "Heading Lead",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "headingRest",
+              "label": "Heading Rest",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            }
+          ]
+        },
+        {
+          "key": "categories",
+          "label": "Categories",
+          "type": "list",
+          "min": 3,
+          "max": 3,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "to",
+                "label": "To",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "image",
+                "label": "Image",
+                "type": "image",
+                "required": true
+              },
+              {
+                "key": "imageAlt",
+                "label": "Image Alt",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "index",
+                "label": "Index",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "title",
+                "label": "Title",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "metaLeft",
+                "label": "Meta Left",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "metaRight",
+                "label": "Meta Right",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "details",
+          "label": "Details",
+          "type": "list",
+          "min": 3,
+          "max": 3,
+          "item": {
+            "type": "group",
+            "fields": [
+              {
+                "key": "eyebrow",
+                "label": "Eyebrow",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "title",
+                "label": "Title",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "lede",
+                "label": "Lede",
+                "type": "text",
+                "required": true
+              },
+              {
+                "key": "image",
+                "label": "Image",
+                "type": "image",
+                "required": true
+              },
+              {
+                "key": "imageAlt",
+                "label": "Image Alt",
+                "type": "string",
+                "required": true
+              },
+              {
+                "key": "tag",
+                "label": "Tag",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "key": "materials",
+          "label": "Materials",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "intro",
+              "label": "Intro",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "items",
+              "label": "Items",
+              "type": "list",
+              "min": 5,
+              "max": 5,
+              "item": {
+                "type": "group",
+                "fields": [
+                  {
+                    "key": "code",
+                    "label": "Code",
+                    "type": "string",
+                    "required": true
+                  },
+                  {
+                    "key": "name",
+                    "label": "Name",
+                    "type": "string",
+                    "required": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "key": "cta",
+          "label": "CTA",
+          "type": "group",
+          "fields": [
+            {
+              "key": "eyebrow",
+              "label": "Eyebrow",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "heading",
+              "label": "Heading",
+              "type": "richtext",
+              "required": true
+            },
+            {
+              "key": "body",
+              "label": "Body",
+              "type": "text",
+              "required": true
+            },
+            {
+              "key": "primaryLabel",
+              "label": "Primary Label",
+              "type": "string",
+              "required": true
+            },
+            {
+              "key": "primaryTo",
+              "label": "Primary To",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
