@@ -56,11 +56,12 @@ services:
       - "80:80"
       - "443:443"
     # The host's systemd-resolved stub (127.0.0.53) isn't reachable from
-    # inside the container netns; without this Caddy can't resolve the ACME
-    # API to get a cert.
+    # inside the container netns, and this host's provider only routes
+    # outbound DNS to its own resolvers (see `resolvectl status` on the
+    # host) — public resolvers like 1.1.1.1/8.8.8.8 get "network unreachable".
     dns:
-      - 1.1.1.1
-      - 8.8.8.8
+      - 195.179.224.53
+      - 209.126.15.53
     environment:
       IV_DOMAIN: ${IV_DOMAIN:-}
       IV_ACME_EMAIL: ${IV_ACME_EMAIL:-}
