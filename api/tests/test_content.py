@@ -107,5 +107,51 @@ def test_restore_brings_back_a_previous_version_as_a_new_commit(editor):
     assert len(editor.get("/api/admin/content/factory/history").json()) == len(history) + 1
 
 
+def test_an_unlocked_list_accepts_any_count_within_its_bounds(editor):
+    """`specs` is the one list an editor may resize, so both ends must work."""
+    page = editor.get("/api/admin/content/process").json()
+
+    page["tech"]["items"][0]["specs"] = [{"label": "Tolerance", "value": "< 0.5 mm"}]
+    assert editor.put("/api/admin/content/process", json=page).status_code == 200
+
+    page["tech"]["items"][0]["specs"] = [
+        {"label": "Tolerance", "value": "< 0.5 mm"},
+        {"label": "Bed", "value": "3060 x 2050"},
+        {"label": "Axes", "value": "5"},
+    ]
+    assert editor.put("/api/admin/content/process", json=page).status_code == 200
+
+
+def test_an_unlocked_list_still_has_bounds(editor):
+    page = editor.get("/api/admin/content/process").json()
+
+    page["tech"]["items"][0]["specs"] = []
+    assert editor.put("/api/admin/content/process", json=page).status_code == 422
+
+    page["tech"]["items"][0]["specs"] = [
+        {"label": f"Spec {n}", "value": str(n)} for n in range(4)
+    ]
+    assert editor.put("/api/admin/content/process", json=page).status_code == 422
+
+
+def test_every_seeded_page_can_be_saved_unchanged(editor):
+    """
+    A page the validator rejects as-is cannot be edited at all — the editor
+    opens it, changes one word, and is told eight other fields are wrong.
+
+    Asserted for every page rather than the one that regressed, because the
+    failure mode is a schema that describes the shape of the seed data instead
+    of what the content actually means.
+    """
+    schema = editor.get("/api/schema").json()
+
+    for document in schema["documents"]:
+        slug = document["slug"]
+        page = editor.get(f"/api/admin/content/{slug}").json()
+
+        response = editor.put(f"/api/admin/content/{slug}", json=page)
+        assert response.status_code == 200, (slug, response.json())
+
+
 def test_unknown_page_is_a_404(editor):
     assert editor.get("/api/admin/content/nope").status_code == 404

@@ -114,9 +114,15 @@ for all of it, so the client never types a marker.
 
 ```bash
 npm run lint                                   # tsc --noEmit
-npx playwright test                            # 33 visual + behaviour tests
-cd api && ./.venv/Scripts/python -m pytest     # 27 API tests
+npm run test:unit                              # 13 admin component tests (vitest)
+npm run test:visual                            # 33 visual + behaviour tests
+cd api && ./.venv/Scripts/python -m pytest     # 44 API tests
 ```
+
+The unit suite covers the admin form and history panel in jsdom — the parts the
+visual suite cannot reach, since it drives the public pages and never signs in.
+It lives in `tests/unit/` with its own `vitest.config.ts`, kept separate from
+`vite.config.ts` so the dev proxy plays no part in a test run.
 
 The visual suite pixel-diffs every converted route against the original
 standalone HTML in `public/pages/` at three viewports, 0.1% tolerance. It runs

@@ -23,9 +23,11 @@ function indexErrors(messages: string[]): Record<string, string> {
 
 interface PageEditorProps {
   schema: DocumentSchema;
+  /** Only admins may erase history; passed straight through to the panel. */
+  isAdmin: boolean;
 }
 
-export default function PageEditor({ schema }: PageEditorProps) {
+export default function PageEditor({ schema, isAdmin }: PageEditorProps) {
   const [saved, setSaved] = useState<Doc | null>(null);
   const [draft, setDraft] = useState<Doc | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -130,6 +132,7 @@ export default function PageEditor({ schema }: PageEditorProps) {
       {showHistory && (
         <HistoryPanel
           slug={schema.slug}
+          isAdmin={isAdmin}
           onRestored={() => {
             setShowHistory(false);
             load();

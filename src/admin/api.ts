@@ -56,6 +56,17 @@ export interface Commit {
   message: string;
 }
 
+export interface EraseResult {
+  erased: string[];
+  head: string;
+  /**
+   * False when the forced push failed, so the backup's history still contains
+   * the erased version. True only means the backup no longer references it —
+   * the remote prunes the objects on its own schedule.
+   */
+  backupUpdated: boolean;
+}
+
 export type SubmissionKind = "contact" | "proposal" | "tour";
 
 export interface SubmissionSummary {
@@ -137,6 +148,12 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ sha }),
     }),
+  // Admin only, and irreversible. A rewrite renumbers every later commit, so
+  // callers must refetch the history rather than patch their copy of it.
+  eraseVersion: (slug: string, sha: string) =>
+    request<EraseResult>(`/api/admin/content/${slug}/history/${sha}`, { method: "DELETE" }),
+  purgeHistory: (slug: string) =>
+    request<EraseResult>(`/api/admin/content/${slug}/history/purge`, { method: "POST" }),
 
   listMedia: () => request<MediaItem[]>("/api/admin/media"),
   uploadMedia: (file: File) => {

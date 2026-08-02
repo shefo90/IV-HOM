@@ -141,7 +141,7 @@ export default function AdminApp() {
         {active === "messages" ? (
           <Messages onUnreadChange={setUnread} />
         ) : current ? (
-          <PageEditor key={current.slug} schema={current} />
+          <PageEditor key={current.slug} schema={current} isAdmin={session.role === "admin"} />
         ) : (
           <p className="font-sans text-xs text-gray-500">Loading…</p>
         )}

@@ -5,7 +5,21 @@
 
 import { useRef, useState } from "react";
 import RichText from "../components/RichText";
-import type { Field } from "./api";
+import type { Field, FieldType } from "./api";
+
+/**
+ * An empty value shaped by the schema, for a list entry the editor just added.
+ *
+ * Built out in full rather than left as `{}`: every input below reads its value
+ * from this object, and a missing key would hand React `undefined` and flip the
+ * input from controlled to uncontrolled mid-edit.
+ */
+function blankValue(spec: { type: FieldType; fields?: Field[] }): unknown {
+  if (spec.type === "group") {
+    return Object.fromEntries((spec.fields ?? []).map((f) => [f.key, blankValue(f)]));
+  }
+  return spec.type === "list" ? [] : "";
+}
 
 /**
  * Renders an editing form straight from site_schema.json.
@@ -228,19 +242,40 @@ function OneField({ field, value, onChange, path, errors, onPickImage }: FieldPr
     // Equal bounds means the count is locked to what the layout was designed
     // for, so no add or remove controls are offered at all.
     const locked = field.min === field.max;
+    // The bounds are enforced by the API regardless; disabling the buttons at
+    // the edges just stops the editor building something it cannot save.
+    const canAdd = !locked && items.length < (field.max ?? Infinity);
+    const canRemove = !locked && items.length > (field.min ?? 0);
 
     return (
       <fieldset className="border border-brand-border-dark p-4 space-y-3">
         <legend className="px-2 font-mono text-[10px] uppercase tracking-widest text-brand-accent">
           {field.label}
           {locked && <span className="text-gray-500"> · {field.min} fixed</span>}
+          {!locked && (
+            <span className="text-gray-500">
+              {" "}
+              · {items.length} of {field.min}–{field.max}
+            </span>
+          )}
         </legend>
 
         {items.map((item, index) => (
           <div key={index} className="border-l-2 border-brand-accent/30 pl-3">
-            <span className="block font-mono text-[9px] uppercase tracking-widest text-gray-500 mb-2">
-              {index + 1}
-            </span>
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-gray-500">
+                {index + 1}
+              </span>
+              {canRemove && (
+                <button
+                  type="button"
+                  onClick={() => onChange(items.filter((_, i) => i !== index))}
+                  className="font-mono text-[9px] uppercase tracking-widest text-gray-500 hover:text-red-300 transition-colors"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
             {field.item?.type === "group" ? (
               <FieldList
                 fields={field.item.fields ?? []}
@@ -270,6 +305,17 @@ function OneField({ field, value, onChange, path, errors, onPickImage }: FieldPr
             )}
           </div>
         ))}
+
+        {canAdd && (
+          <button
+            type="button"
+            onClick={() => onChange([...items, blankValue(field.item!)])}
+            className="border border-brand-border-dark text-gray-400 font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 hover:text-brand-light hover:border-brand-accent transition-colors"
+          >
+            + Add
+          </button>
+        )}
+
         <Err message={error} />
       </fieldset>
     );

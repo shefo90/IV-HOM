@@ -528,8 +528,7 @@
           "description": "Automated PU / EVA edge banding — factory‑grade finish on every visible edge, at speed.",
           "specs": [
             { "label": "Bonding", "value": "PU / EVA" },
-            { "label": "Cycle", "value": "Automated" },
-            { "label": "", "value": "" }
+            { "label": "Cycle", "value": "Automated" }
           ]
         },
         {
@@ -538,8 +537,7 @@
           "description": "Multi‑spindle CNC boring for hinges, drawer slides, and connectors.",
           "specs": [
             { "label": "Precision", "value": "± 0.1 mm" },
-            { "label": "Type", "value": "Multi‑spindle" },
-            { "label": "", "value": "" }
+            { "label": "Type", "value": "Multi‑spindle" }
           ]
         },
         {
@@ -547,9 +545,7 @@
           "title": "Design Stack",
           "description": "AutoCAD, Cabinet Vision, and 3D‑Max rendering — every file stored, versioned, and traceable.",
           "specs": [
-            { "label": "Tools", "value": "AutoCAD · Cabinet Vision · 3D‑Max" },
-            { "label": "", "value": "" },
-            { "label": "", "value": "" }
+            { "label": "Tools", "value": "AutoCAD · Cabinet Vision · 3D‑Max" }
           ]
         }
       ]
