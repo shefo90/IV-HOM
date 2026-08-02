@@ -5,7 +5,11 @@
 #   docker compose exec api python -m app.cli seed
 #   docker compose exec api python -m app.cli create-user you@example.com --name "You" --role admin
 #
-# Put TLS in front of this (Caddy, or nginx + certbot) and point it at web:80.
+# For a real domain with TLS, set IV_DOMAIN/IV_ACME_EMAIL in .env and add the
+# caddy profile, which points at web:80 and gets a free auto-renewing
+# Let's Encrypt cert:
+#
+#   docker compose --profile tls up -d --build
 
 services:
   web:
@@ -45,7 +49,26 @@ services:
       - "8000"
     restart: unless-stopped
 
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["tls"]
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      IV_DOMAIN: ${IV_DOMAIN:-}
+      IV_ACME_EMAIL: ${IV_ACME_EMAIL:-}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+
 volumes:
   content:
   appdata:
   authdata:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,11 @@
+# Terminates TLS for the domain and forwards everything to the web
+# container over the internal docker network. Caddy issues and renews the
+# Let's Encrypt cert automatically and redirects plain http -> https.
+
+{
+	email {$IV_ACME_EMAIL}
+}
+
+{$IV_DOMAIN}, www.{$IV_DOMAIN} {
+	reverse_proxy web:80
+}
