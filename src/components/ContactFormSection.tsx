@@ -5,9 +5,10 @@
 
 import { useState } from "react";
 import type React from "react";
+import { useNavigate } from "react-router-dom";
 import { useContent } from "../content/ContentProvider";
 import Honeypot from "./Honeypot";
-import { useSubmitForm } from "../lib/submissions";
+import { THANK_YOU_ROUTE, THANK_YOU_STATE, useSubmitForm } from "../lib/submissions";
 
 const EMPTY = {
   fullName: "",
@@ -26,6 +27,7 @@ export default function ContactFormSection() {
   });
   const [honeypot, setHoneypot] = useState("");
   const { submit, state } = useSubmitForm();
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -54,8 +56,12 @@ export default function ContactFormSection() {
       honeypot,
     );
 
+    // The confirmation is a route of its own now, so there is nothing left on
+    // this page to clear. A failure stays put and shows the error inline —
+    // sending someone to a thank-you page for a message that never arrived
+    // would be a lie.
     if (ok) {
-      setFormData({ ...EMPTY, interestedIn: contactForm.interestedInOptions[0] });
+      navigate(THANK_YOU_ROUTE, { state: THANK_YOU_STATE });
     }
   };
 
@@ -198,11 +204,6 @@ export default function ContactFormSection() {
               {state === "sending" ? contactForm.sendingLabel : contactForm.submitLabel}
             </button>
 
-            {state === "sent" && (
-              <p className="mt-4 font-mono text-[11px] tracking-wider text-brand-accent">
-                {contactForm.successMessage}
-              </p>
-            )}
             {state === "error" && (
               // The API being down must not look like a hung spinner; the
               // message carries an address the visitor can fall back to.

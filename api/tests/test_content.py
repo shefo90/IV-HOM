@@ -15,6 +15,7 @@ def test_schema_covers_every_document(editor):
     slugs = {d["slug"] for d in schema["documents"]}
     assert slugs == {
         "site", "home", "about", "projects", "contact", "process", "factory", "products",
+        "thankyou",
     }
 
 

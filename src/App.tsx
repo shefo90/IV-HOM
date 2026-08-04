@@ -15,6 +15,7 @@ import ProductsPage from "./pages/ProductsPage";
 import FactoryPage from "./pages/FactoryPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
+import ThankYouPage from "./pages/ThankYouPage";
 
 // Code-split: the admin is a few hundred KB of forms and a media library that
 // a site visitor must never download.
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="/factory" element={<FactoryPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
 

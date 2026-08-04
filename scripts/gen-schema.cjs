@@ -111,6 +111,7 @@ const DOC_LABELS = {
   process: 'Process page',
   factory: 'Factory page',
   products: 'Products page',
+  thankyou: 'Thank you page',
 };
 
 const schema = {

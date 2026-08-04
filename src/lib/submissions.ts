@@ -22,6 +22,14 @@ export type SubmissionKind = "contact" | "proposal" | "tour";
 
 export type SubmitState = "idle" | "sending" | "sent" | "error";
 
+/**
+ * Where the two contact forms send the visitor once the API accepts a message,
+ * and the history state the confirmation page checks before it will render.
+ * Both live here so the senders and the page cannot drift apart.
+ */
+export const THANK_YOU_ROUTE = "/thank-you";
+export const THANK_YOU_STATE = { submitted: true } as const;
+
 interface BaseFields {
   kind: SubmissionKind;
   name: string;

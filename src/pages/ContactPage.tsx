@@ -5,13 +5,14 @@
 
 import { useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import useScrollProgress from "../hooks/useScrollProgress";
 import useReveal from "../hooks/useReveal";
 import useMagnetic from "../hooks/useMagnetic";
 import { useContent } from "../content/ContentProvider";
 import RichText from "../components/RichText";
 import Honeypot from "../components/Honeypot";
-import { useSubmitForm } from "../lib/submissions";
+import { THANK_YOU_ROUTE, THANK_YOU_STATE, useSubmitForm } from "../lib/submissions";
 
 const INITIAL_FORM = {
   name: "",
@@ -33,8 +34,10 @@ export default function ContactPage() {
 
   const [form, setForm] = useState(INITIAL_FORM);
   const [honeypot, setHoneypot] = useState("");
+  // Only ever holds the failure text: a success leaves for /thank-you.
   const [formMsg, setFormMsg] = useState("");
   const { submit, state } = useSubmitForm();
+  const navigate = useNavigate();
   const sending = state === "sending";
 
   const handleChange = (
@@ -47,8 +50,11 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const ok = await submit({ kind: "contact", ...form }, honeypot);
-    setFormMsg(ok ? copy.successMessage : copy.errorMessage);
-    if (ok) setForm(INITIAL_FORM);
+    if (ok) {
+      navigate(THANK_YOU_ROUTE, { state: THANK_YOU_STATE });
+      return;
+    }
+    setFormMsg(copy.errorMessage);
   };
 
   return (

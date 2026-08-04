@@ -13,7 +13,17 @@ import subprocess
 
 from app.store import repo
 
-PAGES = ("site", "home", "about", "projects", "contact", "process", "factory", "products")
+PAGES = (
+    "site",
+    "home",
+    "about",
+    "projects",
+    "contact",
+    "process",
+    "factory",
+    "products",
+    "thankyou",
+)
 
 
 def _edit(client, slug: str, value: str) -> None:

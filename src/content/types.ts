@@ -436,6 +436,17 @@ export interface ProductsContent {
   cta: Omit<Cta, "secondaryLabel" | "secondaryTo">;
 }
 
+/* ------------------------------- thank you ------------------------------- */
+
+export interface ThankYouContent {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  note: string;
+  homeLabel: string;
+  homeTo: string;
+}
+
 /* ------------------------------ the payload ----------------------------- */
 
 export interface Content {
@@ -447,4 +458,10 @@ export interface Content {
   process: ProcessContent;
   factory: FactoryContent;
   products: ProductsContent;
+  /**
+   * Lower-cased to match its schema slug: the seeder writes one page per
+   * top-level key (`for slug, data in documents.items()`), so the key and the
+   * slug cannot diverge.
+   */
+  thankyou: ThankYouContent;
 }

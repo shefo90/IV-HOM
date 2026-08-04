@@ -753,5 +753,13 @@
       "primaryLabel": "Get a Proposal",
       "primaryTo": "/contact"
     }
+  },
+  "thankyou": {
+    "eyebrow": "Message received",
+    "heading": "Thank *you\\.*",
+    "body": "Your brief is with our team. We'll review the scope and come back to you within one business day.",
+    "note": "If it's urgent, email contact@ivfixed.com and we'll pick it up sooner.",
+    "homeLabel": "Back to Home",
+    "homeTo": "/"
   }
 }

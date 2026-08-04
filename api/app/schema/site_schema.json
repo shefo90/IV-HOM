@@ -2490,6 +2490,48 @@
           ]
         }
       ]
+    },
+    {
+      "slug": "thankyou",
+      "label": "Thank you page",
+      "fields": [
+        {
+          "key": "eyebrow",
+          "label": "Eyebrow",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "heading",
+          "label": "Heading",
+          "type": "richtext",
+          "required": true
+        },
+        {
+          "key": "body",
+          "label": "Body",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "note",
+          "label": "Note",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "homeLabel",
+          "label": "Home Label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "homeTo",
+          "label": "Home To",
+          "type": "string",
+          "required": true
+        }
+      ]
     }
   ]
 }
