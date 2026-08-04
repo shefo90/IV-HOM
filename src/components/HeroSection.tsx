@@ -135,41 +135,65 @@ export default function HeroSection({ onOpenProposal }: HeroSectionProps) {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-accent/60 to-transparent animate-pulse" />
         
-        <div className="flex whitespace-nowrap animate-[marquee_60s_linear_infinite]">
-          {/* Create a very long list to ensure all items are visible */}
-          <div className="flex gap-8 sm:gap-12 md:gap-16 lg:gap-20 items-center shrink-0">
-            {/* Repeat all materials multiple times */}
-            {Array.from({ length: 6 }).flatMap((_, repeatIndex) => 
-              materials.map((material, idx) => (
-                <div 
-                  key={`${repeatIndex}-${idx}`} 
-                  className="flex items-center justify-center group/item transition-all duration-500 hover:scale-105 mr-8 sm:mr-12 md:mr-16 lg:mr-20"
-                >
-                  {/* Company logo only - larger on mobile */}
-                  <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 relative bg-transparent p-1">
-                    <img
-                      src={material.logo}
-                      alt={`Company logo ${idx + 1}`}
-                      className="w-full h-full object-contain opacity-80 group-hover/item:opacity-100 transition-all duration-500 group-hover/item:scale-110"
-                      style={{ 
-                        background: 'transparent',
-                        backgroundColor: 'transparent',
-                        filter: 'drop-shadow(0 2px 8px rgba(212,107,67,0.2))'
-                      }}
-                    />
+        {/* `w-max` is what makes this move at all. A percentage translate
+            resolves against the element's own width, and without it this flex
+            row is a block inside `overflow-hidden` — so its width was the
+            viewport, and the animation shifted the logos by one screen per
+            cycle instead of by one half of the track. That is why it crawled,
+            and why it crawled worst on a narrow phone: 414px per 60s against a
+            desktop's 1280px.
+
+            With the track sized to its content, each breakpoint's travel is one
+            half — 3456px on mobile up to 6912px at lg — so the durations below
+            are staggered to hold a steady ~150px/s everywhere rather than
+            letting speed follow screen width. */}
+        <div className="flex w-max whitespace-nowrap will-change-transform animate-[marquee_23s_linear_infinite] sm:animate-[marquee_30s_linear_infinite] md:animate-[marquee_37s_linear_infinite] lg:animate-[marquee_46s_linear_infinite]">
+          {/* Two identical halves. The track travels exactly one half per
+              cycle, so when the first has left the viewport the second is
+              filling it and the reset is invisible. One half translating -100%
+              — which is what this was — empties the strip completely before
+              snapping back, and that blank stretch reads as a stall. */}
+          {[0, 1].map((half) => (
+            <div className="flex items-center shrink-0" key={half} aria-hidden={half === 1}>
+              {Array.from({ length: 3 }).flatMap((_, repeatIndex) =>
+                materials.map((material, idx) => (
+                  <div
+                    key={`${repeatIndex}-${idx}`}
+                    // The spacing lives entirely in the margin rather than
+                    // being split with a `gap` on the row: `gap` does not apply
+                    // between the two halves, so the joint came out tighter
+                    // than every other slot and the loop visibly hitched.
+                    // These values equal the old margin plus the old gap.
+                    className="flex items-center justify-center group/item transition-all duration-500 hover:scale-105 mr-16 sm:mr-24 md:mr-32 lg:mr-40"
+                  >
+                    {/* Company logo only - larger on mobile */}
+                    <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 relative bg-transparent p-1">
+                      <img
+                        src={material.logo}
+                        alt={`Company logo ${idx + 1}`}
+                        className="w-full h-full object-contain opacity-80 group-hover/item:opacity-100 transition-all duration-500 group-hover/item:scale-110"
+                        style={{
+                          background: 'transparent',
+                          backgroundColor: 'transparent',
+                          filter: 'drop-shadow(0 2px 8px rgba(212,107,67,0.2))'
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))
-            )}
-          </div>
+                ))
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Add marquee keyframe injection style to react scope */}
       <style>{`
+        /* -50%, not -100%: the track holds two identical halves, so one half
+           of travel returns it to a visually identical position. */
         @keyframes marquee {
           0% { transform: translateX(0%); }
-          100% { transform: translateX(-100%); }
+          100% { transform: translateX(-50%); }
         }
         
         /* Remove any background from logos */

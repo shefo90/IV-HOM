@@ -40,6 +40,47 @@ test('/process: the quality counter counts up to 0.4 on its own', async ({ page 
   await expect(counter).toHaveText('0.4', { timeout: 8000 });
 });
 
+// The home page's logo marquee translates by a percentage, which resolves
+// against the animated element's OWN width. The element is a flex row inside an
+// `overflow-hidden` strip, so without `w-max` it measures the viewport instead
+// of its content and the logos crawl one screen per cycle — worst on a phone,
+// where the viewport is narrowest. Nothing about the declared animation looks
+// wrong when that happens, so these assert the two facts the motion depends on:
+// the track is content-sized, and it holds two identical halves so a -50% cycle
+// lands on a visually identical frame.
+test('/: the logo marquee is content-sized and scrolls at a usable rate', async ({ page }) => {
+  await page.setViewportSize({ width: 414, height: 900 });
+  await page.goto('/');
+
+  const track = page.locator('div[class*="animate-\\[marquee"]').first();
+  await track.waitFor();
+
+  const shape = await track.evaluate((el) => {
+    const halves = Array.from(el.children) as HTMLElement[];
+    return {
+      halfCount: halves.length,
+      widths: halves.map((h) => h.getBoundingClientRect().width),
+      trackWidth: el.getBoundingClientRect().width,
+    };
+  });
+
+  expect(shape.halfCount).toBe(2);
+  expect(shape.widths[0]).toBeCloseTo(shape.widths[1], 1);
+  // The whole point: content width, not the 414px viewport.
+  expect(shape.trackWidth).toBeCloseTo(shape.widths[0] * 2, 1);
+
+  const xOf = () =>
+    track.evaluate((el) => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+  const before = await xOf();
+  await page.waitForTimeout(2000);
+  const travelled = before - (await xOf());
+
+  // ~150px/s by design; the bounds are wide enough for frame-timing jitter but
+  // still catch the old ~7px/s crawl.
+  expect(travelled).toBeGreaterThan(200);
+  expect(travelled).toBeLessThan(400);
+});
+
 test('/factory: warranty cards and counts animate in via IntersectionObserver', async ({ page }) => {
   await page.goto('/factory');
   await page.locator('.warranty-cards-grid').scrollIntoViewIfNeeded();
